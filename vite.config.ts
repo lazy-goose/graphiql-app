@@ -16,5 +16,8 @@ export default defineConfig({
       provider: 'v8',
       reporter: 'text',
     },
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/tests/vitest-setup.ts'],
   },
 })
