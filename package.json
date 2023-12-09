@@ -15,7 +15,9 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "prepare": "husky install"
+    "husky:enable": "husky install",
+    "husky:disable": "git config --unset core.hooksPath",
+    "prepare": "npm run husky:enable"
   },
   "dependencies": {
     "react": "^18.2.0",
