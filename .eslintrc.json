@@ -1,6 +1,6 @@
 {
   "root": true,
-  "env": { "browser": true, "es2020": true },
+  "env": { "browser": true, "es2023": true },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -28,6 +28,7 @@
   "overrides": [
     {
       "files": ["**/*.test.{ts,tsx}"],
+      "env": { "node": true },
       "extends": ["plugin:jest-dom/recommended", "plugin:testing-library/react"]
     }
   ]
