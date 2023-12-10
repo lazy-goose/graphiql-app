@@ -13,7 +13,7 @@ export default defineConfig({
   test: {
     coverage: {
       provider: 'v8',
-      reporter: 'text',
+      reporter: ['text', 'html'],
     },
     environment: 'jsdom',
     globals: true,
