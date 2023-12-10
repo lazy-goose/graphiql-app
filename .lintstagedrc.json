@@ -1,0 +1,9 @@
+{
+  "src/**/*.{ts,tsx}": [
+    "prettier --list-different",
+    "tsc-files --noEmit",
+    "eslint --max-warnings 0"
+  ],
+  "src/**/*.{css,scss}": "prettier --list-different",
+  "*.{json,html,md}": "prettier --list-different"
+}
