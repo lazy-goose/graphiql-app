@@ -24,7 +24,7 @@ export class ErrorBoundary extends Component<
 
   render() {
     if (this.state.hasError) {
-      return <h3>Something went wrong. Please, try later!</h3>
+      return this.props.fallback
     }
 
     return this.props.children

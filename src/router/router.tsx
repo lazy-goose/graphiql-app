@@ -1,4 +1,5 @@
 import { ErrorBoundary } from '@/components/ErrorBoudary'
+import { ErrorPage } from '@/pages/ErrorPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { SignInUpPage } from '@/pages/SignInUpPage'
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
       {
         path: '',
         element: (
-          <ErrorBoundary>
+          <ErrorBoundary fallback={<ErrorPage />}>
             <MainPage />
           </ErrorBoundary>
         ),
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
       {
         path: 'welcome',
         element: (
-          <ErrorBoundary>
+          <ErrorBoundary fallback={<ErrorPage />}>
             <WelcomePage />
           </ErrorBoundary>
         ),
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
       {
         path: 'sign-in-up',
         element: (
-          <ErrorBoundary>
+          <ErrorBoundary fallback={<ErrorPage />}>
             <SignInUpPage />
           </ErrorBoundary>
         ),
