@@ -1,5 +1,6 @@
-function App() {
-  return <div>App component</div>
-}
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router/router'
 
-export default App
+export function App(): React.ReactElement {
+  return <RouterProvider router={router} />
+}
