@@ -1,15 +1,15 @@
 import { Component, type ErrorInfo } from 'react'
 import {
-  type IErrorBoundaryProps,
-  type IErrorBoundaryState,
+  type ErrorBoundaryProps,
+  type ErrorBoundaryState,
 } from './ErrorBoundary.types'
 
 export class ErrorBoundary extends Component<
-  IErrorBoundaryProps,
-  IErrorBoundaryState,
+  ErrorBoundaryProps,
+  ErrorBoundaryState,
   string
 > {
-  constructor(props: IErrorBoundaryProps) {
+  constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { hasError: false }
   }
