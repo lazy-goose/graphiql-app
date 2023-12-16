@@ -1,5 +1,8 @@
-import { Component, ErrorInfo } from 'react'
-import { IErrorBoundaryProps, IErrorBoundaryState } from './ErrorBoundary.types'
+import { Component, type ErrorInfo } from 'react'
+import {
+  type IErrorBoundaryProps,
+  type IErrorBoundaryState,
+} from './ErrorBoundary.types'
 
 export class ErrorBoundary extends Component<
   IErrorBoundaryProps,
@@ -16,7 +19,7 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Uncaught error:", error, errorInfo);
+    console.error('Uncaught error:', error, errorInfo)
   }
 
   render() {
