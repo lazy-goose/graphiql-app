@@ -1,8 +1,8 @@
-export interface IErrorBoundaryProps {
+export type IErrorBoundaryProps = {
   children: React.ReactNode
   fallback: React.ReactNode
 }
 
-export interface IErrorBoundaryState {
+export type IErrorBoundaryState = {
   hasError: boolean
 }
