@@ -1,9 +1,17 @@
 import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 import { createBearSlice } from './slices/bearSlice'
 import { createFishSlice } from './slices/fishSlice'
 import { type Store } from './store.d'
 
-export const useBoundStore = create<Store>()((...args) => ({
-  ...createBearSlice(...args),
-  ...createFishSlice(...args),
-}))
+const isDevMode = import.meta.env.DEV
+
+export const useBoundStore = create<Store>()(
+  devtools(
+    (...args) => ({
+      ...createBearSlice(...args),
+      ...createFishSlice(...args),
+    }),
+    { enabled: isDevMode },
+  ),
+)
