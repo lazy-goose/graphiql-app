@@ -10,5 +10,5 @@ export type FishSlice = {
   addFish: () => void
 }
 export type Store = BearSlice & FishSlice
-export type Mutators = [['zustand/devtools', never]]
+export type Mutators = [['zustand/devtools', never], ['zustand/immer', never]]
 export type SliceCreator<T, R = Store> = StateCreator<R, Mutators, [], T>
