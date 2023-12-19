@@ -5,7 +5,7 @@ import { type FieldErrors, type UseFormRegister } from 'react-hook-form'
 export function EmailInput(props: {
   register: UseFormRegister<userData>
   errors: FieldErrors<userData>
-}): React.ReactElement {
+}) {
   const { register, errors } = props
 
   return (

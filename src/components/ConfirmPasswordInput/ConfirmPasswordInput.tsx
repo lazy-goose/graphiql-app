@@ -14,7 +14,7 @@ import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 export function ConfirmPasswordInput(props: {
   register: UseFormRegister<userData>
   errors: FieldErrors<userData>
-}): React.ReactElement {
+}) {
   const { register, errors } = props
   const [showPassword, setShowPassword] = useState(false)
   const handleMouseDownPassword = (

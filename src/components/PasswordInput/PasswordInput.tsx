@@ -18,7 +18,7 @@ export function PasswordInput(props: {
   setIsIndicator: React.Dispatch<React.SetStateAction<boolean>>
   watch: UseFormGetValues<userData>
   isIndicator: boolean
-}): React.ReactElement {
+}) {
   const { register, setIsIndicator, watch, isIndicator } = props
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword((show) => !show)

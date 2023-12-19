@@ -5,9 +5,7 @@ import { Box, FormHelperText, Typography } from '@mui/material'
 import { type UseFormGetValues } from 'react-hook-form'
 import styles from './PasswordStrength.module.css'
 
-export function PasswordStrength(props: {
-  watch: UseFormGetValues<userData>
-}): React.ReactElement {
+export function PasswordStrength(props: { watch: UseFormGetValues<userData> }) {
   const { watch } = props
 
   const passwordErrors = usePasswordErrors(watch('password'))

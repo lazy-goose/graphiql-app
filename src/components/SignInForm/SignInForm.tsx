@@ -4,11 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Button, Link, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { ConfirmPasswordInput } from '../ConfirmPasswordInput'
 import { EmailInput } from '../EmailInput'
 import { PasswordInput } from '../PasswordInput'
 
-export function SignUpForm() {
+export function SignInForm() {
   const [isIndicator, setIsIndicator] = useState(false)
 
   const onSubmit: SubmitHandler<userData> = () => {
@@ -36,7 +35,7 @@ export function SignUpForm() {
       }}
     >
       <Typography component="h2" variant="h5">
-        Sign Up
+        Sign In
       </Typography>
       <Box
         sx={{
@@ -57,14 +56,13 @@ export function SignUpForm() {
           watch={watch}
           isIndicator={isIndicator}
         />
-        <ConfirmPasswordInput register={register} errors={errors} />
         <Button
           fullWidth
           variant="contained"
           type="submit"
           disabled={!isDirty || !isValid}
         >
-          Sign Up
+          Sign In
         </Button>
         <Box
           sx={{
@@ -80,7 +78,7 @@ export function SignUpForm() {
             }}
             variant="body1"
           >
-            Already have an account?
+            Don&apos;t have an account?
           </Typography>
           <Link
             component="button"
@@ -88,7 +86,7 @@ export function SignUpForm() {
             underline="none"
             onClick={() => {}}
           >
-            Sign In
+            Sign Up
           </Link>
         </Box>
       </Box>
