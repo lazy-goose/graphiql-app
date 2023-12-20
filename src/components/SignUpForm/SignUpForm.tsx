@@ -3,7 +3,8 @@ import { useBoundStore } from '@/store'
 import { type userSignInData, type userSignUpData } from '@/types/types'
 import { signupSchema } from '@/utils/zodUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Box, Button, Link, Typography } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import { Box, Link, Typography } from '@mui/material'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
@@ -38,7 +39,7 @@ export function SignUpForm() {
     watch,
     handleSubmit,
     reset,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isDirty, isValid, isLoading },
   } = useForm<userSignUpData | userSignInData>({
     mode: 'onChange',
     resolver: zodResolver(signupSchema),
@@ -52,21 +53,20 @@ export function SignUpForm() {
         alignItems: 'center',
       }}
     >
-      <Typography component="h2" variant="h5">
-        Sign Up
-      </Typography>
       <Box
         sx={{
           mt: 1,
           minWidth: '552px',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
         }}
         component="form"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
+        <Typography component="h2" variant="h5">
+          Sign up
+        </Typography>
         <EmailInput register={register} errors={errors} />
         <PasswordInput
           register={register}
@@ -75,14 +75,15 @@ export function SignUpForm() {
           isIndicator={isIndicator}
         />
         <ConfirmPasswordInput register={register} errors={errors} />
-        <Button
+        <LoadingButton
           fullWidth
+          loading={isLoading}
           variant="contained"
           type="submit"
           disabled={!isDirty || !isValid}
         >
-          Sign Up
-        </Button>
+          Sign up
+        </LoadingButton>
         <Box
           sx={{
             mt: 1,
@@ -102,10 +103,10 @@ export function SignUpForm() {
           <Link
             component="button"
             variant="body1"
-            underline="none"
+            underline="hover"
             onClick={handleSignInLink}
           >
-            Sign In
+            Sign in
           </Link>
         </Box>
       </Box>

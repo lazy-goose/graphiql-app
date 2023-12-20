@@ -3,7 +3,8 @@ import { useBoundStore } from '@/store'
 import { type userSignInData } from '@/types/types'
 import { signinSchema } from '@/utils/zodUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Box, Button, Link, Typography } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
+import { Box, Link, Typography } from '@mui/material'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
@@ -37,7 +38,7 @@ export function SignInForm() {
     watch,
     handleSubmit,
     reset,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isDirty, isValid, isLoading },
   } = useForm<userSignInData>({
     mode: 'onChange',
     resolver: zodResolver(signinSchema),
@@ -51,21 +52,20 @@ export function SignInForm() {
         alignItems: 'center',
       }}
     >
-      <Typography component="h2" variant="h5">
-        Sign In
-      </Typography>
       <Box
         sx={{
           mt: 1,
           minWidth: '552px',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
         }}
         component="form"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
+        <Typography component="h2" variant="h5">
+          Sign in
+        </Typography>
         <EmailInput register={register} errors={errors} />
         <PasswordInput
           register={register}
@@ -73,14 +73,15 @@ export function SignInForm() {
           watch={watch}
           isIndicator={isIndicator}
         />
-        <Button
+        <LoadingButton
           fullWidth
+          loading={isLoading}
           variant="contained"
           type="submit"
           disabled={!isDirty || !isValid}
         >
           Sign In
-        </Button>
+        </LoadingButton>
         <Box
           sx={{
             mt: 1,
@@ -100,10 +101,10 @@ export function SignInForm() {
           <Link
             component="button"
             variant="body1"
-            underline="none"
+            underline="hover"
             onClick={handleSignUpLink}
           >
-            Sign Up
+            Sign up
           </Link>
         </Box>
       </Box>

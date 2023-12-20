@@ -21,6 +21,7 @@ export function Header() {
 
   const handleSignUpButton = async () => {
     setPageMode('signUp')
+    navigate(pathes.signInUpPage)
   }
 
   return (

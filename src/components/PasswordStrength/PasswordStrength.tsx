@@ -40,7 +40,7 @@ export function PasswordStrength(props: {
       )}
       {passwordErrors && passwordErrors.length > 0 && (
         <FormHelperText
-          sx={{ minWidth: '552px', position: 'absolute', top: '80px' }}
+          sx={{ minWidth: '542px', position: 'absolute', top: '80px' }}
           error
         >
           {`Strong password must contain ${passwordErrors?.join(', ')}`}

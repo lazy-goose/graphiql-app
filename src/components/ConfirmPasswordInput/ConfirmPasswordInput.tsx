@@ -25,7 +25,7 @@ export function ConfirmPasswordInput(props: {
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
   return (
-    <FormControl margin="normal" fullWidth variant="outlined">
+    <FormControl fullWidth variant="outlined">
       <InputLabel error={!!errors.confirmPassword} htmlFor="confirm-password">
         Confirm Password
       </InputLabel>
@@ -50,7 +50,7 @@ export function ConfirmPasswordInput(props: {
       />
       <FormHelperText
         sx={{
-          minWidth: 1 / 3,
+          minWidth: '552px',
           position: 'absolute',
           top: '55px',
         }}
