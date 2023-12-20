@@ -14,8 +14,8 @@ export function SignInForm() {
   const [isIndicator, setIsIndicator] = useState(false)
   const setPageMode = useBoundStore((state) => state.setPageMode)
 
-  const onSubmit: SubmitHandler<userSignInData> = (user) => {
-    handleSignInButton(user.email, user.password)
+  const onSubmit: SubmitHandler<userSignInData> = (userData) => {
+    handleSignInButton(userData.email, userData.password)
     reset()
     setIsIndicator(false)
   }

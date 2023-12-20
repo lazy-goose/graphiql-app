@@ -14,7 +14,6 @@ import { PasswordInput } from '../PasswordInput'
 export function SignUpForm() {
   const [isIndicator, setIsIndicator] = useState(false)
   const setPageMode = useBoundStore((state) => state.setPageMode)
-  const user = useBoundStore((state) => state.user)
 
   const onSubmit: SubmitHandler<userSignUpData | userSignInData> = (user) => {
     handleSignUpButton(user.email, user.password)
@@ -109,7 +108,6 @@ export function SignUpForm() {
             Sign In
           </Link>
         </Box>
-        <p>Loged in user: {user?.email}</p>
       </Box>
     </Box>
   )
