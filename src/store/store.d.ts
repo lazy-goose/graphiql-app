@@ -1,3 +1,4 @@
+import { type User } from 'firebase/auth'
 import { type StateCreator } from 'zustand'
 
 export type BearSlice = {
@@ -9,10 +10,14 @@ export type FishSlice = {
   fishes: number
   addFish: () => void
 }
-export type AuthPageSlice = {
+export type AuthPageModeSlice = {
   pageMode: string
   setPageMode: (mode: string) => void
 }
-export type Store = BearSlice & FishSlice & AuthPageSlice
+export type AuthSlice = {
+  user: User | null
+  setUser: (user: User | null) => void
+}
+export type Store = BearSlice & FishSlice & AuthPageModeSlice & AuthSlice
 export type Mutators = [['zustand/devtools', never], ['zustand/immer', never]]
 export type SliceCreator<T, R = Store> = StateCreator<R, Mutators, [], T>

@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { createAuthPageModeSlice } from './slices/authPageModeSlice'
+import { createAuthSlice } from './slices/authSlice'
 import { createBearSlice } from './slices/bearSlice'
 import { createFishSlice } from './slices/fishSlice'
 import { type Store } from './store.d'
@@ -14,6 +15,7 @@ export const useBoundStore = create<Store>()(
       ...createBearSlice(...args),
       ...createFishSlice(...args),
       ...createAuthPageModeSlice(...args),
+      ...createAuthSlice(...args),
     })),
     { enabled: isDevMode },
   ),

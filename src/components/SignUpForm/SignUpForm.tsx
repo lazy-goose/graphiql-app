@@ -1,8 +1,10 @@
+import { auth } from '@/firebase'
 import { useBoundStore } from '@/store'
 import { type userData } from '@/types/types'
 import { signupSchema } from '@/utils/zodUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Button, Link, Typography } from '@mui/material'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { ConfirmPasswordInput } from '../ConfirmPasswordInput'
@@ -12,14 +14,24 @@ import { PasswordInput } from '../PasswordInput'
 export function SignUpForm() {
   const [isIndicator, setIsIndicator] = useState(false)
   const setPageMode = useBoundStore((state) => state.setPageMode)
+  const user = useBoundStore((state) => state.user)
 
-  const onSubmit: SubmitHandler<userData> = () => {
+  const onSubmit: SubmitHandler<userData> = (user) => {
+    handleSignUpButton(user.email, user.password)
     reset()
     setIsIndicator(false)
   }
 
   const handleSignInLink = () => {
     setPageMode('signIn')
+  }
+
+  const handleSignUpButton = async (email: string, password: string) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const {
@@ -97,6 +109,7 @@ export function SignUpForm() {
             Sign In
           </Link>
         </Box>
+        <p>Loged in user: {user?.email}</p>
       </Box>
     </Box>
   )

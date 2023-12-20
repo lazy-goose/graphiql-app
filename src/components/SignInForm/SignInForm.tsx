@@ -1,8 +1,10 @@
+import { auth } from '@/firebase'
 import { useBoundStore } from '@/store'
 import { type userData } from '@/types/types'
 import { signupSchema } from '@/utils/zodUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Button, Link, Typography } from '@mui/material'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { EmailInput } from '../EmailInput'
@@ -12,9 +14,18 @@ export function SignInForm() {
   const [isIndicator, setIsIndicator] = useState(false)
   const setPageMode = useBoundStore((state) => state.setPageMode)
 
-  const onSubmit: SubmitHandler<userData> = () => {
+  const onSubmit: SubmitHandler<userData> = (user) => {
+    handleSignInButton(user.email, user.password)
     reset()
     setIsIndicator(false)
+  }
+
+  const handleSignInButton = async (email: string, password: string) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const handleSignUpLink = () => {
