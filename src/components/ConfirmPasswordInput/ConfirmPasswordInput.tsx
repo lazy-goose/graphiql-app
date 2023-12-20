@@ -17,11 +17,13 @@ export function ConfirmPasswordInput(props: {
 }) {
   const { register, errors } = props
   const [showPassword, setShowPassword] = useState(false)
+
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault()
   }
+
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
   return (

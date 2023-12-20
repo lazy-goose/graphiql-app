@@ -15,6 +15,17 @@ export function SignInForm() {
   const [isIndicator, setIsIndicator] = useState(false)
   const setPageMode = useBoundStore((state) => state.setPageMode)
 
+  const {
+    register,
+    watch,
+    handleSubmit,
+    reset,
+    formState: { errors, isDirty, isValid, isLoading },
+  } = useForm<userSignInData>({
+    mode: 'onChange',
+    resolver: zodResolver(signinSchema),
+  })
+
   const onSubmit: SubmitHandler<userSignInData> = (userData) => {
     handleSignInButton(userData.email, userData.password)
     reset()
@@ -32,17 +43,6 @@ export function SignInForm() {
   const handleSignUpLink = () => {
     setPageMode('signUp')
   }
-
-  const {
-    register,
-    watch,
-    handleSubmit,
-    reset,
-    formState: { errors, isDirty, isValid, isLoading },
-  } = useForm<userSignInData>({
-    mode: 'onChange',
-    resolver: zodResolver(signinSchema),
-  })
 
   return (
     <Box

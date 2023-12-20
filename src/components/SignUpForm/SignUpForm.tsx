@@ -14,7 +14,19 @@ import { PasswordInput } from '../PasswordInput'
 
 export function SignUpForm() {
   const [isIndicator, setIsIndicator] = useState(false)
+
   const setPageMode = useBoundStore((state) => state.setPageMode)
+
+  const {
+    register,
+    watch,
+    handleSubmit,
+    reset,
+    formState: { errors, isDirty, isValid, isLoading },
+  } = useForm<userSignUpData | userSignInData>({
+    mode: 'onChange',
+    resolver: zodResolver(signupSchema),
+  })
 
   const onSubmit: SubmitHandler<userSignUpData | userSignInData> = (user) => {
     handleSignUpButton(user.email, user.password)
@@ -33,17 +45,6 @@ export function SignUpForm() {
       console.error(error)
     }
   }
-
-  const {
-    register,
-    watch,
-    handleSubmit,
-    reset,
-    formState: { errors, isDirty, isValid, isLoading },
-  } = useForm<userSignUpData | userSignInData>({
-    mode: 'onChange',
-    resolver: zodResolver(signupSchema),
-  })
 
   return (
     <Box

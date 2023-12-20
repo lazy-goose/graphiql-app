@@ -21,8 +21,9 @@ const theme = createTheme({
 
 export function SignInUpPage() {
   const pageMode = useBoundStore((state) => state.pageMode)
-  const navigate = useNavigate()
   const user = useBoundStore((state) => state.user)
+
+  const navigate = useNavigate()
 
   const handleRedirect = (): void => {
     if (user) {

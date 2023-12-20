@@ -21,6 +21,14 @@ export function PasswordInput(props: {
 }) {
   const { register, setIsIndicator, watch, isIndicator } = props
   const [showPassword, setShowPassword] = useState(false)
+  const passwordErrors = usePasswordErrors(watch('password'))
+  const passwordFields = { ...register('password') }
+
+  const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    passwordFields.onChange(e)
+    setIsIndicator(true)
+  }
+
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
   const handleMouseDownPassword = (
@@ -29,24 +37,17 @@ export function PasswordInput(props: {
     event.preventDefault()
   }
 
-  const passwordErrors = usePasswordErrors(watch('password'))
-  const passwordFields = { ...register('password') }
-  const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    passwordFields.onChange(e)
-    setIsIndicator(true)
-  }
-
   return (
     <FormControl margin="normal" fullWidth variant="outlined">
       <InputLabel
         error={!!(isIndicator && passwordErrors && passwordErrors.length > 0)}
-        htmlFor="outlined-adornment-password"
+        htmlFor="password"
       >
         Password
       </InputLabel>
       <OutlinedInput
         sx={{ marginBottom: { xs: '85px', sm: '75px', md: '65px' } }}
-        id="outlined-adornment-password"
+        id="password"
         {...passwordFields}
         onChange={handlePasswordInput}
         type={showPassword ? 'text' : 'password'}
