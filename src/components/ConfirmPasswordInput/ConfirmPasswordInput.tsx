@@ -1,4 +1,4 @@
-import { type userData } from '@/types/types'
+import { type userSignInData, type userSignUpData } from '@/types/types'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import {
   FormControl,
@@ -12,8 +12,8 @@ import { useState } from 'react'
 import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 export function ConfirmPasswordInput(props: {
-  register: UseFormRegister<userData>
-  errors: FieldErrors<userData>
+  register: UseFormRegister<userSignUpData | userSignInData>
+  errors: FieldErrors<userSignUpData>
 }) {
   const { register, errors } = props
   const [showPassword, setShowPassword] = useState(false)

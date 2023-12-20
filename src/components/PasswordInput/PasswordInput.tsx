@@ -1,5 +1,5 @@
 import { usePasswordErrors } from '@/hooks/usePasswordErrors'
-import { type userData } from '@/types/types'
+import { type userSignInData, type userSignUpData } from '@/types/types'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import {
@@ -14,9 +14,9 @@ import type { UseFormGetValues, UseFormRegister } from 'react-hook-form'
 import { PasswordStrength } from '../PasswordStrength'
 
 export function PasswordInput(props: {
-  register: UseFormRegister<userData>
+  register: UseFormRegister<userSignUpData | userSignInData>
   setIsIndicator: React.Dispatch<React.SetStateAction<boolean>>
-  watch: UseFormGetValues<userData>
+  watch: UseFormGetValues<userSignUpData | userSignInData>
   isIndicator: boolean
 }) {
   const { register, setIsIndicator, watch, isIndicator } = props

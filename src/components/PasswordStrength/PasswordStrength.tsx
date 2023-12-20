@@ -1,11 +1,13 @@
 import { usePasswordErrors } from '@/hooks/usePasswordErrors'
-import { type userData } from '@/types/types'
+import { type userSignInData, type userSignUpData } from '@/types/types'
 import { getPasswordErrorsData } from '@/utils/getPasswordErrorsData'
 import { Box, FormHelperText, Typography } from '@mui/material'
 import { type UseFormGetValues } from 'react-hook-form'
 import styles from './PasswordStrength.module.css'
 
-export function PasswordStrength(props: { watch: UseFormGetValues<userData> }) {
+export function PasswordStrength(props: {
+  watch: UseFormGetValues<userSignUpData | userSignInData>
+}) {
   const { watch } = props
 
   const passwordErrors = usePasswordErrors(watch('password'))

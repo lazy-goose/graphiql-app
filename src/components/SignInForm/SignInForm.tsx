@@ -1,7 +1,7 @@
 import { auth } from '@/firebase'
 import { useBoundStore } from '@/store'
-import { type userData } from '@/types/types'
-import { signupSchema } from '@/utils/zodUtils'
+import { type userSignInData } from '@/types/types'
+import { signinSchema } from '@/utils/zodUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Button, Link, Typography } from '@mui/material'
 import { signInWithEmailAndPassword } from 'firebase/auth'
@@ -14,7 +14,7 @@ export function SignInForm() {
   const [isIndicator, setIsIndicator] = useState(false)
   const setPageMode = useBoundStore((state) => state.setPageMode)
 
-  const onSubmit: SubmitHandler<userData> = (user) => {
+  const onSubmit: SubmitHandler<userSignInData> = (user) => {
     handleSignInButton(user.email, user.password)
     reset()
     setIsIndicator(false)
@@ -38,9 +38,9 @@ export function SignInForm() {
     handleSubmit,
     reset,
     formState: { errors, isDirty, isValid },
-  } = useForm<userData>({
+  } = useForm<userSignInData>({
     mode: 'onChange',
-    resolver: zodResolver(signupSchema),
+    resolver: zodResolver(signinSchema),
   })
 
   return (
