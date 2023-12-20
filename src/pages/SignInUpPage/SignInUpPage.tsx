@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import { SignInForm } from '@/components/SignInForm'
 import { SignUpForm } from '@/components/SignUpForm'
+import { pathes } from '@/constants/constants'
 import { useBoundStore } from '@/store'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,7 +13,7 @@ export function SignInUpPage() {
 
   const handleRedirect = (): void => {
     if (user) {
-      navigate('/')
+      navigate(pathes.mainPage)
     }
   }
 
