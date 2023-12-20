@@ -1,3 +1,4 @@
+import { useBoundStore } from '@/store'
 import { type userData } from '@/types/types'
 import { signupSchema } from '@/utils/zodUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,10 +11,15 @@ import { PasswordInput } from '../PasswordInput'
 
 export function SignUpForm() {
   const [isIndicator, setIsIndicator] = useState(false)
+  const setPageMode = useBoundStore((state) => state.setPageMode)
 
   const onSubmit: SubmitHandler<userData> = () => {
     reset()
     setIsIndicator(false)
+  }
+
+  const handleSignInLink = () => {
+    setPageMode('signIn')
   }
 
   const {
@@ -86,7 +92,7 @@ export function SignUpForm() {
             component="button"
             variant="body1"
             underline="none"
-            onClick={() => {}}
+            onClick={handleSignInLink}
           >
             Sign In
           </Link>
