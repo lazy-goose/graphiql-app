@@ -47,16 +47,18 @@ export function SignUpForm() {
 
   return (
     <Box
+      component="section"
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        width: 1 / 1,
       }}
     >
       <Box
         sx={{
           mt: 1,
-          minWidth: '552px',
+          width: { xs: 99 / 100, md: 552 },
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -87,7 +89,7 @@ export function SignUpForm() {
         <Box
           sx={{
             mt: 1,
-            minWidth: '552px',
+            width: { xs: 99 / 100, md: 552 },
             display: 'flex',
             justifyContent: 'flex-end',
           }}

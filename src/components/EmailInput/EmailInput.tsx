@@ -22,9 +22,10 @@ export function EmailInput(props: {
       />
       <FormHelperText
         sx={{
-          minWidth: '522px',
+          width: { xs: 99 / 100, md: 540 },
           position: 'absolute',
-          top: '55px',
+          top: 55,
+          marginLeft: { xs: '0px', sm: '0px', md: '15px' },
         }}
         error
       >

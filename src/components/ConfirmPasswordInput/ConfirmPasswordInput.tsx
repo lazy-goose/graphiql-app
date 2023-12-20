@@ -50,9 +50,10 @@ export function ConfirmPasswordInput(props: {
       />
       <FormHelperText
         sx={{
-          minWidth: '552px',
+          width: { xs: 99 / 100, md: 552 },
           position: 'absolute',
           top: '55px',
+          marginLeft: { xs: '0px', sm: '0px', md: '15px' },
         }}
         error
       >

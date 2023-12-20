@@ -17,11 +17,11 @@ export function PasswordStrength(props: {
       {passwordErrors && (
         <Box
           sx={{
-            minWidth: '552px',
+            width: { xs: 99 / 100, md: 552 },
             position: 'absolute',
             top: '60px',
             display: 'flex',
-            paddingLeft: '15px',
+            paddingLeft: { sm: 0, md: '15px' },
           }}
         >
           <div
@@ -40,7 +40,12 @@ export function PasswordStrength(props: {
       )}
       {passwordErrors && passwordErrors.length > 0 && (
         <FormHelperText
-          sx={{ minWidth: '542px', position: 'absolute', top: '80px' }}
+          sx={{
+            width: { xs: 97 / 100, md: 540 },
+            position: 'absolute',
+            top: '80px',
+            marginLeft: { xs: '0px', sm: '0px', md: '15px' },
+          }}
           error
         >
           {`Strong password must contain ${passwordErrors?.join(', ')}`}

@@ -45,7 +45,7 @@ export function PasswordInput(props: {
         Password
       </InputLabel>
       <OutlinedInput
-        sx={{ marginBottom: '60px' }}
+        sx={{ marginBottom: { xs: '85px', sm: '75px', md: '65px' } }}
         id="outlined-adornment-password"
         {...passwordFields}
         onChange={handlePasswordInput}
