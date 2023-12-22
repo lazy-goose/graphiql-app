@@ -6,16 +6,31 @@ export const getPasswordErrorsData = (
     return { className: `${styles.indicator}`, text: '' }
   }
   if (passwordErrors && passwordErrors.length === 4) {
-    return { className: `${styles.indicator} ${styles.red}`, text: `Very week` }
+    return {
+      className: `${styles.indicator} ${styles.password_very_weak}`,
+      text: `Very weak`,
+    }
   }
   if (passwordErrors && passwordErrors.length === 3) {
-    return { className: `${styles.indicator} ${styles.orange}`, text: `Week` }
+    return {
+      className: `${styles.indicator} ${styles.password_weak}`,
+      text: `Weak`,
+    }
   }
   if (passwordErrors && passwordErrors.length === 2) {
-    return { className: `${styles.indicator} ${styles.yellow}`, text: `So-so` }
+    return {
+      className: `${styles.indicator} ${styles.password_normal}`,
+      text: `So-so`,
+    }
   }
   if (passwordErrors && passwordErrors.length === 1) {
-    return { className: `${styles.indicator} ${styles.salad}`, text: `Good` }
+    return {
+      className: `${styles.indicator} ${styles.password_good}`,
+      text: `Good`,
+    }
   }
-  return { className: `${styles.indicator} ${styles.green}`, text: `Great!` }
+  return {
+    className: `${styles.indicator} ${styles.password_strong}`,
+    text: `Great!`,
+  }
 }
