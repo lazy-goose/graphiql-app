@@ -2,18 +2,18 @@ import { userAvatars } from '@/constants/constants'
 import { Avatar, Badge, Link, Paper, Stack, styled } from '@mui/material'
 import { RSSLogo } from './RSSLogo'
 
-const StyledBadge = styled(Badge)<{ active?: boolean }>(
-  ({ theme, active = false }) => ({
-    overflow: 'hidden',
-    ...(active && {
-      '& .MuiBadge-badge': {
-        color: theme.palette.success,
-        backgroundColor: theme.palette.success.main,
-        boxShadow: `0 0 0 3px ${theme.palette.background.paper}`,
-      },
-    }),
+const StyledBadge = styled(Badge, {
+  shouldForwardProp: (prop) => prop !== 'active',
+})<{ active?: boolean }>(({ theme, active = false }) => ({
+  overflow: 'hidden',
+  ...(active && {
+    '& .MuiBadge-badge': {
+      color: theme.palette.success,
+      backgroundColor: theme.palette.success.main,
+      boxShadow: `0 0 0 3px ${theme.palette.background.paper}`,
+    },
   }),
-)
+}))
 
 export function Footer() {
   return (
