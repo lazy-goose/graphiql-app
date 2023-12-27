@@ -8,25 +8,12 @@ import {
   TableHead,
   TableRow,
   Tabs,
-  styled,
 } from '@mui/material'
 import { bbedit } from '@uiw/codemirror-theme-bbedit'
 import CodeMirror from '@uiw/react-codemirror'
 
 const mockData = { totalCount: 336, values: ['hdgfygf', 'kefije'] }
 const json = JSON.stringify(mockData, null, 2)
-
-type StyledTabProps = {
-  label: string
-  value: string
-}
-
-const AntTabs = styled(Tabs)({})
-const AntTab = styled((props: StyledTabProps) => (
-  <Tab disableRipple {...props} />
-))(() => ({
-  cursor: 'default',
-}))
 
 export function ResultBlock() {
   return (
@@ -35,9 +22,14 @@ export function ResultBlock() {
         <TableHead>
           <TableRow>
             <TableCell sx={{ padding: '0' }} align="left">
-              <AntTabs value="response">
-                <AntTab value="response" label={'RESPONSE'}></AntTab>
-              </AntTabs>
+              <Tabs value="response">
+                <Tab
+                  disableRipple
+                  value="response"
+                  label={'RESPONSE'}
+                  sx={{ cursor: 'default' }}
+                ></Tab>
+              </Tabs>
             </TableCell>
           </TableRow>
         </TableHead>
