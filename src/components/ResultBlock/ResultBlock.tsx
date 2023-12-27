@@ -1,4 +1,5 @@
 import { javascript } from '@codemirror/lang-javascript'
+import '@fontsource/source-code-pro'
 import {
   Paper,
   Tab,
@@ -11,6 +12,7 @@ import {
 } from '@mui/material'
 import { bbedit } from '@uiw/codemirror-theme-bbedit'
 import CodeMirror from '@uiw/react-codemirror'
+import './ResultBlock.css'
 
 const mockData = { totalCount: 336, values: ['hdgfygf', 'kefije'] }
 const json = JSON.stringify(mockData, null, 2)
