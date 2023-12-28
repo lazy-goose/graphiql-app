@@ -20,12 +20,16 @@
     "prepare": "npm run husky:enable"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/source-code-pro": "^5.0.16",
     "@hookform/resolvers": "^3.3.2",
     "@mui/icons-material": "^5.15.1",
     "@mui/lab": "^5.0.0-alpha.157",
     "@mui/material": "^5.15.1",
+    "@uiw/codemirror-theme-bbedit": "^4.21.21",
+    "@uiw/react-codemirror": "^4.21.21",
     "firebase": "^10.7.1",
     "immer": "^10.0.3",
     "react": "^18.2.0",
