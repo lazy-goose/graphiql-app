@@ -1,11 +1,10 @@
 import { Box, Stack, type BoxProps, type StackProps } from '@mui/material'
-import React, { Fragment, useLayoutEffect, useRef } from 'react'
+import React, { Fragment, useRef } from 'react'
 import { ResizerDefaults, SmartResizer } from './Resizer'
 import { type ResizeEvent } from './Resizer/useResizer'
 import className from './className'
-import { calculateFlexSpace } from './utils/calculateFlexSpace'
+import { moveFlexSpace, recalculateCollapse } from './utils/calculate'
 import { toFr, toFrArray } from './utils/convert'
-import { useChanged } from './utils/useChanged'
 
 export type ResizeFragmentProps = {
   id: React.Key
@@ -75,9 +74,14 @@ export default function ResizeGroup(props: ResizeGroupProps) {
 
   const itemsRef = useRef<HTMLDivElement[]>([])
 
+  const derivedSizes = recalculateCollapse({
+    fractions: sizes,
+    collapsed: childrenProps.map((ch) => ch.collapse),
+  })
+
   const childrenSettings = childrenProps.map((cp, index) => ({
     ...cp,
-    size: sizes[index],
+    size: derivedSizes[index],
     minmax: [cp.min, cp.max] as [number, number],
     get ref() {
       return itemsRef.current[index]
@@ -130,7 +134,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
         return toFr(value, share)
       })()
 
-      const nextSizes = calculateFlexSpace({
+      const nextSizes = moveFlexSpace({
         fractions,
         index: dividerIndex,
         value,
@@ -141,27 +145,11 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     }
   }
 
-  const isCollapseChanged = useChanged({
-    value: getChildArray().map((ch) => ch.collapse),
-    transform: (v) => v.join(','),
-  })
-
-  useLayoutEffect(() => {
-    if (isCollapseChanged) {
-      const { fractions } = toFrArray(
-        getChildArray()
-          .map((ch) => ch.ref)
-          .map(getElSize),
-      )
-      resize(fractions)
-    }
-  })
-
   const display = (index: number) => ({
     display: getChild(index).collapse ? 'none' : undefined,
   })
 
-  const marginCollapse = (index: number) => {
+  const edgeResizerPadding = (index: number) => {
     const padding = ResizerDefaults.padding + 'px'
     if (index === 0) {
       return {
@@ -176,7 +164,6 @@ export default function ResizeGroup(props: ResizeGroupProps) {
   }
 
   const { FragmentWindow, FragmentResizer } = className
-
   const windowClassName = (i: number) => ({
     className: [FragmentWindow(), FragmentWindow(i)].join(' '),
   })
@@ -208,7 +195,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
               onResize={(e) => onSmartResize(e, index)}
               boxProps={{
                 ...display(index),
-                ...marginCollapse(index),
+                ...edgeResizerPadding(index),
                 ...resizerClassName(index),
                 ...ch.resizerBoxProps,
               }}

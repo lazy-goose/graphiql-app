@@ -1,4 +1,4 @@
-export function calculateFlexSpace(params: {
+export function moveFlexSpace(params: {
   fractions: number[]
   index: number
   value: number
@@ -54,4 +54,19 @@ export function calculateFlexSpace(params: {
   }
 
   return sizes
+}
+
+export function recalculateCollapse(params: {
+  fractions: number[]
+  collapsed: boolean[]
+}) {
+  const { fractions, collapsed } = params
+  const isCollapsed = (index: number) => collapsed[index]
+  const uncollapsedSpace = fractions.reduce(
+    (sum, value, index) => sum + (!isCollapsed(index) ? value : 0),
+    0,
+  )
+  return fractions.map((fr, index) =>
+    !isCollapsed(index) ? fr / uncollapsedSpace : fr,
+  )
 }
