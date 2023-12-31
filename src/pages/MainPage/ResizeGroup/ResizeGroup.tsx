@@ -1,18 +1,28 @@
-import { Box, Stack, type StackProps } from '@mui/material'
-import { Fragment, useLayoutEffect, useRef } from 'react'
+import { Box, Stack, type BoxProps, type StackProps } from '@mui/material'
+import React, { Fragment, useLayoutEffect, useRef } from 'react'
 import { ResizerDefaults, SmartResizer } from './Resizer'
 import { type ResizeEvent } from './Resizer/useResizer'
+import className from './className'
 import { calculateFlexSpace } from './utils/calculateFlexSpace'
 import { toFr, toFrArray } from './utils/convert'
 import { useChanged } from './utils/useChanged'
 
+export type ResizeFragmentProps = {
+  id: React.Key
+  children: React.ReactNode
+  min?: number
+  max?: number
+  collapse?: boolean
+  resizerAfter?: boolean
+  onSizeChange?: (prev: number, next: number, ref: HTMLDivElement) => void
+  windowBoxProps?: BoxProps
+  resizerBoxProps?: BoxProps
+}
+export type ResizeGroupChild = React.ReactElement<ResizeFragmentProps>
 export type ResizeGroupProps = {
+  children: React.ReactElement<ResizeFragmentProps>[]
   direction?: 'row' | 'col'
-  children: React.ReactNode[]
-  keys: React.Key[]
   sizes?: number[]
-  collapse?: boolean[]
-  minmax?: ([number, number] | null)[]
   onResize?: (fractions: number[]) => void
   preventUpdate?: boolean
   stackProps?: StackProps
@@ -22,40 +32,95 @@ export default function ResizeGroup(props: ResizeGroupProps) {
   const {
     direction = 'row',
     children,
-    keys,
     sizes = [],
-    minmax = [],
-    collapse = [],
     onResize = () => {},
     preventUpdate = true,
     stackProps,
   } = props
 
-  const resizerOrientation = direction === 'row' ? 'vertical' : 'horizontal'
-  const stackDirection = direction === 'row' ? 'row' : 'column'
+  const childrenProps = React.Children.map(
+    children,
+    (child: ResizeGroupChild) => {
+      if (!Object.hasOwn(child.props, 'id')) {
+        throw new Error(
+          `Each <ResizeGroup /> child must have at least 'id' prop. Instead got '${
+            child.type
+          }' with: ${JSON.stringify(child.props)}`,
+        )
+      }
+      const jsx = child.props.children
+      const {
+        id,
+        collapse = [undefined, null, false, true].some((u) => u === jsx),
+        min = 0,
+        max = 1,
+        onSizeChange = () => {},
+        resizerAfter = true,
+        windowBoxProps,
+        resizerBoxProps,
+      } = child.props
+      return {
+        children: jsx,
+        id,
+        collapse,
+        min,
+        max,
+        onSizeChange,
+        resizerAfter,
+        windowBoxProps,
+        resizerBoxProps,
+      } satisfies ResizeFragmentProps
+    },
+  )
 
   const itemsRef = useRef<HTMLDivElement[]>([])
+
+  const childrenSettings = childrenProps.map((cp, index) => ({
+    ...cp,
+    size: sizes[index],
+    minmax: [cp.min, cp.max] as [number, number],
+    get ref() {
+      return itemsRef.current[index]
+    },
+  }))
+
+  const getChildArray = () => [...childrenSettings]
+  const getChild = (index: number) => childrenSettings[index]
+
+  const resizerOrientation = direction === 'row' ? 'vertical' : 'horizontal'
+  const stackDirection = direction === 'row' ? 'row' : 'column'
 
   const getElSize = (el: HTMLElement) => {
     return direction === 'row' ? el.offsetWidth : el.offsetHeight
   }
 
-  const applySizes = (nextFractions: number[]) => {
+  const resize = (nextFractions: number[]) => {
     const changeFractions = nextFractions.map((newSize, index) =>
-      collapse[index] ? sizes[index] : newSize,
+      getChild(index).collapse ? getChild(index).size : newSize,
     )
     if (!preventUpdate) {
-      itemsRef.current.map((el, index) => {
-        el.style.setProperty('flex', `${changeFractions[index]} 1 0%`)
-      })
+      getChildArray()
+        .map((ch) => ch.ref)
+        .forEach((el, index) => {
+          const prev = getChild(index).size
+          const next = changeFractions[index]
+          el.style.setProperty('flex', `${changeFractions[index]} 1 0%`)
+          if (prev !== next) {
+            getChild(index).onSizeChange(prev, next, el)
+          }
+        })
     }
     onResize(changeFractions)
   }
 
   const onSmartResize = (e: ResizeEvent, dividerIndex: number) => {
-    const currentItem = itemsRef.current.at(dividerIndex)
+    const currentItem = getChild(dividerIndex).ref
     if (currentItem) {
-      const { fractions, share } = toFrArray(itemsRef.current.map(getElSize))
+      const { fractions, share } = toFrArray(
+        getChildArray()
+          .map((ch) => ch.ref)
+          .map(getElSize),
+      )
       const value = (() => {
         const rect = currentItem.getBoundingClientRect()
         const value =
@@ -69,29 +134,31 @@ export default function ResizeGroup(props: ResizeGroupProps) {
         fractions,
         index: dividerIndex,
         value,
-        minmax: minmax.map((mm) =>
-          mm === null ? [0, 1] : [mm[0] || 0, mm[1] || 1],
-        ),
+        minmax: getChildArray().map((ch) => ch.minmax),
       })
 
-      if (nextSizes) applySizes(nextSizes)
+      if (nextSizes) resize(nextSizes)
     }
   }
 
   const isCollapseChanged = useChanged({
-    value: collapse,
+    value: getChildArray().map((ch) => ch.collapse),
     transform: (v) => v.join(','),
   })
 
   useLayoutEffect(() => {
     if (isCollapseChanged) {
-      const { fractions } = toFrArray(itemsRef.current.map(getElSize))
-      applySizes(fractions)
+      const { fractions } = toFrArray(
+        getChildArray()
+          .map((ch) => ch.ref)
+          .map(getElSize),
+      )
+      resize(fractions)
     }
   })
 
   const display = (index: number) => ({
-    display: collapse[index] ? 'none' : undefined,
+    display: getChild(index).collapse ? 'none' : undefined,
   })
 
   const marginCollapse = (index: number) => {
@@ -108,29 +175,42 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     }
   }
 
+  const { FragmentWindow, FragmentResizer } = className
+
+  const windowClassName = (i: number) => ({
+    className: [FragmentWindow(), FragmentWindow(i)].join(' '),
+  })
+  const resizerClassName = (i: number) => ({
+    className: [FragmentResizer(), FragmentResizer(i)].join(' '),
+  })
+
   return (
     <Stack height={1} direction={stackDirection} {...stackProps}>
-      {children.map((child, index) => (
-        <Fragment key={keys[index] || index}>
+      {getChildArray().map((ch, index) => (
+        <Fragment key={ch.id}>
           <Box
+            overflow="hidden"
             style={{
-              flex: `${sizes[index]} 1 0%`,
+              flex: `${ch.size} 1 0%`,
             }}
             ref={(node) => {
               itemsRef.current[index] = node as unknown as HTMLDivElement
             }}
-            overflow="hidden"
             {...display(index)}
+            {...windowClassName(index)}
+            {...ch.windowBoxProps}
           >
-            {child}
+            {ch.children}
           </Box>
-          {index !== children.length - 1 && (
+          {ch.resizerAfter && index !== children.length - 1 && (
             <SmartResizer
               orientation={resizerOrientation}
               onResize={(e) => onSmartResize(e, index)}
               boxProps={{
                 ...display(index),
                 ...marginCollapse(index),
+                ...resizerClassName(index),
+                ...ch.resizerBoxProps,
               }}
             />
           )}
