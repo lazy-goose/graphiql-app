@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Drawer, useMediaQuery } from '@mui/material'
 import { useLayoutEffect, useRef } from 'react'
 import {
   ResizeGroup,
@@ -35,6 +35,49 @@ const verticalLayoutStackProps = () => {
       },
     },
   } satisfies Pick<ResizeGroupProps, 'stackProps'>
+}
+
+const MainMobileLayout = ({
+  documentation,
+  headers,
+  request,
+  response,
+  variables,
+}: MainLayoutSlots) => {
+  return (
+    <Box height={1}>
+      <Drawer>{documentation}</Drawer>
+      <ResizeGroup
+        direction="col"
+        sizes={[0.7, 0.3]}
+        preventUpdate={false}
+        {...verticalLayoutStackProps()}
+      >
+        <ResizeFragment id="Row1">
+          <Box height={1}>
+            <TabGroup
+              currentValue="Request"
+              tabs={[
+                { value: 'Request', jsx: request },
+                { value: 'Response', jsx: response },
+              ]}
+            />
+          </Box>
+        </ResizeFragment>
+        <ResizeFragment id="Row2">
+          <Box height={1}>
+            <TabGroup
+              currentValue="Variables"
+              tabs={[
+                { value: 'Variables', jsx: variables },
+                { value: 'Headers', jsx: headers },
+              ]}
+            />
+          </Box>
+        </ResizeFragment>
+      </ResizeGroup>
+    </Box>
+  )
 }
 
 const MainDesktopLayout = ({
@@ -77,7 +120,7 @@ const MainDesktopLayout = ({
           </ResizeGroup>
         </Box>
       </ResizeFragment>
-      <ResizeFragment id="Col3" min={0.3}>
+      <ResizeFragment id="Col3">
         <Box height={1}>
           <TabGroup
             currentValue="Response"
@@ -90,6 +133,7 @@ const MainDesktopLayout = ({
 }
 
 export default function MainLayout(slots: MainLayoutSlots) {
+  const isMobile = useMediaQuery('(max-width: 600px)')
   const mainBoxRef = useRef<HTMLDivElement | null>(null)
 
   useLayoutEffect(() => {
@@ -101,7 +145,7 @@ export default function MainLayout(slots: MainLayoutSlots) {
       }))`
       mainBoxRef.current.style.setProperty('height', heightStr)
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <Box
@@ -121,7 +165,11 @@ export default function MainLayout(slots: MainLayoutSlots) {
         },
       })}
     >
-      <MainDesktopLayout {...slots} />
+      {isMobile ? (
+        <MainMobileLayout {...slots} />
+      ) : (
+        <MainDesktopLayout {...slots} />
+      )}
     </Box>
   )
 }
