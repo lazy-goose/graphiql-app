@@ -1,4 +1,5 @@
-import { Box, Drawer, useMediaQuery } from '@mui/material'
+import { useBoundStore } from '@/store'
+import { Box, Button, Drawer, useMediaQuery } from '@mui/material'
 import { useLayoutEffect, useRef } from 'react'
 import {
   ResizeGroup,
@@ -44,9 +45,22 @@ const MainMobileLayout = ({
   response,
   variables,
 }: MainLayoutSlots) => {
+  const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
+  const toggleAside = useBoundStore((s) => s.toggleAside)
   return (
     <Box height={1}>
-      <Drawer>{documentation}</Drawer>
+      <Drawer
+        open={isAsideOpen}
+        onClose={() => toggleAside(false)}
+        PaperProps={{
+          sx: {
+            width: 'clamp(320px, 100%, 500px)',
+          },
+        }}
+      >
+        <Button onClick={() => toggleAside(false)}>Close</Button>
+        {documentation}
+      </Drawer>
       <ResizeGroup
         direction="col"
         sizes={[0.7, 0.3]}
@@ -87,9 +101,10 @@ const MainDesktopLayout = ({
   response,
   variables,
 }: MainLayoutSlots) => {
+  const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   return (
     <ResizeGroup direction="row" sizes={[0.2, 0.4, 0.4]} preventUpdate={false}>
-      <ResizeFragment id="Col1" min={0.2} max={0.4}>
+      <ResizeFragment id="Col1" min={0.2} max={0.4} collapse={!isAsideOpen}>
         <Box height={1} overflow="auto">
           {documentation}
         </Box>

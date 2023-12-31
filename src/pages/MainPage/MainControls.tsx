@@ -1,7 +1,9 @@
+import { useBoundStore } from '@/store'
 import { Description } from '@mui/icons-material'
 import { Button, Stack } from '@mui/material'
 
 export default function MainControls() {
+  const toggleAside = useBoundStore((s) => s.toggleAside)
   return (
     <Stack
       component="nav"
@@ -14,6 +16,7 @@ export default function MainControls() {
         size="small"
         variant="contained"
         disableRipple
+        onClick={() => toggleAside()}
         sx={{
           borderRadius: 0,
           paddingInline: 1.5,
