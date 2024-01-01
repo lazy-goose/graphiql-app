@@ -41,9 +41,6 @@ export default function TabGroup(props: {
 
   const isControlled = onChange !== undefined
 
-  const paddingInline = defaults.Panel.paddingInline
-  const paddingBlock = defaults.Panel.paddingBlock
-
   const styles = {
     '& .MuiTabs-root': {
       minHeight: defaults.Tab.height,
@@ -53,10 +50,7 @@ export default function TabGroup(props: {
     },
     '& .MuiTabPanel-root': {
       flex: 1,
-      paddingBlock: paddingBlock + 'px',
-      paddingInline: paddingInline + 'px',
-      paddingTop: paddingInline / 2 + 'px',
-      marginTop: paddingInline / 2 + 'px',
+      padding: 0,
       overflow: 'overlay',
       scrollbarGutter: 'stable',
     },

@@ -82,8 +82,8 @@ export function Response() {
     <Box
       height={1}
       sx={{
-        marginInline: -2,
-        marginBlock: -1,
+        boxSizing: 'border-box',
+        padding: 2,
         '& > *:first-of-type': {
           height: 1,
         },
