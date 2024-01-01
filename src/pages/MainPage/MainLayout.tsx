@@ -165,7 +165,6 @@ export default function MainLayout(slots: MainLayoutSlots) {
   return (
     <Box
       ref={mainBoxRef}
-      pb={1}
       sx={(theme) => ({
         borderWidth: ResizerDefaults.thickness + 'px',
         borderColor: theme.palette.divider,
