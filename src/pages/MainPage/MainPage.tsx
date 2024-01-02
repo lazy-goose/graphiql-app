@@ -1,15 +1,23 @@
+import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header'
-import { ResultBlock } from '@/components/ResultBlock/ResultBlock'
+import { Response } from '@/components/Response'
+import { Stack } from '@mui/material'
+import MainControls from './MainControls'
+import MainLayout from './MainLayout'
 
-export function MainPage() {
+export default function MainPage() {
   return (
-    <>
+    <Stack>
       <Header />
-      <main>
-        <h1>Main Page</h1>
-        <ResultBlock />
-      </main>
-      <footer />
-    </>
+      <MainControls />
+      <MainLayout
+        documentation={<div>Documentation</div>}
+        request={<div>Request</div>}
+        variables={<div>Variables</div>}
+        headers={<div>Headers</div>}
+        response={<Response />}
+      />
+      <Footer />
+    </Stack>
   )
 }
