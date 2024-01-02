@@ -63,8 +63,7 @@ const MainMobileLayout = ({
       </Drawer>
       <ResizeGroup
         direction="col"
-        sizes={[0.7, 0.3]}
-        preventUpdate={false}
+        initialSizes={[0.7, 0.3]}
         {...verticalLayoutStackProps()}
       >
         <ResizeFragment id="Row1">
@@ -103,7 +102,7 @@ const MainDesktopLayout = ({
 }: MainLayoutSlots) => {
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   return (
-    <ResizeGroup direction="row" sizes={[0.2, 0.4, 0.4]} preventUpdate={false}>
+    <ResizeGroup direction="row" initialSizes={[0.2, 0.4, 0.4]}>
       <ResizeFragment id="Col1" min={0.2} max={0.4} collapse={!isAsideOpen}>
         <Box height={1} overflow="auto">
           {documentation}
@@ -113,8 +112,7 @@ const MainDesktopLayout = ({
         <Box height={1}>
           <ResizeGroup
             direction="col"
-            sizes={[0.7, 0.3]}
-            preventUpdate={false}
+            initialSizes={[0.7, 0.3]}
             {...verticalLayoutStackProps()}
           >
             <ResizeFragment id="Col2Row1">
