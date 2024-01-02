@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
 export function Header(props: { leftSlot?: React.ReactNode }) {
@@ -41,6 +42,7 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
 
   const rightSlot = (
     <Stack direction="row" spacing={1}>
+      <LanguageMenu />
       {user ? (
         <Button variant="contained" onClick={handleSignOutButton}>
           SignOut
@@ -65,7 +67,8 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
   return (
     <AppBar
       position="sticky"
-      sx={{
+      sx={(theme) => ({
+        color: theme.palette.text.primary,
         backgroundColor: opacify('#ffffff'),
         backgroundImage: trigger ? gradient() : undefined,
         backdropFilter: 'blur(8px)',
@@ -74,7 +77,7 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
           paddingInline: 2,
           boxSizing: 'border-box',
         },
-      }}
+      })}
     >
       <Toolbar>
         <Logo />
