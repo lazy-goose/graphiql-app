@@ -13,7 +13,7 @@ export type ResizeFragmentProps = {
   max?: number
   collapse?: boolean
   resizerAfter?: boolean
-  onSizeChange?: (prev: number, next: number, ref: HTMLDivElement) => void
+  onSizeChange?: (prev: number, next: number, ref: HTMLElement) => void
   windowBoxProps?: BoxProps
   resizerBoxProps?: BoxProps
 }
@@ -22,9 +22,50 @@ export type ResizeGroupProps = {
   children: React.ReactElement<ResizeFragmentProps>[]
   direction?: 'row' | 'col'
   sizes?: number[]
+  initialSizes?: number[]
   onResize?: (fractions: number[]) => void
-  preventUpdate?: boolean
   stackProps?: StackProps
+}
+
+const useChildrenProps = (children: ResizeGroupProps['children']) => {
+  return React.Children.map(children, (child: ResizeGroupChild) => {
+    if (!Object.hasOwn(child.props, 'id')) {
+      throw new Error(
+        `Each <ResizeGroup /> child must have at least 'id' prop. Instead got '${
+          child.type
+        }' with: ${JSON.stringify(child.props)}`,
+      )
+    }
+    const jsx = child.props.children
+    const {
+      id,
+      collapse = [undefined, null, false, true].some((u) => u === jsx),
+      min = 0,
+      max = 1,
+      onSizeChange = () => {},
+      resizerAfter = true,
+      windowBoxProps,
+      resizerBoxProps,
+    } = child.props
+    return {
+      children: jsx,
+      id,
+      collapse,
+      min,
+      max,
+      onSizeChange,
+      resizerAfter,
+      windowBoxProps,
+      resizerBoxProps,
+    } satisfies ResizeFragmentProps
+  })
+}
+
+const getPxSize = (el: HTMLElement, direction: 'row' | 'col') => {
+  return direction === 'row' ? el.offsetWidth : el.offsetHeight
+}
+const setFrSize = (el: HTMLElement, frValue: number) => {
+  return el.style.setProperty('flex', `${frValue} 1 0%`)
 }
 
 export default function ResizeGroup(props: ResizeGroupProps) {
@@ -32,56 +73,39 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     direction = 'row',
     children,
     sizes = [],
+    initialSizes = [],
     onResize = () => {},
-    preventUpdate = true,
     stackProps,
   } = props
 
-  const childrenProps = React.Children.map(
-    children,
-    (child: ResizeGroupChild) => {
-      if (!Object.hasOwn(child.props, 'id')) {
-        throw new Error(
-          `Each <ResizeGroup /> child must have at least 'id' prop. Instead got '${
-            child.type
-          }' with: ${JSON.stringify(child.props)}`,
-        )
-      }
-      const jsx = child.props.children
-      const {
-        id,
-        collapse = [undefined, null, false, true].some((u) => u === jsx),
-        min = 0,
-        max = 1,
-        onSizeChange = () => {},
-        resizerAfter = true,
-        windowBoxProps,
-        resizerBoxProps,
-      } = child.props
-      return {
-        children: jsx,
-        id,
-        collapse,
-        min,
-        max,
-        onSizeChange,
-        resizerAfter,
-        windowBoxProps,
-        resizerBoxProps,
-      } satisfies ResizeFragmentProps
-    },
-  )
+  const itemsRef = useRef<HTMLElement[]>([])
+  const internalSizesRef = useRef<number[]>([])
 
-  const itemsRef = useRef<HTMLDivElement[]>([])
+  /* API Abstraction */
+
+  const childrenProps = useChildrenProps(children)
+
+  const toComputeSizes = () => {
+    const next = sizes
+    const prev = internalSizesRef.current
+    const init = initialSizes
+    if (next.length) {
+      return next
+    } else if (prev.length) {
+      return prev
+    } else {
+      return init
+    }
+  }
 
   const derivedSizes = recalculateCollapse({
-    fractions: sizes,
+    fractions: toComputeSizes(),
     collapsed: childrenProps.map((ch) => ch.collapse),
   })
 
   const childrenSettings = childrenProps.map((cp, index) => ({
     ...cp,
-    size: derivedSizes[index],
+    computedSize: derivedSizes[index],
     minmax: [cp.min, cp.max] as [number, number],
     get ref() {
       return itemsRef.current[index]
@@ -91,39 +115,35 @@ export default function ResizeGroup(props: ResizeGroupProps) {
   const getChildArray = () => [...childrenSettings]
   const getChild = (index: number) => childrenSettings[index]
 
-  const resizerOrientation = direction === 'row' ? 'vertical' : 'horizontal'
-  const stackDirection = direction === 'row' ? 'row' : 'column'
-
-  const getElSize = (el: HTMLElement) => {
-    return direction === 'row' ? el.offsetWidth : el.offsetHeight
-  }
+  /* Logic */
 
   const resize = (nextFractions: number[]) => {
-    const changeFractions = nextFractions.map((newSize, index) =>
-      getChild(index).collapse ? getChild(index).size : newSize,
+    const toChange = nextFractions.map((newSize, index) =>
+      getChild(index).collapse ? getChild(index).computedSize : newSize,
     )
-    if (!preventUpdate) {
-      getChildArray()
-        .map((ch) => ch.ref)
-        .forEach((el, index) => {
-          const prev = getChild(index).size
-          const next = changeFractions[index]
-          el.style.setProperty('flex', `${changeFractions[index]} 1 0%`)
-          if (prev !== next) {
-            getChild(index).onSizeChange(prev, next, el)
-          }
-        })
-    }
-    onResize(changeFractions)
+    getChildArray()
+      .map((ch) => ch.ref)
+      .forEach((el, index) => {
+        const prev = getChild(index).computedSize
+        const next = toChange[index]
+        if (prev !== next) {
+          getChild(index).onSizeChange(prev, next, el)
+        }
+        if (!sizes.length) {
+          setFrSize(el, next)
+        }
+      })
+    onResize(toChange)
+    internalSizesRef.current = toChange
   }
 
-  const onSmartResize = (e: ResizeEvent, dividerIndex: number) => {
+  const handleResize = (e: ResizeEvent, dividerIndex: number) => {
     const currentItem = getChild(dividerIndex).ref
     if (currentItem) {
       const { fractions, share } = toFrArray(
         getChildArray()
           .map((ch) => ch.ref)
-          .map(getElSize),
+          .map((s) => getPxSize(s, direction)),
       )
       const value = (() => {
         const rect = currentItem.getBoundingClientRect()
@@ -145,6 +165,11 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     }
   }
 
+  /* Rendering */
+
+  const resizerOrientation = direction === 'row' ? 'vertical' : 'horizontal'
+  const stackDirection = direction === 'row' ? 'row' : 'column'
+
   const display = (index: number) => ({
     display: getChild(index).collapse ? 'none' : undefined,
   })
@@ -164,6 +189,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
   }
 
   const { FragmentWindow, FragmentResizer } = className
+
   const windowClassName = (i: number) => ({
     className: [FragmentWindow(), FragmentWindow(i)].join(' '),
   })
@@ -177,11 +203,12 @@ export default function ResizeGroup(props: ResizeGroupProps) {
         <Fragment key={ch.id}>
           <Box
             overflow="hidden"
-            style={{
-              flex: `${ch.size} 1 0%`,
-            }}
             ref={(node) => {
-              itemsRef.current[index] = node as unknown as HTMLDivElement
+              const el = node as HTMLElement | null
+              if (el) {
+                itemsRef.current[index] = el
+                setFrSize(el, ch.computedSize)
+              }
             }}
             {...display(index)}
             {...windowClassName(index)}
@@ -192,7 +219,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
           {ch.resizerAfter && index !== children.length - 1 && (
             <SmartResizer
               orientation={resizerOrientation}
-              onResize={(e) => onSmartResize(e, index)}
+              onResize={(e) => handleResize(e, index)}
               boxProps={{
                 ...display(index),
                 ...edgeResizerPadding(index),
