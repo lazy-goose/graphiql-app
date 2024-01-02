@@ -1,17 +1,20 @@
 import { pathes } from '@/constants/constants'
 import { auth } from '@/firebase'
 import { useBoundStore } from '@/store'
-import { AppBar, Box, Button, Toolbar } from '@mui/material'
+import { AppBar, Box, Button, Stack, Toolbar } from '@mui/material'
 import { signOut } from 'firebase/auth'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Logo from './Logo'
 
-export function Header() {
+export function Header(props: { leftSlot?: React.ReactNode }) {
+  const { leftSlot } = props
+
   const user = useBoundStore((state) => state.user)
   const setPageMode = useBoundStore((state) => state.setPageMode)
   const navigate = useNavigate()
 
   const handleSignOutButton = async () => {
-    await signOut(auth)
+    signOut(auth)
   }
 
   const handleSignInButton = async () => {
@@ -24,16 +27,44 @@ export function Header() {
     navigate(pathes.signInUpPage)
   }
 
+  const rightSlot = (
+    <Stack direction="row" spacing={1}>
+      {!user && (
+        <Button variant="contained" onClick={handleSignInButton}>
+          SignIn
+        </Button>
+      )}
+      {!user && (
+        <Button variant="contained" onClick={handleSignUpButton}>
+          SignUp
+        </Button>
+      )}
+      {user && (
+        <Button variant="contained" onClick={handleSignOutButton}>
+          SignOut
+        </Button>
+      )}
+    </Stack>
+  )
+
   return (
-    <AppBar position="static" color="inherit">
-      <Toolbar variant="dense" sx={{ justifyContent: 'space-around' }}>
-        <Link to={pathes.mainPage}>Main Page</Link>
-        <Box sx={{ display: 'flex' }}>
-          <p>Loged in user: {user?.email}</p>
-          {!user && <Button onClick={handleSignInButton}>SignIn</Button>}
-          {!user && <Button onClick={handleSignUpButton}>SignUp</Button>}
-          {user && <Button onClick={handleSignOutButton}>SignOut</Button>}
+    <AppBar
+      position="sticky"
+      sx={(theme) => ({
+        backgroundColor: theme.palette.background.paper,
+        '.MuiToolbar-root': {
+          paddingBlock: 1,
+          paddingInline: 2,
+          boxSizing: 'border-box',
+        },
+      })}
+    >
+      <Toolbar>
+        <Logo />
+        <Box pl={1} flexGrow={1}>
+          {leftSlot}
         </Box>
+        <Box>{rightSlot}</Box>
       </Toolbar>
     </AppBar>
   )
