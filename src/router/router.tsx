@@ -1,5 +1,5 @@
 import { ErrorBoundary } from '@/components/ErrorBoudary'
-import { pathes } from '@/constants/constants'
+import { RouterPath } from '@/constants/constants'
 import { ErrorPage } from '@/pages/ErrorPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
@@ -15,7 +15,7 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFoundPage />} path="">
       <Route
-        path={pathes.mainPage}
+        path={RouterPath.Main}
         element={
           <ErrorBoundary fallback={<ErrorPage />}>
             <MainPage />
@@ -23,7 +23,7 @@ export const router = createBrowserRouter(
         }
       />
       <Route
-        path={pathes.welcomePage}
+        path={RouterPath.Welcome}
         element={
           <ErrorBoundary fallback={<ErrorPage />}>
             <WelcomePage />
@@ -31,7 +31,7 @@ export const router = createBrowserRouter(
         }
       />
       <Route
-        path={pathes.signInUpPage}
+        path={RouterPath.SignInUp}
         element={
           <ErrorBoundary fallback={<ErrorPage />}>
             <SignInUpPage />

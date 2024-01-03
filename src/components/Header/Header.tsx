@@ -1,4 +1,4 @@
-import { pathes } from '@/constants/constants'
+import { RouterPath } from '@/constants/constants'
 import { auth } from '@/firebase'
 import { useBoundStore } from '@/store'
 import {
@@ -27,12 +27,12 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
 
   const handleSignInButton = async () => {
     setPageMode('signIn')
-    navigate(pathes.signInUpPage)
+    navigate(RouterPath.SignInUp)
   }
 
   const handleSignUpButton = async () => {
     setPageMode('signUp')
-    navigate(pathes.signInUpPage)
+    navigate(RouterPath.SignInUp)
   }
 
   const trigger = useScrollTrigger({

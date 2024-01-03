@@ -1,7 +1,7 @@
 import { Header } from '@/components/Header'
 import { SignInForm } from '@/components/SignInForm'
 import { SignUpForm } from '@/components/SignUpForm'
-import { pathes } from '@/constants/constants'
+import { RouterPath } from '@/constants/constants'
 import { useBoundStore } from '@/store'
 import { Box, ThemeProvider, createTheme } from '@mui/material'
 import { useEffect } from 'react'
@@ -27,7 +27,7 @@ export function SignInUpPage() {
 
   const handleRedirect = (): void => {
     if (user) {
-      navigate(pathes.mainPage)
+      navigate(RouterPath.Main)
     }
   }
 

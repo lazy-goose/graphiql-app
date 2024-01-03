@@ -1,4 +1,4 @@
-import { pathes } from '@/constants/constants'
+import { RouterPath } from '@/constants/constants'
 import { Box, Link, type LinkProps } from '@mui/material'
 
 const GraphSvg = (props: React.SVGProps<SVGSVGElement>) => {
@@ -22,7 +22,7 @@ export default function Logo(props: { linkProps?: LinkProps }) {
   const size = '47px'
   const logoSize = '90%'
   return (
-    <Link href={pathes.welcomePage} {...linkProps}>
+    <Link href={RouterPath.Welcome} {...linkProps}>
       <Box
         sx={(theme) => ({
           width: size,
