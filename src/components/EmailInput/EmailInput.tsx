@@ -1,10 +1,10 @@
-import { type userSignInData, type userSignUpData } from '@/types/types'
+import { type UserSignInData, type UserSignUpData } from '@/types'
 import { FormControl, FormHelperText, TextField } from '@mui/material'
 import { type FieldErrors, type UseFormRegister } from 'react-hook-form'
 
 export function EmailInput(props: {
-  register: UseFormRegister<userSignUpData | userSignInData>
-  errors: FieldErrors<userSignUpData | userSignInData>
+  register: UseFormRegister<UserSignUpData | UserSignInData>
+  errors: FieldErrors<UserSignUpData | UserSignInData>
 }) {
   const { register, errors } = props
 
