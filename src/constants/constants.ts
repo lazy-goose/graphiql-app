@@ -1,3 +1,7 @@
+import { type LocaleWithMeta } from '@/types'
+import en from './locales/en'
+import ru from './locales/ru'
+
 export const pathes = {
   mainPage: '/',
   welcomePage: '/welcome',
@@ -24,3 +28,27 @@ export const userAvatars = [
     active: true,
   },
 ] as const
+
+export enum Region {
+  EN = 'en',
+  RU = 'ru',
+}
+
+export const Locales = {
+  [Region.EN]: {
+    meta: {
+      code: Region.EN,
+      name: 'English',
+    },
+    ...en,
+  },
+  [Region.RU]: {
+    meta: {
+      code: Region.RU,
+      name: 'Русский',
+    },
+    ...ru,
+  },
+} as {
+  [key in Region]: LocaleWithMeta
+}
