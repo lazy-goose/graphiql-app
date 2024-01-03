@@ -1,6 +1,12 @@
 import { useBoundStore } from '@/store'
-import { Box, Button, Drawer, useMediaQuery } from '@mui/material'
-import { useLayoutEffect, useRef } from 'react'
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Drawer,
+  useMediaQuery,
+} from '@mui/material'
+import { Suspense, useLayoutEffect, useRef } from 'react'
 import {
   ResizeGroup,
   ResizeGroupClassName,
@@ -148,9 +154,26 @@ const MainDesktopLayout = ({
   )
 }
 
+const Fallback = () => {
+  return (
+    <Box height={1} display="flex" justifyContent="center" alignItems="center">
+      <CircularProgress />
+    </Box>
+  )
+}
+
 export default function MainLayout(slots: MainLayoutSlots) {
   const isMobile = useMediaQuery('(max-width: 600px)')
   const mainBoxRef = useRef<HTMLDivElement | null>(null)
+
+  const suspendedSlots = Object.fromEntries(
+    Object.entries(slots).map(([key, jsx]) => [
+      key,
+      <Suspense key={key} fallback={<Fallback />}>
+        {jsx}
+      </Suspense>,
+    ]),
+  ) as MainLayoutSlots
 
   useLayoutEffect(() => {
     if (mainBoxRef.current) {
@@ -181,9 +204,9 @@ export default function MainLayout(slots: MainLayoutSlots) {
       })}
     >
       {isMobile ? (
-        <MainMobileLayout {...slots} />
+        <MainMobileLayout {...suspendedSlots} />
       ) : (
-        <MainDesktopLayout {...slots} />
+        <MainDesktopLayout {...suspendedSlots} />
       )}
     </Box>
   )
