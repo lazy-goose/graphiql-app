@@ -1,118 +1,86 @@
+import { RouterPath } from '@/constants'
 import { auth } from '@/firebase'
-import { useBoundStore } from '@/store'
+import { useValidators } from '@/hooks/useValidators'
 import { type UserSignInData, type UserSignUpData } from '@/types'
-import { signupSchema } from '@/utils/zodUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Link, Typography } from '@mui/material'
+import { Link, Stack, TextField, Typography } from '@mui/material'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { ConfirmPasswordInput } from '../ConfirmPasswordInput'
-import { EmailInput } from '../EmailInput'
 import { PasswordInput } from '../PasswordInput'
+import { PasswordStrength } from '../PasswordStrength'
 
-export function SignUpForm() {
-  const [isIndicator, setIsIndicator] = useState(false)
-
-  const setPageMode = useBoundStore((state) => state.setPageMode)
-
+export default function SignUpForm() {
+  const {
+    signUp: { schema },
+  } = useValidators()
   const {
     register,
-    watch,
     handleSubmit,
     reset,
-    formState: { errors, isDirty, isValid, isLoading },
-  } = useForm<UserSignUpData | UserSignInData>({
-    mode: 'onChange',
-    resolver: zodResolver(signupSchema),
+    watch,
+    formState: { errors, isLoading },
+  } = useForm<UserSignUpData>({
+    resolver: zodResolver(schema),
   })
 
-  const onSubmit: SubmitHandler<UserSignUpData | UserSignInData> = (user) => {
-    handleSignUpButton(user.email, user.password)
-    reset()
-    setIsIndicator(false)
-  }
-
-  const handleSignInLink = () => {
-    setPageMode('signIn')
-  }
-
-  const handleSignUpButton = async (email: string, password: string) => {
+  const onSubmit: SubmitHandler<UserSignUpData | UserSignInData> = async ({
+    email,
+    password,
+  }) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password)
+      reset()
     } catch (error) {
       console.error(error)
     }
   }
 
   return (
-    <Box
-      component="section"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: 1 / 1,
-      }}
+    <Stack
+      component="form"
+      mb={2}
+      gap={1.5}
+      noValidate
+      onSubmit={handleSubmit(onSubmit)}
     >
-      <Box
-        sx={{
-          mt: 1,
-          width: { xs: 99 / 100, md: 552 },
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-        component="form"
-        onSubmit={handleSubmit(onSubmit)}
-        noValidate
+      <Typography mb={2} component="h2" variant="h4">
+        Sign up
+      </Typography>
+      <TextField
+        type="email"
+        label="Email"
+        autoComplete="off"
+        error={Boolean(errors.email)}
+        helperText={errors.email?.message || ' '}
+        {...register('email')}
+      />
+      <PasswordInput
+        autoComplete="new-password"
+        error={Boolean(errors.password)}
+        {...register('password')}
+      />
+      <PasswordStrength password={watch('password')} />
+      <PasswordInput
+        autoComplete="new-password"
+        error={Boolean(errors.confirmPassword)}
+        helperText={errors.confirmPassword?.message || ' '}
+        {...register('confirmPassword')}
+      />
+      <LoadingButton
+        loading={isLoading}
+        type="submit"
+        size="large"
+        variant="contained"
       >
-        <Typography component="h2" variant="h5">
-          Sign up
-        </Typography>
-        <EmailInput register={register} errors={errors} />
-        <PasswordInput
-          register={register}
-          setIsIndicator={setIsIndicator}
-          watch={watch}
-          isIndicator={isIndicator}
-        />
-        <ConfirmPasswordInput register={register} errors={errors} />
-        <LoadingButton
-          fullWidth
-          loading={isLoading}
-          variant="contained"
-          type="submit"
-          disabled={!isDirty || !isValid}
-        >
-          Sign up
-        </LoadingButton>
-        <Box
-          sx={{
-            mt: 1,
-            width: { xs: 99 / 100, md: 552 },
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <Typography
-            sx={{
-              mr: 1,
-            }}
-            variant="body1"
-          >
-            Already have an account?
-          </Typography>
-          <Link
-            component="button"
-            variant="body1"
-            underline="hover"
-            onClick={handleSignInLink}
-          >
-            Sign in
-          </Link>
-        </Box>
-      </Box>
-    </Box>
+        Sign up
+      </LoadingButton>
+      <Typography mt={1} ml="auto">
+        Already have an account?{' '}
+        <Link href={RouterPath.SignIn} underline="hover">
+          Sign in
+        </Link>
+      </Typography>
+    </Stack>
   )
 }
