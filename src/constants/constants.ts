@@ -52,3 +52,19 @@ export const Locales = {
 } as {
   [key in Region]: LocaleWithMeta
 }
+
+export const PredefinedHeaders = [
+  'WWW-Authenticate',
+  'Authorization',
+  'Cache-Control',
+  'Connection',
+  'Keep-Alive',
+  'Access-Control-Allow-Origin',
+  'Access-Control-Allow-Credentials',
+  'Access-Control-Allow-Headers',
+  'Access-Control-Allow-Methods',
+  'Access-Control-Expose-Headers',
+  'Access-Control-Max-Age',
+  'Access-Control-Request-Headers',
+  'Access-Control-Request-Method',
+]
