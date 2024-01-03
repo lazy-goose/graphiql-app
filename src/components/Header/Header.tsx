@@ -70,12 +70,21 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
       sx={(theme) => ({
         color: theme.palette.text.primary,
         backgroundColor: opacify('#ffffff'),
-        backgroundImage: trigger ? gradient() : undefined,
         backdropFilter: 'blur(8px)',
         '.MuiToolbar-root': {
           paddingBlock: 1,
           paddingInline: 2,
           boxSizing: 'border-box',
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          zIndex: -1,
+          inset: 0,
+          pointerEvents: 'none',
+          backgroundImage: gradient(),
+          opacity: trigger ? 1 : 0,
+          transition: 'opacity 0.2s ease-in-out',
         },
       })}
     >
