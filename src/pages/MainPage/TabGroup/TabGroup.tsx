@@ -72,7 +72,7 @@ export default function TabGroup(props: {
       {...restStackProps}
     >
       <TabContext value={isControlled ? currentValue : uncontrolledValue}>
-        <Box>
+        <Box position="relative" overflow="hidden">
           <TabList
             variant="scrollable"
             {...tabListProps}
