@@ -1,10 +1,16 @@
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header'
-import { RequestHeaders } from '@/components/RequestHeaders'
-import { Response } from '@/components/Response'
 import { Stack } from '@mui/material'
+import React from 'react'
 import MainControls from './MainControls'
 import MainLayout from './MainLayout'
+
+const Response = React.lazy(() => {
+  return import('@/components/Response/Response')
+})
+const RequestHeaders = React.lazy(() => {
+  return import('@/components/RequestHeaders/RequestHeaders')
+})
 
 export default function MainPage() {
   return (

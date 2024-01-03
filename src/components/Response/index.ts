@@ -1,1 +1,1 @@
-export { Response } from './Response'
+export { default as Response } from './Response'
