@@ -28,7 +28,10 @@ const verticalLayoutStackProps = () => {
             TabGroupDefaults.Tab.height - ResizerDefaults.padding + 'px',
         },
         [`& > .${ResizeGroupClassName.FragmentWindow(1)}`]: {
-          minHeight: TabGroupDefaults.Tab.height + 'px',
+          minHeight:
+            TabGroupDefaults.Tab.height +
+            TabGroupDefaults.Tab.borderSize +
+            'px',
         },
         [`& > .${ResizeGroupClassName.FragmentResizer()}`]: {
           marginBottom: -ResizerDefaults.padding + 'px',
@@ -123,7 +126,7 @@ const MainDesktopLayout = ({
             </ResizeFragment>
             <ResizeFragment id="Col2Row2">
               <TabGroup
-                currentValue="Variables"
+                currentValue="Headers"
                 tabs={[
                   { value: 'Variables', jsx: variables },
                   { value: 'Headers', jsx: headers },
