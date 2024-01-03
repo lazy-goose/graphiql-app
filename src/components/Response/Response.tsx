@@ -75,7 +75,7 @@ const exampleData = JSON.stringify(
   2,
 )
 
-export function Response() {
+export default function Response() {
   const jsonHighlightExtensions = useJsonStyles()
 
   return (
