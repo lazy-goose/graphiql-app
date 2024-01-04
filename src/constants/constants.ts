@@ -6,6 +6,8 @@ export enum RouterPath {
   Main = '/',
   Welcome = '/welcome',
   SignInUp = '/sign-in-up',
+  SignIn = '/sign-in',
+  SignUp = '/sign-up',
 }
 
 export const userAvatars = [

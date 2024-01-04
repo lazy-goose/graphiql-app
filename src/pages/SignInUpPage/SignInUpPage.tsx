@@ -1,6 +1,6 @@
+import { SignInForm } from '@/components/@SignForm/SignInForm'
+import { SignUpForm } from '@/components/@SignForm/SignUpForm'
 import { Header } from '@/components/Header'
-import { SignInForm } from '@/components/SignInForm'
-import { SignUpForm } from '@/components/SignUpForm'
 import { RouterPath } from '@/constants/constants'
 import { useBoundStore } from '@/store'
 import { Box, ThemeProvider, createTheme } from '@mui/material'
