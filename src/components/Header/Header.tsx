@@ -1,4 +1,4 @@
-import { pathes } from '@/constants/constants'
+import { RouterPath } from '@/constants/constants'
 import { auth } from '@/firebase'
 import { useBoundStore } from '@/store'
 import {
@@ -10,29 +10,18 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 import { signOut } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
 export function Header(props: { leftSlot?: React.ReactNode }) {
   const { leftSlot } = props
+  const location = useLocation()
 
   const user = useBoundStore((state) => state.user)
-  const setPageMode = useBoundStore((state) => state.setPageMode)
-  const navigate = useNavigate()
 
   const handleSignOutButton = async () => {
     signOut(auth)
-  }
-
-  const handleSignInButton = async () => {
-    setPageMode('signIn')
-    navigate(pathes.signInUpPage)
-  }
-
-  const handleSignUpButton = async () => {
-    setPageMode('signUp')
-    navigate(pathes.signInUpPage)
   }
 
   const trigger = useScrollTrigger({
@@ -49,10 +38,18 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
         </Button>
       ) : (
         <>
-          <Button variant="contained" onClick={handleSignInButton}>
+          <Button
+            href={RouterPath.SignIn}
+            variant="contained"
+            disabled={location.pathname === RouterPath.SignIn}
+          >
             SignIn
           </Button>
-          <Button variant="contained" onClick={handleSignUpButton}>
+          <Button
+            href={RouterPath.SignUp}
+            variant="contained"
+            disabled={location.pathname === RouterPath.SignUp}
+          >
             SignUp
           </Button>
         </>

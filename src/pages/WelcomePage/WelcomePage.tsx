@@ -1,4 +1,4 @@
-import { pathes } from '@/constants/constants'
+import { RouterPath } from '@/constants/constants'
 import { Link } from 'react-router-dom'
 
 export function WelcomePage(): React.ReactElement {
@@ -7,7 +7,7 @@ export function WelcomePage(): React.ReactElement {
       <header />
       <main>
         <h1>Sign In & Sign Up Page</h1>
-        <Link to={pathes.mainPage}>Main Page</Link>
+        <Link to={RouterPath.Main}>Main Page</Link>
       </main>
       <footer />
     </>

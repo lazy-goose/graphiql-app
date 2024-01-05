@@ -2,10 +2,11 @@ import { type LocaleWithMeta } from '@/types'
 import en from './locales/en'
 import ru from './locales/ru'
 
-export const pathes = {
-  mainPage: '/',
-  welcomePage: '/welcome',
-  signInUpPage: '/sign-in-up',
+export enum RouterPath {
+  Main = '/',
+  Welcome = '/welcome',
+  SignIn = '/sign-in',
+  SignUp = '/sign-up',
 }
 
 export const userAvatars = [

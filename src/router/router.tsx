@@ -1,9 +1,10 @@
-import { ErrorBoundary } from '@/components/ErrorBoudary'
-import { pathes } from '@/constants/constants'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { RouterPath } from '@/constants/constants'
+import { SignInPage } from '@/pages/@SignPages/SignInPage'
+import { SignUpPage } from '@/pages/@SignPages/SignUpPage'
 import { ErrorPage } from '@/pages/ErrorPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
-import { SignInUpPage } from '@/pages/SignInUpPage'
 import { WelcomePage } from '@/pages/WelcomePage'
 import {
   Route,
@@ -15,7 +16,7 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFoundPage />} path="">
       <Route
-        path={pathes.mainPage}
+        path={RouterPath.Main}
         element={
           <ErrorBoundary fallback={<ErrorPage />}>
             <MainPage />
@@ -23,7 +24,7 @@ export const router = createBrowserRouter(
         }
       />
       <Route
-        path={pathes.welcomePage}
+        path={RouterPath.Welcome}
         element={
           <ErrorBoundary fallback={<ErrorPage />}>
             <WelcomePage />
@@ -31,10 +32,18 @@ export const router = createBrowserRouter(
         }
       />
       <Route
-        path={pathes.signInUpPage}
+        path={RouterPath.SignIn}
         element={
           <ErrorBoundary fallback={<ErrorPage />}>
-            <SignInUpPage />
+            <SignInPage />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        path={RouterPath.SignUp}
+        element={
+          <ErrorBoundary fallback={<ErrorPage />}>
+            <SignUpPage />
           </ErrorBoundary>
         }
       />
