@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { LoadingButton } from '@mui/lab'
 import { Link, Stack, TextField, Typography } from '@mui/material'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useEffect, useRef } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { PasswordInput } from '../PasswordInput'
 
@@ -18,10 +19,22 @@ export default function SignInForm() {
   const {
     register,
     handleSubmit,
+    trigger,
     reset,
-    formState: { errors, isLoading },
+    formState: { errors, submitCount, isLoading },
   } = useForm<UserSignInData>({
     resolver: zodResolver(schema),
+  })
+
+  const prevCodeRef = useRef(locale.meta.code)
+
+  useEffect(() => {
+    const prevCode = prevCodeRef.current
+    const currCode = locale.meta.code
+    if (submitCount && prevCode !== currCode) {
+      trigger()
+    }
+    prevCodeRef.current = currCode
   })
 
   const onSubmit: SubmitHandler<UserSignInData> = async ({
