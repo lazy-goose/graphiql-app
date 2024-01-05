@@ -31,4 +31,9 @@ export const createRequestSettingsSlice: SliceCreator<RequestSettingsSlice> = (
       if (Object.hasOwn(toChange, 'headerVal'))
         targetHeader.headerVal = toChange.headerVal
     }),
+  stringifiedVariables: '{}',
+  setStringifiedVariables: (stringifiedVariables) =>
+    set((state) => {
+      state.stringifiedVariables = stringifiedVariables
+    }),
 })

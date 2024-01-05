@@ -11,6 +11,9 @@ const QueryResponse = React.lazy(() => {
 const RequestHeaders = React.lazy(() => {
   return import('@/components/RequestHeaders/RequestHeaders')
 })
+const RequestVariables = React.lazy(() => {
+  return import('@/components/RequestVariables/RequestVariables')
+})
 
 export default function MainPage() {
   return (
@@ -20,7 +23,7 @@ export default function MainPage() {
       <MainLayout
         documentation={<div>Documentation</div>}
         request={<div>Request</div>}
-        variables={<div>Variables</div>}
+        variables={<RequestVariables />}
         headers={<RequestHeaders />}
         response={<QueryResponse />}
       />

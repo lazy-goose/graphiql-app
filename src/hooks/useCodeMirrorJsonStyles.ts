@@ -2,7 +2,12 @@ import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { tags } from '@lezer/highlight'
 import { EditorView } from '@uiw/react-codemirror'
 
-export const useCodeMirrorJsonStyles = () => {
+export const useCodeMirrorJsonStyles = (
+  params: {
+    autoHideLintGutter?: boolean
+  } = {},
+) => {
+  const { autoHideLintGutter = false } = params
   const colors = {
     unquoted: '#13c913',
     string: '#ff32c6',
@@ -44,6 +49,11 @@ export const useCodeMirrorJsonStyles = () => {
     '.cm-selectionBackground': {
       background: colors.selection,
     },
+    ...(autoHideLintGutter && {
+      '.cm-gutter-lint:not(:has(.cm-lint-marker))': {
+        display: 'none !important',
+      },
+    }),
   })
   return [syntaxHighlighting(jsonHighlight), jsonTheme]
 }

@@ -13,6 +13,8 @@ export type RequestSettingsSlice = {
   deleteHeader: (id: React.Key) => void
   createHeader: (newId: React.Key) => void
   changeHeader: (id: React.Key, toChange: Optional<Omit<Header, 'id'>>) => void
+  stringifiedVariables: string
+  setStringifiedVariables: (stringifiedVariables) => void
 }
 export type MainLayoutSlice = {
   isAsideOpen: boolean
