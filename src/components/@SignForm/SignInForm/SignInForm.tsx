@@ -9,6 +9,7 @@ import { Link, Stack, TextField, Typography } from '@mui/material'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useEffect, useRef } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { Link as LinkRouter } from 'react-router-dom'
 import { PasswordInput } from '../PasswordInput'
 
 export default function SignInForm() {
@@ -84,7 +85,7 @@ export default function SignInForm() {
       </LoadingButton>
       <Typography mt={1} ml="auto">
         {locale.signInUpPage.typography.question.signIn}{' '}
-        <Link href={RouterPath.SignUp} underline="hover">
+        <Link component={LinkRouter} to={RouterPath.SignUp} underline="hover">
           {locale.signInUpPage.link.signUp}
         </Link>
       </Typography>

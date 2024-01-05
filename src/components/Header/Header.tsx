@@ -11,7 +11,7 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 import { signOut } from 'firebase/auth'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
@@ -41,14 +41,16 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
       ) : (
         <>
           <Button
-            href={RouterPath.SignIn}
+            component={Link}
+            to={RouterPath.SignIn}
             variant="contained"
             disabled={location.pathname === RouterPath.SignIn}
           >
             {locale.header.button.signIn}
           </Button>
           <Button
-            href={RouterPath.SignUp}
+            component={Link}
+            to={RouterPath.SignUp}
             variant="contained"
             disabled={location.pathname === RouterPath.SignUp}
           >
