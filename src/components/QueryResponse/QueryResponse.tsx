@@ -27,7 +27,7 @@ const exampleData = JSON.stringify(
   2,
 )
 
-export default function Response() {
+export default function QueryResponse() {
   const jsonHighlightExtensions = useCodeMirrorJsonStyles()
 
   return (

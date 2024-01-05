@@ -5,8 +5,8 @@ import React from 'react'
 import MainControls from './MainControls'
 import MainLayout from './MainLayout'
 
-const Response = React.lazy(() => {
-  return import('@/components/Response/Response')
+const QueryResponse = React.lazy(() => {
+  return import('@/components/QueryResponse/QueryResponse')
 })
 const RequestHeaders = React.lazy(() => {
   return import('@/components/RequestHeaders/RequestHeaders')
@@ -22,7 +22,7 @@ export default function MainPage() {
         request={<div>Request</div>}
         variables={<div>Variables</div>}
         headers={<RequestHeaders />}
-        response={<Response />}
+        response={<QueryResponse />}
       />
       <Footer />
     </Stack>
