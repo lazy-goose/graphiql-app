@@ -1,4 +1,4 @@
-import { ErrorBoundary } from '@/components/ErrorBoudary'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { RouterPath } from '@/constants/constants'
 import { SignInPage } from '@/pages/@SignPages/SignInPage'
 import { SignUpPage } from '@/pages/@SignPages/SignUpPage'
