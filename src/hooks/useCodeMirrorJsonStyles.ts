@@ -4,9 +4,9 @@ import { EditorView } from '@uiw/react-codemirror'
 
 export const useCodeMirrorJsonStyles = () => {
   const colors = {
-    unquoted: '#38e162',
+    unquoted: '#13c913',
     string: '#ff32c6',
-    property: '#3fa4ff',
+    property: '#0286fe',
     nullish: '#919193',
     default: '#232327',
     background: '#ffffff',
