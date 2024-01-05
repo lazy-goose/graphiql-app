@@ -1,3 +1,4 @@
+import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import { Add } from '@mui/icons-material'
 import { Box, Button, Stack } from '@mui/material'
@@ -8,6 +9,8 @@ export default function RequestHeaders() {
   const createHeader = useBoundStore((state) => state.createHeader)
   const deleteHeader = useBoundStore((state) => state.deleteHeader)
   const changeHeader = useBoundStore((state) => state.changeHeader)
+
+  const { locale } = useLocale()
 
   return (
     <Stack
@@ -39,7 +42,7 @@ export default function RequestHeaders() {
           variant="outlined"
           onClick={() => createHeader(crypto.randomUUID())}
         >
-          Add Header
+          {locale.mainPage.button.addHeader}
         </Button>
       </Box>
     </Stack>

@@ -1,23 +1,23 @@
 import { z } from 'zod'
+import { useLocale } from './useLocale'
 
 export const useValidators = () => {
+  const { locale } = useLocale()
+
   const passwordStrengthSchemaErrors = [
-    ['Must be at least 8 characters or more', '8 characters'],
-    ['Should have at least one Uppercase letter', 'uppercase letter'],
-    ['Should have at least one Lowercase letter', 'lowercase letter'],
-    ['Should have at least one digit', 'one digit'],
-    [
-      'Should have at least one special character: !@#$%^&*(),.?":{}|<>',
-      'one special character',
-    ],
+    locale.signInUpPage.error.password.characters,
+    locale.signInUpPage.error.password.uppercase,
+    locale.signInUpPage.error.password.lowercase,
+    locale.signInUpPage.error.password.digit,
+    locale.signInUpPage.error.password.specialCharacter,
   ]
 
   const passwordStrength = [
-    ['#d32f2f', 'Too Weak'],
-    ['#ef9d00', 'Weak'],
-    ['#dedb0a', 'Fair'],
-    ['#98bf54', 'Good'],
-    ['#5eb762', 'Strong'],
+    ['#d32f2f', locale.signInUpPage.typography.passwordStrenth.tooWeak],
+    ['#ef9d00', locale.signInUpPage.typography.passwordStrenth.weak],
+    ['#dedb0a', locale.signInUpPage.typography.passwordStrenth.fair],
+    ['#98bf54', locale.signInUpPage.typography.passwordStrenth.good],
+    ['#5eb762', locale.signInUpPage.typography.passwordStrenth.strong],
   ]
 
   const passwordStrengthSchema = z
@@ -30,13 +30,13 @@ export const useValidators = () => {
 
   const passwordSchema = z
     .string()
-    .min(1, 'Password is required')
+    .min(1, locale.signInUpPage.error.password.length)
     .and(passwordStrengthSchema)
 
   const emailSchema = z
     .string()
-    .min(1, 'Email is required')
-    .email('Must be a valid email')
+    .min(1, locale.signInUpPage.error.email.length)
+    .email(locale.signInUpPage.error.email.validation)
 
   const signInSchema = z.object({
     email: emailSchema,
@@ -45,11 +45,13 @@ export const useValidators = () => {
 
   const signUpSchema = signInSchema
     .extend({
-      confirmPassword: z.string().min(1, 'Password confirm is required'),
+      confirmPassword: z
+        .string()
+        .min(1, locale.signInUpPage.error.confirmPassword.length),
     })
     .refine((data) => data.password === data.confirmPassword, {
       path: ['confirmPassword'],
-      message: 'Passwords do not match',
+      message: locale.signInUpPage.error.confirmPassword.matching,
     })
 
   return {

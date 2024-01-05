@@ -1,5 +1,6 @@
 import { RouterPath } from '@/constants'
 import { auth } from '@/firebase'
+import { useLocale } from '@/hooks/useLocale'
 import { useValidators } from '@/hooks/useValidators'
 import { type UserSignInData } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,6 +14,7 @@ export default function SignInForm() {
   const {
     signIn: { schema },
   } = useValidators()
+  const { locale } = useLocale()
   const {
     register,
     handleSubmit,
@@ -43,11 +45,11 @@ export default function SignInForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Typography mb={2} component="h2" variant="h4">
-        Sign in
+        {locale.signInUpPage.typography.heading.signIn}
       </Typography>
       <TextField
         type="email"
-        label="Email"
+        label={locale.signInUpPage.inputLabel.email}
         autoComplete="email"
         error={Boolean(errors.email)}
         helperText={errors.email?.message || ' '}
@@ -65,12 +67,12 @@ export default function SignInForm() {
         size="large"
         variant="contained"
       >
-        Sign in
+        {locale.signInUpPage.button.submit}
       </LoadingButton>
       <Typography mt={1} ml="auto">
-        Create a new account?{' '}
+        {locale.signInUpPage.typography.question.signIn}{' '}
         <Link href={RouterPath.SignUp} underline="hover">
-          Sign up
+          {locale.signInUpPage.link.signUp}
         </Link>
       </Typography>
     </Stack>

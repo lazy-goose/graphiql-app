@@ -1,9 +1,11 @@
+import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import { Description } from '@mui/icons-material'
 import { Button, Stack } from '@mui/material'
 
 export default function MainControls() {
   const toggleAside = useBoundStore((s) => s.toggleAside)
+  const { locale } = useLocale()
   return (
     <Stack
       component="nav"
@@ -23,7 +25,7 @@ export default function MainControls() {
         }}
         startIcon={<Description />}
       >
-        Open docs
+        {locale.mainPage.button.openDocs}
       </Button>
     </Stack>
   )

@@ -1,3 +1,4 @@
+import { useLocale } from '@/hooks/useLocale'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import {
@@ -12,12 +13,13 @@ const PasswordInput = React.forwardRef<HTMLInputElement, TextFieldProps>(
   function PasswordInput(props, ref) {
     const { InputProps, inputProps, ...passTextFieldProps } = props
     const [showPassword, setShowPassword] = useState(false)
+    const { locale } = useLocale()
     const toggleShowPassword = () => setShowPassword(!showPassword)
     return (
       <TextField
         variant="outlined"
         type={showPassword ? 'text' : 'password'}
-        label="Password"
+        label={locale.signInUpPage.inputLabel.password}
         inputProps={{
           form: { autocomplete: 'off' },
           ...inputProps,
