@@ -21,7 +21,7 @@ export type Locale = {
         signIn: string
         signUp: string
       }
-      passwordStrenth: {
+      passwordStrength: {
         description: string
         tooWeak: string
         weak: string

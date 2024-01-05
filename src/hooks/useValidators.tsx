@@ -13,11 +13,11 @@ export const useValidators = () => {
   ]
 
   const passwordStrength = [
-    ['#d32f2f', locale.signInUpPage.typography.passwordStrenth.tooWeak],
-    ['#ef9d00', locale.signInUpPage.typography.passwordStrenth.weak],
-    ['#dedb0a', locale.signInUpPage.typography.passwordStrenth.fair],
-    ['#98bf54', locale.signInUpPage.typography.passwordStrenth.good],
-    ['#5eb762', locale.signInUpPage.typography.passwordStrenth.strong],
+    ['#d32f2f', locale.signInUpPage.typography.passwordStrength.tooWeak],
+    ['#ef9d00', locale.signInUpPage.typography.passwordStrength.weak],
+    ['#dedb0a', locale.signInUpPage.typography.passwordStrength.fair],
+    ['#98bf54', locale.signInUpPage.typography.passwordStrength.good],
+    ['#5eb762', locale.signInUpPage.typography.passwordStrength.strong],
   ]
 
   const passwordStrengthSchema = z

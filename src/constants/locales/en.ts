@@ -21,7 +21,7 @@ const locale = {
         signIn: 'Create a new account?',
         signUp: 'Already have an account?',
       },
-      passwordStrenth: {
+      passwordStrength: {
         description: 'Strong password contains at least',
         tooWeak: 'Too Weak',
         weak: 'Weak',

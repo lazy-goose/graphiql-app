@@ -21,7 +21,7 @@ const locale = {
         signIn: 'Еще не зарегистрированы?',
         signUp: 'Уже зарегистрированы?',
       },
-      passwordStrenth: {
+      passwordStrength: {
         description: 'Сильный пароль должен содержать',
         tooWeak: 'Очень слабый',
         weak: 'Слабый',

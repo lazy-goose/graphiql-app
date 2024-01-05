@@ -48,7 +48,7 @@ export default function PasswordStrength(props: { password: string }) {
   return (
     <Box px={1}>
       <FormHelperText>
-        {locale.signInUpPage.typography.passwordStrenth.description}{' '}
+        {locale.signInUpPage.typography.passwordStrength.description}{' '}
         {shouldContain()}
         <PasswordStrengthBar
           current={currentStrength}
