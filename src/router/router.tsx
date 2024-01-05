@@ -5,7 +5,6 @@ import { SignUpPage } from '@/pages/@SignPages/SignUpPage'
 import { ErrorPage } from '@/pages/ErrorPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
-import { SignInUpPage } from '@/pages/SignInUpPage'
 import { WelcomePage } from '@/pages/WelcomePage'
 import {
   Route,
@@ -29,14 +28,6 @@ export const router = createBrowserRouter(
         element={
           <ErrorBoundary fallback={<ErrorPage />}>
             <WelcomePage />
-          </ErrorBoundary>
-        }
-      />
-      <Route
-        path={RouterPath.SignInUp}
-        element={
-          <ErrorBoundary fallback={<ErrorPage />}>
-            <SignInUpPage />
           </ErrorBoundary>
         }
       />

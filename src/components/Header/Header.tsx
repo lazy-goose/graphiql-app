@@ -18,7 +18,6 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
   const { leftSlot } = props
 
   const user = useBoundStore((state) => state.user)
-  const setPageMode = useBoundStore((state) => state.setPageMode)
   const navigate = useNavigate()
 
   const handleSignOutButton = async () => {
@@ -26,13 +25,11 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
   }
 
   const handleSignInButton = async () => {
-    setPageMode('signIn')
-    navigate(RouterPath.SignInUp)
+    navigate(RouterPath.SignIn)
   }
 
   const handleSignUpButton = async () => {
-    setPageMode('signUp')
-    navigate(RouterPath.SignInUp)
+    navigate(RouterPath.SignUp)
   }
 
   const trigger = useScrollTrigger({
