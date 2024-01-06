@@ -12,16 +12,13 @@ const baseJsonExtensions = [
 ] satisfies Extension[]
 
 export default function RequestVariables() {
-  const jsonHighlightExtensions = useCodeMirrorJsonStyles({
-    autoHideLintGutter: true,
-  })
+  const jsonHighlightExtensions = useCodeMirrorJsonStyles()
   const stringifiedVariables = useBoundStore(
     (state) => state.stringifiedVariables,
   )
   const setStringifiedVariables = useBoundStore(
     (state) => state.setStringifiedVariables,
   )
-  const jsonLabelSize = '50px'
   return (
     <Box
       height={1}
@@ -35,18 +32,20 @@ export default function RequestVariables() {
         '.cm-editor.cm-focused': {
           outlineColor: 'transparent',
         },
-        '.cm-content > .cm-line:first-of-type': {
-          paddingRight: jsonLabelSize,
+        '.cm-lint-marker': {
+          width: '0.8em',
+          height: '0.8em',
+          margin: '0.1em',
         },
         '.jsonLabel': {
-          width: jsonLabelSize,
           boxSizing: 'border-box',
           padding: 0.5,
-          paddingTop: 2.5,
+          paddingTop: 3,
           position: 'absolute',
           top: 0,
           right: 0,
           fontFamily: theme.typography.body2,
+          lineHeight: 1,
           textAlign: 'center',
           background: theme.palette.background.paper,
         },
@@ -56,6 +55,10 @@ export default function RequestVariables() {
         height="100%"
         value={stringifiedVariables}
         extensions={[...baseJsonExtensions, ...jsonHighlightExtensions]}
+        basicSetup={{
+          highlightActiveLine: false,
+          foldGutter: false,
+        }}
         onChange={setStringifiedVariables}
       />
       <Box className="jsonLabel">JSON</Box>
