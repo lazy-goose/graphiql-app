@@ -47,6 +47,7 @@ export const router = createBrowserRouter(
           </ErrorBoundary>
         }
       />
+      <Route path="*" element={<NotFoundPage />} />
     </Route>,
   ),
 )
