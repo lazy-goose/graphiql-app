@@ -11,7 +11,7 @@ import React, { useState } from 'react'
 
 const PasswordInput = React.forwardRef<HTMLInputElement, TextFieldProps>(
   function PasswordInput(props, ref) {
-    const { InputProps, inputProps, ...passTextFieldProps } = props
+    const { InputProps, inputProps, disabled, ...passTextFieldProps } = props
     const [showPassword, setShowPassword] = useState(false)
     const { locale } = useLocale()
     const toggleShowPassword = () => setShowPassword(!showPassword)
@@ -20,6 +20,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, TextFieldProps>(
         variant="outlined"
         type={showPassword ? 'text' : 'password'}
         label={locale.signInUpPage.inputLabel.password}
+        disabled={disabled}
         inputProps={{
           form: { autocomplete: 'off' },
           ...inputProps,

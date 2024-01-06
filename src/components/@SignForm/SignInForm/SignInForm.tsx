@@ -23,7 +23,7 @@ export default function SignInForm() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
   } = useLocaleForm<UserSignInData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -60,25 +60,42 @@ export default function SignInForm() {
         autoComplete="email"
         error={Boolean(errors.email)}
         helperText={errors.email?.message || ' '}
+        disabled={isSubmitting}
         {...register('email')}
       />
       <PasswordInput
         autoComplete="current-password"
         error={Boolean(errors.password)}
         helperText={errors.password?.message || ' '}
+        disabled={isSubmitting}
         {...register('password')}
       />
       <LoadingButton
-        loading={isLoading}
+        loading={isSubmitting}
         type="submit"
         size="large"
         variant="contained"
       >
         {locale.signInUpPage.button.submit}
       </LoadingButton>
-      <Typography mt={1} ml="auto">
+      <Typography
+        mt={1}
+        ml="auto"
+        sx={(theme) => ({
+          color: isSubmitting ? theme.palette.text.disabled : 'inherit',
+        })}
+      >
         {locale.signInUpPage.typography.question.signIn}{' '}
-        <Link component={RouterLink} to={RouterPath.SignUp} underline="hover">
+        <Link
+          component={RouterLink}
+          to={RouterPath.SignUp}
+          underline="hover"
+          sx={(theme) => ({
+            color: isSubmitting
+              ? theme.palette.text.disabled
+              : theme.palette.primary.main,
+          })}
+        >
           {locale.signInUpPage.link.signUp}
         </Link>
       </Typography>

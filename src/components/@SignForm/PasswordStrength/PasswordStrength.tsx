@@ -16,8 +16,11 @@ const getPasswordErrors = (password: string, schema: ZodString) => {
   return []
 }
 
-export default function PasswordStrength(props: { password: string }) {
-  const { password = '' } = props
+export default function PasswordStrength(props: {
+  password: string
+  disabled: boolean
+}) {
+  const { password = '', disabled } = props
   const {
     password: { schema, strength, errors: allErrors },
   } = useValidators()
@@ -51,6 +54,7 @@ export default function PasswordStrength(props: { password: string }) {
         {locale.signInUpPage.typography.passwordStrength.description}{' '}
         {shouldContain()}
         <PasswordStrengthBar
+          disabled={disabled}
           current={currentStrength}
           levels={strength.map(([color, text]) => ({ color, text }))}
         />

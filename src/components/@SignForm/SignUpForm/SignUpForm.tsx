@@ -25,7 +25,7 @@ export default function SignUpForm() {
     watch,
     handleSubmit,
     reset,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
   } = useLocaleForm<UserSignUpData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -61,6 +61,7 @@ export default function SignUpForm() {
         type="email"
         label={locale.signInUpPage.inputLabel.email}
         autoComplete="off"
+        disabled={isSubmitting}
         error={Boolean(errors.email)}
         helperText={errors.email?.message || ' '}
         {...register('email')}
@@ -68,26 +69,43 @@ export default function SignUpForm() {
       <PasswordInput
         autoComplete="new-password"
         error={Boolean(errors.password)}
+        disabled={isSubmitting}
         {...register('password')}
       />
-      <PasswordStrength password={watch('password')} />
+      <PasswordStrength password={watch('password')} disabled={isSubmitting} />
       <PasswordInput
         autoComplete="new-password"
         error={Boolean(errors.confirmPassword)}
         helperText={errors.confirmPassword?.message || ' '}
+        disabled={isSubmitting}
         {...register('confirmPassword')}
       />
       <LoadingButton
-        loading={isLoading}
+        loading={isSubmitting}
         type="submit"
         size="large"
         variant="contained"
       >
         {locale.signInUpPage.button.submit}
       </LoadingButton>
-      <Typography mt={1} ml="auto">
+      <Typography
+        mt={1}
+        ml="auto"
+        sx={(theme) => ({
+          color: isSubmitting ? theme.palette.text.disabled : 'inherit',
+        })}
+      >
         {locale.signInUpPage.typography.question.signUp}{' '}
-        <Link component={RouterLink} to={RouterPath.SignIn} underline="hover">
+        <Link
+          component={RouterLink}
+          to={RouterPath.SignIn}
+          underline="hover"
+          sx={(theme) => ({
+            color: isSubmitting
+              ? theme.palette.text.disabled
+              : theme.palette.primary.main,
+          })}
+        >
           {locale.signInUpPage.link.signIn}
         </Link>
       </Typography>
