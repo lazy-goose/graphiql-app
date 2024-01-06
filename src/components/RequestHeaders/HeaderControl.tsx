@@ -6,7 +6,6 @@ import {
   Checkbox,
   IconButton,
   TextField,
-  type SxProps,
 } from '@mui/material'
 
 export default function HeaderControl(props: {
@@ -33,16 +32,9 @@ export default function HeaderControl(props: {
       sx={{
         display: 'grid',
         gap: 1,
-        gridTemplateAreas: `
-          "check key value delete"
-        `,
+        gridTemplateAreas: `"check key value delete"`,
         gridTemplateColumns: 'max-content 1fr 1fr max-content',
-        ...Object.fromEntries(
-          ['check', 'delete', 'key', 'value'].map((key) => [
-            `.${key}`,
-            { gridArea: key } satisfies SxProps,
-          ]),
-        ),
+        justifyItems: 'center',
         '@container (max-width: 400px)': {
           gridTemplateAreas: `
             "key   key   check"
@@ -52,7 +44,7 @@ export default function HeaderControl(props: {
         },
       }}
     >
-      <Box className="check">
+      <Box sx={{ gridArea: 'check' }}>
         <Checkbox
           value={checked}
           sx={{
@@ -66,7 +58,7 @@ export default function HeaderControl(props: {
         />
       </Box>
       <Autocomplete
-        className="key"
+        sx={{ gridArea: 'key' }}
         size="small"
         freeSolo
         fullWidth
@@ -76,14 +68,14 @@ export default function HeaderControl(props: {
         onChange={(_, value) => handleKeyChange(value || '')}
       />
       <TextField
-        className="value"
+        sx={{ gridArea: 'value' }}
         size="small"
         fullWidth
         label="Value"
         value={headerVal}
         onChange={(event) => handleValChange(event.currentTarget.value)}
       />
-      <Box className="delete">
+      <Box sx={{ gridArea: 'delete' }}>
         <IconButton color="error" onClick={() => handleDelete()}>
           <Delete />
         </IconButton>
