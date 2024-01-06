@@ -1,12 +1,15 @@
 import { RouterPath } from '@/constants'
 import { auth } from '@/firebase'
+import { useLocale } from '@/hooks/useLocale'
+import { useLocaleForm } from '@/hooks/useLocaleForm'
 import { useValidators } from '@/hooks/useValidators'
 import { type UserSignInData, type UserSignUpData } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Link, Stack, TextField, Typography } from '@mui/material'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { useForm, type SubmitHandler } from 'react-hook-form'
+import { type SubmitHandler } from 'react-hook-form'
+import { Link as RouterLink } from 'react-router-dom'
 import { PasswordInput } from '../PasswordInput'
 import { PasswordStrength } from '../PasswordStrength'
 
@@ -14,14 +17,21 @@ export default function SignUpForm() {
   const {
     signUp: { schema },
   } = useValidators()
+
+  const { locale } = useLocale()
+
   const {
     register,
+    watch,
     handleSubmit,
     reset,
-    watch,
-    formState: { errors, isLoading },
-  } = useForm<UserSignUpData>({
+    formState: { errors, isSubmitting },
+  } = useLocaleForm<UserSignUpData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      password: '',
+      confirmPassword: '',
+    },
   })
 
   const onSubmit: SubmitHandler<UserSignUpData | UserSignInData> = async ({
@@ -45,12 +55,13 @@ export default function SignUpForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Typography mb={2} component="h2" variant="h4">
-        Sign up
+        {locale.signInUpPage.typography.heading.signUp}
       </Typography>
       <TextField
         type="email"
-        label="Email"
+        label={locale.signInUpPage.inputLabel.email}
         autoComplete="off"
+        disabled={isSubmitting}
         error={Boolean(errors.email)}
         helperText={errors.email?.message || ' '}
         {...register('email')}
@@ -58,27 +69,44 @@ export default function SignUpForm() {
       <PasswordInput
         autoComplete="new-password"
         error={Boolean(errors.password)}
+        disabled={isSubmitting}
         {...register('password')}
       />
-      <PasswordStrength password={watch('password')} />
+      <PasswordStrength password={watch('password')} disabled={isSubmitting} />
       <PasswordInput
         autoComplete="new-password"
         error={Boolean(errors.confirmPassword)}
         helperText={errors.confirmPassword?.message || ' '}
+        disabled={isSubmitting}
         {...register('confirmPassword')}
       />
       <LoadingButton
-        loading={isLoading}
+        loading={isSubmitting}
         type="submit"
         size="large"
         variant="contained"
       >
-        Sign up
+        {locale.signInUpPage.button.submit}
       </LoadingButton>
-      <Typography mt={1} ml="auto">
-        Already have an account?{' '}
-        <Link href={RouterPath.SignIn} underline="hover">
-          Sign in
+      <Typography
+        mt={1}
+        ml="auto"
+        sx={(theme) => ({
+          color: isSubmitting ? theme.palette.text.disabled : 'inherit',
+        })}
+      >
+        {locale.signInUpPage.typography.question.signUp}{' '}
+        <Link
+          component={RouterLink}
+          to={RouterPath.SignIn}
+          underline="hover"
+          sx={(theme) => ({
+            color: isSubmitting
+              ? theme.palette.text.disabled
+              : theme.palette.primary.main,
+          })}
+        >
+          {locale.signInUpPage.link.signIn}
         </Link>
       </Typography>
     </Stack>

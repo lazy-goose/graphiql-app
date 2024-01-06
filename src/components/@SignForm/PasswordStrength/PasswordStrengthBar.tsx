@@ -7,8 +7,9 @@ export default function PasswordStrengthBar(props: {
     text: string
   }[]
   stackProps?: StackProps
+  disabled: boolean
 }) {
-  const { current, levels, stackProps } = props
+  const { current, levels, stackProps, disabled } = props
   const baseColor = '#e0e0e0'
   const currentLevel = levels[current]
   return (
@@ -31,7 +32,7 @@ export default function PasswordStrengthBar(props: {
           height="5px"
           sx={{
             backgroundColor:
-              currentLevel && lvlIndex <= current
+              currentLevel && !disabled && lvlIndex <= current
                 ? currentLevel.color
                 : baseColor,
           }}

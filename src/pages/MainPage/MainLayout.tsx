@@ -1,3 +1,4 @@
+import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import {
   Box,
@@ -56,6 +57,7 @@ const MainMobileLayout = ({
 }: MainLayoutSlots) => {
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   const toggleAside = useBoundStore((s) => s.toggleAside)
+  const { locale } = useLocale()
   return (
     <Box height={1}>
       <Drawer
@@ -80,8 +82,16 @@ const MainMobileLayout = ({
             <TabGroup
               currentValue="Request"
               tabs={[
-                { value: 'Request', jsx: request },
-                { value: 'Response', jsx: response },
+                {
+                  value: 'Request',
+                  label: locale.mainPage.tab.request,
+                  jsx: request,
+                },
+                {
+                  value: 'Response',
+                  label: locale.mainPage.tab.response,
+                  jsx: response,
+                },
               ]}
             />
           </Box>
@@ -91,8 +101,16 @@ const MainMobileLayout = ({
             <TabGroup
               currentValue="Variables"
               tabs={[
-                { value: 'Variables', jsx: variables },
-                { value: 'Headers', jsx: headers },
+                {
+                  value: 'Variables',
+                  label: locale.mainPage.tab.variables,
+                  jsx: variables,
+                },
+                {
+                  value: 'Headers',
+                  label: locale.mainPage.tab.headers,
+                  jsx: headers,
+                },
               ]}
             />
           </Box>
@@ -110,6 +128,7 @@ const MainDesktopLayout = ({
   variables,
 }: MainLayoutSlots) => {
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
+  const { locale } = useLocale()
   return (
     <ResizeGroup direction="row" initialSizes={[0.2, 0.4, 0.4]}>
       <ResizeFragment id="Col1" min={0.2} max={0.4} collapse={!isAsideOpen}>
@@ -127,15 +146,29 @@ const MainDesktopLayout = ({
             <ResizeFragment id="Col2Row1">
               <TabGroup
                 currentValue="Request"
-                tabs={[{ value: 'Request', jsx: request }]}
+                tabs={[
+                  {
+                    value: 'Request',
+                    label: locale.mainPage.tab.request,
+                    jsx: request,
+                  },
+                ]}
               />
             </ResizeFragment>
             <ResizeFragment id="Col2Row2">
               <TabGroup
                 currentValue="Headers"
                 tabs={[
-                  { value: 'Variables', jsx: variables },
-                  { value: 'Headers', jsx: headers },
+                  {
+                    value: 'Variables',
+                    label: locale.mainPage.tab.variables,
+                    jsx: variables,
+                  },
+                  {
+                    value: 'Headers',
+                    label: locale.mainPage.tab.headers,
+                    jsx: headers,
+                  },
                 ]}
               />
             </ResizeFragment>
@@ -146,7 +179,13 @@ const MainDesktopLayout = ({
         <Box height={1}>
           <TabGroup
             currentValue="Response"
-            tabs={[{ value: 'Response', jsx: response }]}
+            tabs={[
+              {
+                value: 'Response',
+                label: locale.mainPage.tab.response,
+                jsx: response,
+              },
+            ]}
           />
         </Box>
       </ResizeFragment>

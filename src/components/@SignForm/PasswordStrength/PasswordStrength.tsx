@@ -1,3 +1,4 @@
+import { useLocale } from '@/hooks/useLocale'
 import { useValidators } from '@/hooks/useValidators'
 import { Box, FormHelperText } from '@mui/material'
 import { Fragment } from 'react'
@@ -15,11 +16,15 @@ const getPasswordErrors = (password: string, schema: ZodString) => {
   return []
 }
 
-export default function PasswordStrength(props: { password: string }) {
-  const { password = '' } = props
+export default function PasswordStrength(props: {
+  password: string
+  disabled: boolean
+}) {
+  const { password = '', disabled } = props
   const {
     password: { schema, strength, errors: allErrors },
   } = useValidators()
+  const { locale } = useLocale()
 
   const passwordErrors = getPasswordErrors(password, schema)
 
@@ -46,8 +51,10 @@ export default function PasswordStrength(props: { password: string }) {
   return (
     <Box px={1}>
       <FormHelperText>
-        Strong password contains at least {shouldContain()}
+        {locale.signInUpPage.typography.passwordStrength.description}{' '}
+        {shouldContain()}
         <PasswordStrengthBar
+          disabled={disabled}
           current={currentStrength}
           levels={strength.map(([color, text]) => ({ color, text }))}
         />

@@ -1,4 +1,5 @@
 import { PredefinedHeaders } from '@/constants/constants'
+import { useLocale } from '@/hooks/useLocale'
 import { Delete } from '@mui/icons-material'
 import {
   Autocomplete,
@@ -26,6 +27,8 @@ export default function HeaderControl(props: {
     handleValChange,
     handleDelete,
   } = props
+
+  const { locale } = useLocale()
 
   return (
     <Box
@@ -63,7 +66,9 @@ export default function HeaderControl(props: {
         freeSolo
         fullWidth
         options={PredefinedHeaders}
-        renderInput={(params) => <TextField {...params} label="Header key" />}
+        renderInput={(params) => (
+          <TextField {...params} label={locale.mainPage.inputLabel.headerKey} />
+        )}
         value={headerKey}
         onChange={(_, value) => handleKeyChange(value || '')}
       />
@@ -71,7 +76,7 @@ export default function HeaderControl(props: {
         sx={{ gridArea: 'value' }}
         size="small"
         fullWidth
-        label="Value"
+        label={locale.mainPage.inputLabel.headerValue}
         value={headerVal}
         onChange={(event) => handleValChange(event.currentTarget.value)}
       />

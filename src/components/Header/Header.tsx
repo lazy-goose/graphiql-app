@@ -1,5 +1,6 @@
 import { RouterPath } from '@/constants/constants'
 import { auth } from '@/firebase'
+import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import {
   AppBar,
@@ -10,13 +11,14 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 import { signOut } from 'firebase/auth'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
 export function Header(props: { leftSlot?: React.ReactNode }) {
   const { leftSlot } = props
   const location = useLocation()
+  const { locale } = useLocale()
 
   const user = useBoundStore((state) => state.user)
 
@@ -34,23 +36,25 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
       <LanguageMenu />
       {user ? (
         <Button variant="contained" onClick={handleSignOutButton}>
-          SignOut
+          {locale.header.button.signOut}
         </Button>
       ) : (
         <>
           <Button
-            href={RouterPath.SignIn}
+            component={Link}
+            to={RouterPath.SignIn}
             variant="contained"
             disabled={location.pathname === RouterPath.SignIn}
           >
-            SignIn
+            {locale.header.button.signIn}
           </Button>
           <Button
-            href={RouterPath.SignUp}
+            component={Link}
+            to={RouterPath.SignUp}
             variant="contained"
             disabled={location.pathname === RouterPath.SignUp}
           >
-            SignUp
+            {locale.header.button.signUp}
           </Button>
         </>
       )}
