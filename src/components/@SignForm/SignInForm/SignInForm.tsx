@@ -1,14 +1,14 @@
 import { RouterPath } from '@/constants'
 import { auth } from '@/firebase'
 import { useLocale } from '@/hooks/useLocale'
+import { useLocaleForm } from '@/hooks/useLocaleForm'
 import { useValidators } from '@/hooks/useValidators'
 import { type UserSignInData } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoadingButton } from '@mui/lab'
 import { Link, Stack, TextField, Typography } from '@mui/material'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { useEffect, useRef } from 'react'
-import { useForm, type SubmitHandler } from 'react-hook-form'
+import { type SubmitHandler } from 'react-hook-form'
 import { Link as LinkRouter } from 'react-router-dom'
 import { PasswordInput } from '../PasswordInput'
 
@@ -16,26 +16,16 @@ export default function SignInForm() {
   const {
     signIn: { schema },
   } = useValidators()
+
   const { locale } = useLocale()
+
   const {
     register,
     handleSubmit,
-    trigger,
     reset,
-    formState: { errors, submitCount, isLoading },
-  } = useForm<UserSignInData>({
+    formState: { errors, isLoading },
+  } = useLocaleForm<UserSignInData>({
     resolver: zodResolver(schema),
-  })
-
-  const prevCodeRef = useRef(locale.meta.code)
-
-  useEffect(() => {
-    const prevCode = prevCodeRef.current
-    const currCode = locale.meta.code
-    if (submitCount && prevCode !== currCode) {
-      trigger()
-    }
-    prevCodeRef.current = currCode
   })
 
   const onSubmit: SubmitHandler<UserSignInData> = async ({
