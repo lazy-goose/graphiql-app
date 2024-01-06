@@ -1,10 +1,11 @@
 import { RouterPath } from '@/constants/constants'
 import { Link } from 'react-router-dom'
+import WelcomePageHeader from './WelcomePageHeader'
 
-export function WelcomePage(): React.ReactElement {
+export default function WelcomePage(): React.ReactElement {
   return (
     <>
-      <header />
+      <WelcomePageHeader />
       <main>
         <h1>Sign In & Sign Up Page</h1>
         <Link to={RouterPath.Main}>Main Page</Link>
