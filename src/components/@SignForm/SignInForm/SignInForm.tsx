@@ -26,6 +26,9 @@ export default function SignInForm() {
     formState: { errors, isLoading },
   } = useLocaleForm<UserSignInData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      password: '',
+    },
   })
 
   const onSubmit: SubmitHandler<UserSignInData> = async ({
