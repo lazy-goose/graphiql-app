@@ -9,7 +9,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Link, Stack, TextField, Typography } from '@mui/material'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { type SubmitHandler } from 'react-hook-form'
-import { Link as LinkRouter } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { PasswordInput } from '../PasswordInput'
 import { PasswordStrength } from '../PasswordStrength'
 
@@ -83,7 +83,7 @@ export default function SignUpForm() {
       </LoadingButton>
       <Typography mt={1} ml="auto">
         {locale.signInUpPage.typography.question.signUp}{' '}
-        <Link component={LinkRouter} to={RouterPath.SignIn} underline="hover">
+        <Link component={RouterLink} to={RouterPath.SignIn} underline="hover">
           {locale.signInUpPage.link.signIn}
         </Link>
       </Typography>

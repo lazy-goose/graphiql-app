@@ -1,5 +1,6 @@
 import { RouterPath } from '@/constants/constants'
 import { Box, Link, type LinkProps } from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom'
 
 const GraphSvg = (props: React.SVGProps<SVGSVGElement>) => {
   // prettier-ignore
@@ -22,7 +23,7 @@ export default function Logo(props: { linkProps?: LinkProps }) {
   const size = '47px'
   const logoSize = '90%'
   return (
-    <Link href={RouterPath.Welcome} {...linkProps}>
+    <Link component={RouterLink} to={RouterPath.Welcome} {...linkProps}>
       <Box
         sx={(theme) => ({
           width: size,
