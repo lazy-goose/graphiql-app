@@ -1,17 +1,17 @@
-import { Box } from '@mui/material'
-
-import { json } from '@codemirror/lang-json'
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { tags } from '@lezer/highlight'
-import CodeMirror, { EditorView } from '@uiw/react-codemirror'
+import { EditorView } from '@uiw/react-codemirror'
 
-import '@fontsource/source-code-pro'
-
-const useJsonStyles = () => {
+export const useCodeMirrorJsonStyles = (
+  params: {
+    autoHideLintGutter?: boolean
+  } = {},
+) => {
+  const { autoHideLintGutter = false } = params
   const colors = {
-    unquoted: '#38e162',
+    unquoted: '#13c913',
     string: '#ff32c6',
-    property: '#3fa4ff',
+    property: '#0286fe',
     nullish: '#919193',
     default: '#232327',
     background: '#ffffff',
@@ -49,62 +49,11 @@ const useJsonStyles = () => {
     '.cm-selectionBackground': {
       background: colors.selection,
     },
+    ...(autoHideLintGutter && {
+      '.cm-gutter-lint:not(:has(.cm-lint-marker))': {
+        display: 'none !important',
+      },
+    }),
   })
   return [syntaxHighlighting(jsonHighlight), jsonTheme]
-}
-
-const exampleData = JSON.stringify(
-  {
-    data: {
-      countries: [
-        {
-          id: 3,
-          name: 'Andorra',
-        },
-        {
-          name: 'United Arab Emirates',
-        },
-        // ...
-        {
-          name: 'Zimbabwe',
-        },
-      ],
-    },
-  },
-  null,
-  2,
-)
-
-export default function Response() {
-  const jsonHighlightExtensions = useJsonStyles()
-
-  return (
-    <Box
-      height={1}
-      sx={{
-        boxSizing: 'border-box',
-        padding: 2,
-        '& > *:first-of-type': {
-          height: 1,
-        },
-        '.cm-editor': {
-          height: 1,
-        },
-        '.cm-line': {
-          paddingLeft: 1,
-        },
-      }}
-    >
-      <CodeMirror
-        editable={false}
-        value={exampleData}
-        extensions={[json(), ...jsonHighlightExtensions]}
-        basicSetup={{
-          highlightActiveLine: false,
-          highlightActiveLineGutter: false,
-          highlightSelectionMatches: false,
-        }}
-      />
-    </Box>
-  )
 }

@@ -18,7 +18,6 @@ export const useValidators = () => {
     ['#dedb0a', locale.signInUpPage.typography.passwordStrength.fair],
     ['#98bf54', locale.signInUpPage.typography.passwordStrength.good],
     ['#5eb762', locale.signInUpPage.typography.passwordStrength.strong],
-  ]
 
   const passwordStrengthSchema = z
     .string()
