@@ -1,9 +1,10 @@
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header'
-import { Stack } from '@mui/material'
+import { Stack, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 import MainControls from './MainControls'
 import MainLayout from './MainLayout'
+import SchemaControls from './SchemaControls'
 
 const QueryRequest = React.lazy(() => {
   return import('@/components/QueryRequest/QueryRequest')
@@ -19,9 +20,12 @@ const RequestVariables = React.lazy(() => {
 })
 
 export default function MainPage() {
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <Stack>
-      <Header />
+      <Header leftSlot={!mobile && <SchemaControls />} />
+      {mobile && <SchemaControls variant="mobile" mt={1.5} mb={0.5} />}
       <MainControls />
       <MainLayout
         documentation={<div>Documentation</div>}

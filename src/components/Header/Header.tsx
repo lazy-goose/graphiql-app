@@ -94,7 +94,7 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
         <Box pl={1} flexGrow={1}>
           {leftSlot}
         </Box>
-        <Box>{rightSlot}</Box>
+        <Box flexShrink={0}>{rightSlot}</Box>
       </Toolbar>
     </AppBar>
   )

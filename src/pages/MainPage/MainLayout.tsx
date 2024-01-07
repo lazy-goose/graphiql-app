@@ -6,6 +6,7 @@ import {
   CircularProgress,
   Drawer,
   useMediaQuery,
+  useTheme,
 } from '@mui/material'
 import { Suspense, useLayoutEffect, useRef } from 'react'
 import {
@@ -202,7 +203,9 @@ const Fallback = () => {
 }
 
 export default function MainLayout(slots: MainLayoutSlots) {
-  const isMobile = useMediaQuery('(max-width: 600px)')
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'))
+
   const mainBoxRef = useRef<HTMLDivElement | null>(null)
 
   const suspendedSlots = Object.fromEntries(
@@ -223,7 +226,7 @@ export default function MainLayout(slots: MainLayoutSlots) {
       }))`
       mainBoxRef.current.style.setProperty('height', heightStr)
     }
-  }, [isMobile])
+  }, [mobile])
 
   return (
     <Box
@@ -242,7 +245,7 @@ export default function MainLayout(slots: MainLayoutSlots) {
         },
       })}
     >
-      {isMobile ? (
+      {mobile ? (
         <MainMobileLayout {...suspendedSlots} />
       ) : (
         <MainDesktopLayout {...suspendedSlots} />
