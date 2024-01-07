@@ -1,7 +1,10 @@
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header'
+import { RouterPath } from '@/constants'
+import { useBoundStore } from '@/store'
 import { Stack, useMediaQuery, useTheme } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MainControls from './MainControls'
 import MainLayout from './MainLayout'
 import SchemaControls from './SchemaControls'
@@ -25,6 +28,18 @@ const Documentation = React.lazy(() => {
 export default function MainPage() {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const user = useBoundStore((state) => state.user)
+
+  const navigate = useNavigate()
+
+  const handleRedirect = (): void => {
+    if (!user) {
+      navigate(RouterPath.Welcome)
+    }
+  }
+
+  useEffect(handleRedirect)
+
   return (
     <Stack>
       <Header leftSlot={!mobile && <SchemaControls />} />
