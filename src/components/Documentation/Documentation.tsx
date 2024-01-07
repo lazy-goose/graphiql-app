@@ -8,9 +8,10 @@ export default function Documentation() {
   const [documentation, setDocumentation] = useState('')
 
   useEffect(() => {
-    getApiIntrospectionSchema(baseUrl).then((result) => {
-      setDocumentation(result)
-    })
+    getApiIntrospectionSchema(baseUrl).then(
+      (result) => setDocumentation(result),
+      (error: Error) => console.error(error),
+    )
   }, [baseUrl])
   return (
     <Stack direction="row">
