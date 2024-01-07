@@ -1,0 +1,268 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Correct useBaseTheme return 1`] = `
+[
+  FacetProvider {
+    "dependencies": [],
+    "facet": Facet {
+      "combine": [Function],
+      "compare": [Function],
+      "compareInput": [Function],
+      "default": "",
+      "extensions": undefined,
+      "id": 25,
+      "isStatic": false,
+    },
+    "id": 130,
+    "type": 0,
+    "value": "ͼ1t",
+  },
+  FacetProvider {
+    "dependencies": [],
+    "facet": Facet {
+      "combine": [Function],
+      "compare": [Function],
+      "compareInput": [Function],
+      "default": [],
+      "extensions": undefined,
+      "id": 24,
+      "isStatic": false,
+    },
+    "id": 131,
+    "type": 0,
+    "value": StyleModule {
+      "rules": [
+        ".ͼ1t {height: 100%; color: #232327; font-size: 1rem; font-family: Source Code Pro, sans-serif;}",
+        ".ͼ1t.cm-focused {outline-color: transparent !important;}",
+        ".ͼ1t .cm-selectionBackground {background: #2196f322 !important;}",
+        ".ͼ1t .cm-gutters {color: #a0a0a0; border: none; background: #ffffff;}",
+        ".ͼ1t .cm-line {padding-left: 15px;}",
+        ".ͼ1t .cm-foldPlaceholder {color: #0286fe; border: none; background: none;}",
+        ".ͼ1t .cm-lint-marker {width: 0.8em; height: 0.8em; margin: 0.1em;}",
+      ],
+    },
+  },
+]
+`;
+
+exports[`Correct useGraphQlStyle return 1`] = `
+[
+  PrecExtension {
+    "inner": ViewPlugin {
+      "create": [Function],
+      "domEventHandlers": undefined,
+      "extension": [
+        FacetProvider {
+          "dependencies": [],
+          "facet": Facet {
+            "combine": [Function],
+            "compare": [Function],
+            "compareInput": [Function],
+            "default": [],
+            "extensions": undefined,
+            "id": 18,
+            "isStatic": false,
+          },
+          "id": 71,
+          "type": 0,
+          "value": [Circular],
+        },
+        FacetProvider {
+          "dependencies": [],
+          "facet": Facet {
+            "combine": [Function],
+            "compare": [Function],
+            "compareInput": [Function],
+            "default": [],
+            "extensions": undefined,
+            "id": 21,
+            "isStatic": false,
+          },
+          "id": 72,
+          "type": 0,
+          "value": [Function],
+        },
+      ],
+      "id": 9,
+    },
+    "prec": 1,
+  },
+  FacetProvider {
+    "dependencies": [],
+    "facet": Facet {
+      "combine": [Function],
+      "compare": [Function],
+      "compareInput": [Function],
+      "default": [],
+      "extensions": undefined,
+      "id": 24,
+      "isStatic": false,
+    },
+    "id": 77,
+    "type": 0,
+    "value": StyleModule {
+      "rules": [
+        ".ͼ1u {color: #13c913;}",
+        ".ͼ1v {color: #13c913;}",
+        ".ͼ1w {color: #ff32c6;}",
+        ".ͼ1x {color: #13c913;}",
+        ".ͼ1y {color: #13c913;}",
+        ".ͼ1z {color: #919193;}",
+        ".ͼ20 {color: #ff005c;}",
+        ".ͼ21 {color: #0286fe;}",
+        ".ͼ22 {color: #0286fe;}",
+        ".ͼ23 {color: #ff32c6;}",
+        ".ͼ24 {color: #232327;}",
+        ".ͼ25 {color: #232327;}",
+        ".ͼ26 {color: #232327;}",
+        ".ͼ27 {color: #232327;}",
+        ".ͼ28 {color: #232327;}",
+        ".ͼ29 {color: #232327;}",
+        ".ͼ2a {color: #232327;}",
+      ],
+    },
+  },
+  FacetProvider {
+    "dependencies": [],
+    "facet": Facet {
+      "combine": [Function],
+      "compare": [Function],
+      "compareInput": [Function],
+      "default": [],
+      "extensions": undefined,
+      "id": 69,
+      "isStatic": false,
+    },
+    "id": 78,
+    "type": 0,
+    "value": HighlightStyle {
+      "module": StyleModule {
+        "rules": [
+          ".ͼ1u {color: #13c913;}",
+          ".ͼ1v {color: #13c913;}",
+          ".ͼ1w {color: #ff32c6;}",
+          ".ͼ1x {color: #13c913;}",
+          ".ͼ1y {color: #13c913;}",
+          ".ͼ1z {color: #919193;}",
+          ".ͼ20 {color: #ff005c;}",
+          ".ͼ21 {color: #0286fe;}",
+          ".ͼ22 {color: #0286fe;}",
+          ".ͼ23 {color: #ff32c6;}",
+          ".ͼ24 {color: #232327;}",
+          ".ͼ25 {color: #232327;}",
+          ".ͼ26 {color: #232327;}",
+          ".ͼ27 {color: #232327;}",
+          ".ͼ28 {color: #232327;}",
+          ".ͼ29 {color: #232327;}",
+          ".ͼ2a {color: #232327;}",
+        ],
+      },
+      "scope": undefined,
+      "style": [Function],
+      "themeType": undefined,
+    },
+  },
+]
+`;
+
+exports[`Correct useJsonStyle return 1`] = `
+[
+  PrecExtension {
+    "inner": ViewPlugin {
+      "create": [Function],
+      "domEventHandlers": undefined,
+      "extension": [
+        FacetProvider {
+          "dependencies": [],
+          "facet": Facet {
+            "combine": [Function],
+            "compare": [Function],
+            "compareInput": [Function],
+            "default": [],
+            "extensions": undefined,
+            "id": 18,
+            "isStatic": false,
+          },
+          "id": 71,
+          "type": 0,
+          "value": [Circular],
+        },
+        FacetProvider {
+          "dependencies": [],
+          "facet": Facet {
+            "combine": [Function],
+            "compare": [Function],
+            "compareInput": [Function],
+            "default": [],
+            "extensions": undefined,
+            "id": 21,
+            "isStatic": false,
+          },
+          "id": 72,
+          "type": 0,
+          "value": [Function],
+        },
+      ],
+      "id": 9,
+    },
+    "prec": 1,
+  },
+  FacetProvider {
+    "dependencies": [],
+    "facet": Facet {
+      "combine": [Function],
+      "compare": [Function],
+      "compareInput": [Function],
+      "default": [],
+      "extensions": undefined,
+      "id": 24,
+      "isStatic": false,
+    },
+    "id": 79,
+    "type": 0,
+    "value": StyleModule {
+      "rules": [
+        ".ͼ2b {color: #ff32c6;}",
+        ".ͼ2c {color: #13c913;}",
+        ".ͼ2d {color: #13c913;}",
+        ".ͼ2e {color: #0286fe;}",
+        ".ͼ2f {color: #919193;}",
+        ".ͼ2g {color: #232327;}",
+        ".ͼ2h {color: #232327;}",
+        ".ͼ2i {color: #232327;}",
+      ],
+    },
+  },
+  FacetProvider {
+    "dependencies": [],
+    "facet": Facet {
+      "combine": [Function],
+      "compare": [Function],
+      "compareInput": [Function],
+      "default": [],
+      "extensions": undefined,
+      "id": 69,
+      "isStatic": false,
+    },
+    "id": 80,
+    "type": 0,
+    "value": HighlightStyle {
+      "module": StyleModule {
+        "rules": [
+          ".ͼ2b {color: #ff32c6;}",
+          ".ͼ2c {color: #13c913;}",
+          ".ͼ2d {color: #13c913;}",
+          ".ͼ2e {color: #0286fe;}",
+          ".ͼ2f {color: #919193;}",
+          ".ͼ2g {color: #232327;}",
+          ".ͼ2h {color: #232327;}",
+          ".ͼ2i {color: #232327;}",
+        ],
+      },
+      "scope": undefined,
+      "style": [Function],
+      "themeType": undefined,
+    },
+  },
+]
+`;

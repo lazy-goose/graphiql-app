@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Correctly prettify initial 1`] = `
+"query countries($filter: CountryFilterInput) {
+  countries(filter: $filter) {
+    __typename
+    code
+    name
+    phone
+  }
+}"
+`;

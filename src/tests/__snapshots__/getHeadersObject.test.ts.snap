@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getHeadersObject filters data 1`] = `
+{
+  "Content-type": "application/json",
+  "key1": "val1",
+  "key2": "val2",
+  "key3": "val3",
+  "key4": "val4",
+}
+`;

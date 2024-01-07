@@ -1,0 +1,827 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Correct WelcomePage snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiStack-root css-1xw2o4u-MuiStack-root"
+    >
+      <header
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionSticky css-1k8pp9v-MuiPaper-root-MuiAppBar-root"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
+        >
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+            href="/welcome"
+          >
+            <div
+              class="MuiBox-root css-151exlr"
+            >
+              <svg
+                fill="none"
+                height="90%"
+                viewBox="0 0 38 43"
+                width="90%"
+              >
+                <path
+                  d="m1.873 31.326 1.552.896 17.29-29.946-1.552-.896-17.29 29.946Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M36.098 28.933H1.518v1.793h34.58v-1.793Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M2.202 29.94 19.5 39.927l.896-1.552-17.297-9.987-.896 1.552ZM17.228 3.913 34.524 13.9l.896-1.552L18.124 2.36l-.896 1.552Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="m2.207 12.34.896 1.553L20.4 3.906l-.897-1.552-17.296 9.987Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="m16.915 2.276 17.29 29.946 1.552-.896L18.467 1.38l-1.552.896ZM4.681 11.152H2.89v19.973h1.792V11.152Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M34.737 11.152h-1.792v19.973h1.792V11.152Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="m18.41 37.813.784 1.355 15.043-8.685-.783-1.356-15.043 8.686Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M37.113 31.708a3.774 3.774 0 0 1-5.15 1.382 3.774 3.774 0 0 1-1.382-5.15 3.774 3.774 0 0 1 5.15-1.382 3.757 3.757 0 0 1 1.382 5.15ZM7.035 14.337a3.774 3.774 0 0 1-5.15 1.382 3.774 3.774 0 0 1-1.382-5.15 3.774 3.774 0 0 1 5.15-1.382 3.776 3.776 0 0 1 1.382 5.15ZM.514 31.708a3.776 3.776 0 0 1 1.382-5.15 3.776 3.776 0 0 1 5.15 1.382 3.776 3.776 0 0 1-1.382 5.15 3.771 3.771 0 0 1-5.15-1.382ZM30.592 14.337a3.776 3.776 0 0 1 1.382-5.15 3.776 3.776 0 0 1 5.15 1.382 3.776 3.776 0 0 1-1.382 5.15 3.774 3.774 0 0 1-5.15-1.382ZM18.813 42.278a3.764 3.764 0 0 1-3.768-3.768 3.764 3.764 0 0 1 3.768-3.768 3.764 3.764 0 0 1 3.768 3.768 3.771 3.771 0 0 1-3.768 3.768ZM18.813 7.536a3.764 3.764 0 0 1-3.768-3.768A3.764 3.764 0 0 1 18.813 0a3.764 3.764 0 0 1 3.768 3.768 3.764 3.764 0 0 1-3.768 3.768Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </a>
+          <div
+            class="MuiBox-root css-k62dlm"
+          />
+          <div
+            class="MuiBox-root css-6su6fj"
+          >
+            <div
+              class="MuiStack-root css-niqf4j-MuiStack-root"
+            >
+              <div
+                class="MuiBox-root css-79elbk"
+              >
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-1kuq5xv-MuiButtonBase-root-MuiIconButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="LanguageIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+              <a
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+                href="/sign-in"
+                tabindex="0"
+              >
+                sign in
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+              <a
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+                href="/sign-up"
+                tabindex="0"
+              >
+                sign up
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main
+        class="MuiContainer-root css-397np8-MuiContainer-root"
+      >
+        <div
+          class="MuiStack-root css-1j5got7-MuiStack-root"
+        >
+          <section
+            class="MuiStack-root css-un8oxi-MuiStack-root"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-body1 css-q0iycj-MuiTypography-root"
+            >
+              Fully functional
+              <span
+                class="MuiTypography-root MuiTypography-body1 css-f7ax7-MuiTypography-root"
+              >
+                GraphQL explorer
+              </span>
+            </h2>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-q9jphg-MuiTypography-root"
+            >
+              GraphiQL is an in-browser tool for writing, validating, and testing GraphQL queries.
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1igsyjf-MuiTypography-root"
+            >
+              Type queries into left side of the screen, and you will see intelligent typeaheads aware of the current GraphQL type schema and live syntax and validation errors highlighted within the text
+            </p>
+          </section>
+          <section
+            class="MuiStack-root css-88h04g-MuiStack-root"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-body1 css-1t8uy1z-MuiTypography-root"
+            >
+              Our team
+            </h2>
+            <div
+              class="MuiStack-root css-geyjn5-MuiStack-root"
+            >
+              <div
+                class="MuiBox-root css-12j23xu"
+              >
+                <div
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardContent-root css-2qo04z-MuiCardContent-root"
+                  >
+                    <div
+                      class="MuiAvatar-root MuiAvatar-square css-d7t9i6-MuiAvatar-root"
+                    >
+                      <img
+                        alt="Alyona's avatar"
+                        class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                        src="https://avatars.githubusercontent.com/u/79936182?v=4"
+                      />
+                    </div>
+                    <a
+                      class="MuiTypography-root MuiTypography-h5 MuiLink-root MuiLink-underlineAlways css-1qknii2-MuiTypography-root-MuiLink-root"
+                      href="https://app.rs.school/cv/a6289dfe-179a-4fd6-8b9b-0fc5dc8f42cb"
+                    >
+                      Alena Shupianiova
+                    </a>
+                    <ul
+                      class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+                    >
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-ykqd4v-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-nx5xxp-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-a86kit-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                        >
+                          <span
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                          >
+                            Authentication
+                          </span>
+                        </div>
+                      </li>
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-ykqd4v-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-nx5xxp-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-a86kit-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                        >
+                          <span
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                          >
+                            Welcome page
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="MuiCardActions-root MuiCardActions-spacing css-1dzk3iw-MuiCardActions-root"
+                  >
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-hz29hw-MuiTypography-root-MuiLink-root"
+                      href="https://t.me/besssta"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="26"
+                        width="25"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          clip-path="url(#a)"
+                        >
+                          <path
+                            d="M23.875 13c0 6.282-5.093 11.375-11.375 11.375S1.125 19.282 1.125 13 6.218 1.625 12.5 1.625 23.875 6.718 23.875 13Z"
+                            fill="#fff"
+                            stroke="currentColor"
+                            stroke-width="2.25"
+                          />
+                          <path
+                            d="m8.488 14.06-3.05-.994s-.365-.148-.248-.483c.024-.07.073-.128.219-.23.676-.47 12.511-4.724 12.511-4.724s.334-.113.531-.038a.288.288 0 0 1 .197.214c.021.088.03.179.026.27 0 .078-.01.15-.017.264-.073 1.163-2.23 9.843-2.23 9.843s-.129.508-.591.526a.847.847 0 0 1-.617-.24c-.908-.78-4.044-2.887-4.737-3.35a.134.134 0 0 1-.057-.095c-.01-.048.044-.11.044-.11s5.46-4.853 5.606-5.363c.011-.04-.031-.059-.088-.041-.363.133-6.65 4.104-7.345 4.542a.335.335 0 0 1-.154.01Z"
+                            fill="currentColor"
+                          />
+                        </g>
+                        <defs>
+                          <clippath
+                            id="a"
+                          >
+                            <path
+                              d="M0 .5h25v25H0z"
+                              fill="currentColor"
+                            />
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </a>
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-hz29hw-MuiTypography-root-MuiLink-root"
+                      href="https://github.com/Alyona8891"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="24"
+                        width="25"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          clip-path="url(#a)"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M12.463 0C5.57 0 0 5.5 0 12.304c0 5.44 3.57 10.043 8.522 11.673.619.122.846-.265.846-.59 0-.286-.02-1.264-.02-2.282-3.468.733-4.19-1.467-4.19-1.467-.557-1.426-1.382-1.793-1.382-1.793-1.135-.753.082-.753.082-.753 1.26.081 1.92 1.263 1.92 1.263 1.114 1.873 2.909 1.344 3.63 1.018.104-.795.434-1.345.785-1.65-2.765-.285-5.674-1.345-5.674-6.07 0-1.345.495-2.445 1.279-3.3-.124-.306-.557-1.57.124-3.26 0 0 1.052-.326 3.425 1.263a12.212 12.212 0 0 1 3.116-.408c1.052 0 2.125.143 3.115.408 2.373-1.59 3.426-1.263 3.426-1.263.68 1.69.247 2.954.123 3.26.805.855 1.28 1.955 1.28 3.3 0 4.725-2.91 5.764-5.695 6.07.454.387.846 1.12.846 2.282 0 1.65-.02 2.974-.02 3.381 0 .326.226.713.845.591 4.952-1.63 8.522-6.234 8.522-11.673C24.925 5.5 19.334 0 12.463 0Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </g>
+                        <defs>
+                          <clippath
+                            id="a"
+                          >
+                            <path
+                              d="M0 0h25v24H0z"
+                              fill="currentColor"
+                            />
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root css-12j23xu"
+              >
+                <div
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardContent-root css-2qo04z-MuiCardContent-root"
+                  >
+                    <div
+                      class="MuiAvatar-root MuiAvatar-square css-d7t9i6-MuiAvatar-root"
+                    >
+                      <img
+                        alt="Alexandr's avatar"
+                        class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                        src="https://avatars.githubusercontent.com/u/104268412?v=4"
+                      />
+                    </div>
+                    <a
+                      class="MuiTypography-root MuiTypography-h5 MuiLink-root MuiLink-underlineAlways css-1qknii2-MuiTypography-root-MuiLink-root"
+                      href="https://app.rs.school/cv/c0d9798d-4db0-44d8-9af3-3087d6e25313"
+                    >
+                      Aleksandr Korobeinikov
+                    </a>
+                    <ul
+                      class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+                    >
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-ykqd4v-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-nx5xxp-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-a86kit-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                        >
+                          <span
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                          >
+                            Organizational matters
+                          </span>
+                        </div>
+                      </li>
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-ykqd4v-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-nx5xxp-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-a86kit-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                        >
+                          <span
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                          >
+                            API calls
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="MuiCardActions-root MuiCardActions-spacing css-1dzk3iw-MuiCardActions-root"
+                  >
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-hz29hw-MuiTypography-root-MuiLink-root"
+                      href="https://t.me/Lev1ossa"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="26"
+                        width="25"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          clip-path="url(#a)"
+                        >
+                          <path
+                            d="M23.875 13c0 6.282-5.093 11.375-11.375 11.375S1.125 19.282 1.125 13 6.218 1.625 12.5 1.625 23.875 6.718 23.875 13Z"
+                            fill="#fff"
+                            stroke="currentColor"
+                            stroke-width="2.25"
+                          />
+                          <path
+                            d="m8.488 14.06-3.05-.994s-.365-.148-.248-.483c.024-.07.073-.128.219-.23.676-.47 12.511-4.724 12.511-4.724s.334-.113.531-.038a.288.288 0 0 1 .197.214c.021.088.03.179.026.27 0 .078-.01.15-.017.264-.073 1.163-2.23 9.843-2.23 9.843s-.129.508-.591.526a.847.847 0 0 1-.617-.24c-.908-.78-4.044-2.887-4.737-3.35a.134.134 0 0 1-.057-.095c-.01-.048.044-.11.044-.11s5.46-4.853 5.606-5.363c.011-.04-.031-.059-.088-.041-.363.133-6.65 4.104-7.345 4.542a.335.335 0 0 1-.154.01Z"
+                            fill="currentColor"
+                          />
+                        </g>
+                        <defs>
+                          <clippath
+                            id="a"
+                          >
+                            <path
+                              d="M0 .5h25v25H0z"
+                              fill="currentColor"
+                            />
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </a>
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-hz29hw-MuiTypography-root-MuiLink-root"
+                      href="https://github.com/Lev1ossa"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="24"
+                        width="25"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          clip-path="url(#a)"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M12.463 0C5.57 0 0 5.5 0 12.304c0 5.44 3.57 10.043 8.522 11.673.619.122.846-.265.846-.59 0-.286-.02-1.264-.02-2.282-3.468.733-4.19-1.467-4.19-1.467-.557-1.426-1.382-1.793-1.382-1.793-1.135-.753.082-.753.082-.753 1.26.081 1.92 1.263 1.92 1.263 1.114 1.873 2.909 1.344 3.63 1.018.104-.795.434-1.345.785-1.65-2.765-.285-5.674-1.345-5.674-6.07 0-1.345.495-2.445 1.279-3.3-.124-.306-.557-1.57.124-3.26 0 0 1.052-.326 3.425 1.263a12.212 12.212 0 0 1 3.116-.408c1.052 0 2.125.143 3.115.408 2.373-1.59 3.426-1.263 3.426-1.263.68 1.69.247 2.954.123 3.26.805.855 1.28 1.955 1.28 3.3 0 4.725-2.91 5.764-5.695 6.07.454.387.846 1.12.846 2.282 0 1.65-.02 2.974-.02 3.381 0 .326.226.713.845.591 4.952-1.63 8.522-6.234 8.522-11.673C24.925 5.5 19.334 0 12.463 0Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </g>
+                        <defs>
+                          <clippath
+                            id="a"
+                          >
+                            <path
+                              d="M0 0h25v24H0z"
+                              fill="currentColor"
+                            />
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root css-12j23xu"
+              >
+                <div
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardContent-root css-2qo04z-MuiCardContent-root"
+                  >
+                    <div
+                      class="MuiAvatar-root MuiAvatar-square css-d7t9i6-MuiAvatar-root"
+                    >
+                      <img
+                        alt="Maksim's avatar"
+                        class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                        src="https://avatars.githubusercontent.com/u/119844669?v=4"
+                      />
+                    </div>
+                    <a
+                      class="MuiTypography-root MuiTypography-h5 MuiLink-root MuiLink-underlineAlways css-1qknii2-MuiTypography-root-MuiLink-root"
+                      href="https://lazy-goose.github.io/rsschool-cv/"
+                    >
+                      Maksim Shamal
+                    </a>
+                    <ul
+                      class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+                    >
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-ykqd4v-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-nx5xxp-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-a86kit-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                        >
+                          <span
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                          >
+                            Project setup
+                          </span>
+                        </div>
+                      </li>
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-ykqd4v-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-nx5xxp-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-a86kit-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                        >
+                          <span
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                          >
+                            Design
+                          </span>
+                        </div>
+                      </li>
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-ykqd4v-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-nx5xxp-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-a86kit-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                        >
+                          <span
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                          >
+                            Main page
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="MuiCardActions-root MuiCardActions-spacing css-1dzk3iw-MuiCardActions-root"
+                  >
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-hz29hw-MuiTypography-root-MuiLink-root"
+                      href="https://t.me/lazy_goose"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="26"
+                        width="25"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          clip-path="url(#a)"
+                        >
+                          <path
+                            d="M23.875 13c0 6.282-5.093 11.375-11.375 11.375S1.125 19.282 1.125 13 6.218 1.625 12.5 1.625 23.875 6.718 23.875 13Z"
+                            fill="#fff"
+                            stroke="currentColor"
+                            stroke-width="2.25"
+                          />
+                          <path
+                            d="m8.488 14.06-3.05-.994s-.365-.148-.248-.483c.024-.07.073-.128.219-.23.676-.47 12.511-4.724 12.511-4.724s.334-.113.531-.038a.288.288 0 0 1 .197.214c.021.088.03.179.026.27 0 .078-.01.15-.017.264-.073 1.163-2.23 9.843-2.23 9.843s-.129.508-.591.526a.847.847 0 0 1-.617-.24c-.908-.78-4.044-2.887-4.737-3.35a.134.134 0 0 1-.057-.095c-.01-.048.044-.11.044-.11s5.46-4.853 5.606-5.363c.011-.04-.031-.059-.088-.041-.363.133-6.65 4.104-7.345 4.542a.335.335 0 0 1-.154.01Z"
+                            fill="currentColor"
+                          />
+                        </g>
+                        <defs>
+                          <clippath
+                            id="a"
+                          >
+                            <path
+                              d="M0 .5h25v25H0z"
+                              fill="currentColor"
+                            />
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </a>
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-hz29hw-MuiTypography-root-MuiLink-root"
+                      href="https://github.com/lazy-goose"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="24"
+                        width="25"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          clip-path="url(#a)"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M12.463 0C5.57 0 0 5.5 0 12.304c0 5.44 3.57 10.043 8.522 11.673.619.122.846-.265.846-.59 0-.286-.02-1.264-.02-2.282-3.468.733-4.19-1.467-4.19-1.467-.557-1.426-1.382-1.793-1.382-1.793-1.135-.753.082-.753.082-.753 1.26.081 1.92 1.263 1.92 1.263 1.114 1.873 2.909 1.344 3.63 1.018.104-.795.434-1.345.785-1.65-2.765-.285-5.674-1.345-5.674-6.07 0-1.345.495-2.445 1.279-3.3-.124-.306-.557-1.57.124-3.26 0 0 1.052-.326 3.425 1.263a12.212 12.212 0 0 1 3.116-.408c1.052 0 2.125.143 3.115.408 2.373-1.59 3.426-1.263 3.426-1.263.68 1.69.247 2.954.123 3.26.805.855 1.28 1.955 1.28 3.3 0 4.725-2.91 5.764-5.695 6.07.454.387.846 1.12.846 2.282 0 1.65-.02 2.974-.02 3.381 0 .326.226.713.845.591 4.952-1.63 8.522-6.234 8.522-11.673C24.925 5.5 19.334 0 12.463 0Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </g>
+                        <defs>
+                          <clippath
+                            id="a"
+                          >
+                            <path
+                              d="M0 0h25v24H0z"
+                              fill="currentColor"
+                            />
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            class="MuiStack-root css-un8oxi-MuiStack-root"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-body1 css-q0iycj-MuiTypography-root"
+            >
+              Sponsor
+            </h2>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-q9jphg-MuiTypography-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-inherit css-168ed4s-MuiTypography-root"
+              >
+                RS School
+              </span>
+              is free-of-charge and community-based education program conducted by
+              <a
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-m2ijl7-MuiTypography-root-MuiLink-root"
+                href="https://rs.school/react"
+              >
+                The Rolling Scopes
+              </a>
+              <span
+                class="MuiTypography-root MuiTypography-body1 css-y6xqlz-MuiTypography-root"
+              >
+                developer community since 2013.
+              </span>
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1igsyjf-MuiTypography-root"
+            >
+              Everyone can study at RS School, regardless of age, professional employment, or place of residence.
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1igsyjf-MuiTypography-root"
+            >
+              The mentors and trainers of our school are front-end and javascript developers from different companies and countries.
+            </p>
+          </section>
+          <section
+            class="MuiStack-root css-4m7jyk-MuiStack-root"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-body1 css-1t8uy1z-MuiTypography-root"
+            >
+              Wishes a Happy New Year!
+            </h2>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-y6xqlz-MuiTypography-root"
+            >
+              We sincerely congratulate you on the upcoming New Year.
+            </p>
+            <img
+              alt="New Year image"
+              class="MuiBox-root css-2dcj5t"
+              src="presents.png"
+            />
+          </section>
+        </div>
+      </main>
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1ps6pg7-MuiPaper-root"
+      >
+        <div
+          class="MuiStack-root css-1eoeowx-MuiStack-root"
+        >
+          <div
+            class="MuiStack-root css-kdc3n8-MuiStack-root"
+          >
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+              href="https://github.com/Alyona8891"
+            >
+              <span
+                class="MuiBadge-root css-1arcc7-MuiBadge-root"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-rounded css-12bapnq-MuiAvatar-root"
+                >
+                  <img
+                    alt="Alyona's avatar"
+                    class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                    src="https://avatars.githubusercontent.com/u/79936182?v=4"
+                  />
+                </div>
+                <span
+                  class="MuiBadge-badge MuiBadge-dot MuiBadge-anchorOriginBottomRight MuiBadge-anchorOriginBottomRightCircular MuiBadge-overlapCircular css-s1rlol-MuiBadge-badge"
+                />
+              </span>
+            </a>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+              href="https://github.com/Lev1ossa"
+            >
+              <span
+                class="MuiBadge-root css-1arcc7-MuiBadge-root"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-rounded css-12bapnq-MuiAvatar-root"
+                >
+                  <img
+                    alt="Alexandr's avatar"
+                    class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                    src="https://avatars.githubusercontent.com/u/104268412?v=4"
+                  />
+                </div>
+                <span
+                  class="MuiBadge-badge MuiBadge-dot MuiBadge-anchorOriginBottomRight MuiBadge-anchorOriginBottomRightCircular MuiBadge-overlapCircular css-s1rlol-MuiBadge-badge"
+                />
+              </span>
+            </a>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+              href="https://github.com/lazy-goose"
+            >
+              <span
+                class="MuiBadge-root css-3jxqn3-MuiBadge-root"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-rounded css-12bapnq-MuiAvatar-root"
+                >
+                  <img
+                    alt="Maksim's avatar"
+                    class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                    src="https://avatars.githubusercontent.com/u/119844669?v=4"
+                  />
+                </div>
+                <span
+                  class="MuiBadge-badge MuiBadge-dot MuiBadge-anchorOriginBottomRight MuiBadge-anchorOriginBottomRightCircular MuiBadge-overlapCircular css-s1rlol-MuiBadge-badge"
+                />
+              </span>
+            </a>
+          </div>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-uwx3rb-MuiTypography-root-MuiLink-root"
+            href="https://rs.school/react"
+          >
+            <time
+              class="MuiBox-root css-1h14jth"
+            >
+              2024
+            </time>
+            <div
+              class="MuiBox-root css-psrz38"
+            >
+              <span>
+                RS
+              </span>
+              <span>
+                SC HO OL
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

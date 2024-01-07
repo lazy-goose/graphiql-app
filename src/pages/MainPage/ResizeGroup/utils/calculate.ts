@@ -19,7 +19,7 @@ export function moveFlexSpace(params: {
 
   const sizeIndexes = fractions.map((_, i) => i)
   const pivot = sibling < 0 ? index : index + 1
-  const toStart = sizeIndexes.slice(0, pivot).toReversed()
+  const toStart = sizeIndexes.slice(0, pivot).reverse()
   const toEnd = sizeIndexes.slice(pivot)
 
   const sizes /* mut */ = [...fractions] as number[]

@@ -8,7 +8,7 @@ import { createResponseSlice } from './slices/responseSlice'
 import { createSchemaSlice } from './slices/schemaSlice'
 import { type Store } from './store.d'
 
-const isDevMode = import.meta.env.DEV
+const enableDevtools = import.meta.env.MODE !== 'test' && import.meta.env.DEV
 
 export const useBoundStore = create<Store>()(
   devtools(
@@ -19,6 +19,6 @@ export const useBoundStore = create<Store>()(
       ...createSchemaSlice(...args),
       ...createResponseSlice(...args),
     })),
-    { enabled: isDevMode },
+    { enabled: enableDevtools },
   ),
 )

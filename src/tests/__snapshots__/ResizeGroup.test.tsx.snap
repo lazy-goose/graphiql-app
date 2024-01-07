@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Correct ResizeGroup snapshot > Correct ResizeFragment snapshot 1`] = `
+<body>
+  <div />
+</body>
+`;
+
+exports[`Correct ResizeGroup snapshot > Correct ResizeGroup snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiStack-root css-88sa19-MuiStack-root"
+    >
+      <div
+        class="ResizeGroup-Fragment-WindowBox ResizeGroup-Fragment-WindowBox MuiBox-root css-9dofl3"
+      />
+      <div
+        class="ResizeGroup-Fragment-SmartResizer ResizeGroup-Fragment-SmartResizer MuiBox-root css-liov4t"
+      >
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical css-ldj3do-MuiDivider-root"
+        />
+      </div>
+      <div
+        class="ResizeGroup-Fragment-WindowBox ResizeGroup-Fragment-WindowBox-1 MuiBox-root css-9dofl3"
+      />
+    </div>
+  </div>
+</body>
+`;

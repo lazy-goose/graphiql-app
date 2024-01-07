@@ -1,0 +1,47 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Correct Documentation snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiStack-root css-m69qwo-MuiStack-root"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-136h9lv-MuiFormControl-root-MuiTextField-root"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <textarea
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r0:"
+            style="height: 0px; overflow: hidden;"
+          />
+          <textarea
+            aria-hidden="true"
+            class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
+            readonly=""
+            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding-top: 0px; padding-bottom: 0px; width: 100%;"
+            tabindex="-1"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-ihdtdm"
+            >
+              <span
+                class="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
