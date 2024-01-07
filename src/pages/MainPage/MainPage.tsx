@@ -5,6 +5,9 @@ import React from 'react'
 import MainControls from './MainControls'
 import MainLayout from './MainLayout'
 
+const QueryRequest = React.lazy(() => {
+  return import('@/components/QueryRequest/QueryRequest')
+})
 const QueryResponse = React.lazy(() => {
   return import('@/components/QueryResponse/QueryResponse')
 })
@@ -22,7 +25,7 @@ export default function MainPage() {
       <MainControls />
       <MainLayout
         documentation={<div>Documentation</div>}
-        request={<div>Request</div>}
+        request={<QueryRequest />}
         variables={<RequestVariables />}
         headers={<RequestHeaders />}
         response={<QueryResponse />}
