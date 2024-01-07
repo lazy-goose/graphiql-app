@@ -83,23 +83,24 @@ export type Locale = {
   welcomePage: {
     typography: {
       heading: {
-        functional: string
+        functional: { part1: string; part2: string }
         sponsor: string
         team: string
         wishes: string
       }
       text: {
+        functional: { part1: string; part2: string }
         sponsor: { part1: string; part2: string; part3: string; part4: string }
         team: {
-          alyona: {
+          teammate1: {
             name: string
             roleList: string[]
           }
-          alex: {
+          teammate2: {
             name: string
             roleList: string[]
           }
-          maxim: {
+          teammate3: {
             name: string
             roleList: string[]
           }

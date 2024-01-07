@@ -112,33 +112,39 @@ const locale = {
   welcomePage: {
     typography: {
       heading: {
-        functional: 'Fully functional GraphQL explorer',
+        functional: { part1: `Fully functional`, part2: 'GraphQL explorer' },
         sponsor: 'Sponsor',
         team: 'Our team',
         wishes: 'Wishes a Happy New Year!',
       },
       text: {
+        functional: {
+          part1:
+            'GraphiQL is an in-browser tool for writing, validating, and testing GraphQL queries.',
+          part2:
+            'Type queries into left side of the screen, and you will see intelligent typeaheads aware of the current GraphQL type schema and live syntax and validation errors highlighted within the text',
+        },
         sponsor: {
           part1:
-            'RS School is free-of-charge and community-based education program conducted by',
-          part2: 'developer communitysince 2013.',
+            'is free-of-charge and community-based education program conducted by',
+          part2: 'developer community since 2013.',
           part3:
             'Everyone can study at RS School, regardless of age, professional employment, or place of residence.',
           part4:
             'The mentors and trainers of our school are front-end and javascript developers from different companies and countries.',
         },
         team: {
-          alyona: {
+          teammate1: {
             name: 'Alena Shupianiova',
-            roleList: ['Authentication'],
+            roleList: ['Authentication', 'Welcome page'],
           },
-          alex: {
+          teammate2: {
             name: 'Aleksandr Korobeinikov',
-            roleList: ['Organizational matters'],
+            roleList: ['Organizational matters', 'API calls'],
           },
-          maxim: {
+          teammate3: {
             name: 'Maksim Shamal',
-            roleList: ['Project setup', 'Design'],
+            roleList: ['Project setup', 'Design', 'Main page'],
           },
         },
         wishes: 'We sincerely congratulate you on the upcoming New Year.',
