@@ -36,4 +36,26 @@ export const createRequestSettingsSlice: SliceCreator<RequestSettingsSlice> = (
     set((state) => {
       state.stringifiedVariables = stringifiedVariables
     }),
+  defaultUrl: 'https://countries.trevorblades.com/graphql',
+  baseUrl: 'https://countries.trevorblades.com/graphql',
+  setBaseUrl: (baseUrl) =>
+    set((state) => {
+      state.baseUrl = baseUrl
+    }),
+  stringifiedQuery: `query countries($filter: CountryFilterInput) {
+  countries(filter: $filter) {
+  __typename
+  code
+  name
+  native
+  phone
+  capital
+  currency
+  emoji
+  emojiU
+}`,
+  setStringifiedQuery: (query) =>
+    set((state) => {
+      state.stringifiedQuery = query
+    }),
 })
