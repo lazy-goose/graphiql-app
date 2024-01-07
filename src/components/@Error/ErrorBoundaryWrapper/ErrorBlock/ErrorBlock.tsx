@@ -10,7 +10,6 @@ export default function ErrorBlock() {
       component="main"
       maxWidth="md"
       sx={{
-        minHeight: 'inherit',
         marginBlock: 2,
         flex: 1,
         display: 'grid',

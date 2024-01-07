@@ -1,11 +1,11 @@
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
 import { Box, Container, Stack } from '@mui/material'
+import SignPagesHeader from './SignPagesHeader'
 
 export default function SignGroupLayout(props: React.PropsWithChildren) {
   return (
     <Stack height={1} minHeight="inherit">
-      <Header />
+      <SignPagesHeader />
       <Container
         component="main"
         maxWidth="sm"
