@@ -13,6 +13,10 @@ export type SchemaSlice = {
   schema: GraphQLSchema | null
   fetchSchema: (baseUrl?: string) => void
 }
+export type ResponseSlice = {
+  response: string
+  changeResponse: (newResponse: string) => void
+}
 export type RequestSettingsSlice = {
   headers: Header[]
   deleteHeader: (id: React.Key) => void
@@ -38,7 +42,8 @@ export type AuthSlice = {
 export type Store = AuthSlice &
   MainLayoutSlice &
   RequestSettingsSlice &
-  SchemaSlice
+  SchemaSlice &
+  ResponseSlice
 
 export type Mutators = [['zustand/devtools', never], ['zustand/immer', never]]
 export type SliceCreator<T, R = Store> = StateCreator<R, Mutators, [], T>

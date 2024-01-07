@@ -1,34 +1,14 @@
 import { useBaseTheme } from '@/hooks/@CodeMirror/useBaseTheme'
 import { useJsonStyle } from '@/hooks/@CodeMirror/useJsonStyle'
+import { useBoundStore } from '@/store'
 import { json } from '@codemirror/lang-json'
 import { Box } from '@mui/material'
 import CodeMirror from '@uiw/react-codemirror'
 
-const exampleData = JSON.stringify(
-  {
-    data: {
-      countries: [
-        {
-          id: 3,
-          name: 'Andorra',
-        },
-        {
-          name: 'United Arab Emirates',
-        },
-        // ...
-        {
-          name: 'Zimbabwe',
-        },
-      ],
-    },
-  },
-  null,
-  2,
-)
-
 export default function QueryResponse() {
   const baseTheme = useBaseTheme()
   const jsonStyleExtension = useJsonStyle()
+  const queryResponse = useBoundStore((state) => state.response)
 
   return (
     <Box
@@ -40,7 +20,7 @@ export default function QueryResponse() {
       }}
     >
       <CodeMirror
-        value={exampleData}
+        value={queryResponse}
         /* Fucking bug that causes Mozilla Firefox to crash.
          * Can't use editable={false}.
          */

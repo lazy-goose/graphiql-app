@@ -53,6 +53,7 @@ export const createRequestSettingsSlice: SliceCreator<RequestSettingsSlice> = (
   currency
   emoji
   emojiU
+}
 }`,
   setStringifiedQuery: (query) =>
     set((state) => {
