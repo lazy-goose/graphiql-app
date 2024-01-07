@@ -8,6 +8,7 @@ export default function Documentation() {
   const [documentation, setDocumentation] = useState('')
 
   useEffect(() => {
+    setDocumentation('')
     getApiIntrospectionSchema(baseUrl).then(
       (result) => setDocumentation(result),
       (error: Error) => console.error(error),
