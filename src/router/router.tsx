@@ -1,11 +1,13 @@
-import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { ErrorBoundaryWrapper } from '@/components/@Error/ErrorBoundaryWrapper'
+import { Header } from '@/components/Header'
 import { RouterPath } from '@/constants/constants'
 import { SignInPage } from '@/pages/@SignPages/SignInPage'
+import SignPagesHeader from '@/pages/@SignPages/SignPagesHeader'
 import { SignUpPage } from '@/pages/@SignPages/SignUpPage'
-import { ErrorPage } from '@/pages/ErrorPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { WelcomePage } from '@/pages/WelcomePage'
+import WelcomePageHeader from '@/pages/WelcomePage/WelcomePageHeader'
 import {
   Route,
   createBrowserRouter,
@@ -18,33 +20,33 @@ export const router = createBrowserRouter(
       <Route
         path={RouterPath.Main}
         element={
-          <ErrorBoundary fallback={<ErrorPage />}>
+          <ErrorBoundaryWrapper errorHeaderSlot={<Header />}>
             <MainPage />
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         }
       />
       <Route
         path={RouterPath.Welcome}
         element={
-          <ErrorBoundary fallback={<ErrorPage />}>
+          <ErrorBoundaryWrapper errorHeaderSlot={<WelcomePageHeader />}>
             <WelcomePage />
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         }
       />
       <Route
         path={RouterPath.SignIn}
         element={
-          <ErrorBoundary fallback={<ErrorPage />}>
+          <ErrorBoundaryWrapper errorHeaderSlot={<SignPagesHeader />}>
             <SignInPage />
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         }
       />
       <Route
         path={RouterPath.SignUp}
         element={
-          <ErrorBoundary fallback={<ErrorPage />}>
+          <ErrorBoundaryWrapper errorHeaderSlot={<SignPagesHeader />}>
             <SignUpPage />
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         }
       />
       <Route path="*" element={<NotFoundPage />} />

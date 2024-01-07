@@ -1,4 +1,4 @@
-import { Footer } from '@/components/Footer/Footer'
+import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { Stack, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'

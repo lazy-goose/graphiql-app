@@ -1,13 +1,17 @@
-import { Component, type ErrorInfo } from 'react'
-import {
-  type ErrorBoundaryProps,
-  type ErrorBoundaryState,
-} from './ErrorBoundary.types'
+import { Component } from 'react'
 
-export class ErrorBoundary extends Component<
+type ErrorBoundaryProps = {
+  children: React.ReactNode
+  fallback: React.ReactNode
+}
+
+type ErrorBoundaryState = {
+  hasError: boolean
+}
+
+export default class ErrorBoundary extends Component<
   ErrorBoundaryProps,
-  ErrorBoundaryState,
-  string
+  ErrorBoundaryState
 > {
   constructor(props: ErrorBoundaryProps) {
     super(props)
@@ -18,7 +22,7 @@ export class ErrorBoundary extends Component<
     return { hasError: true }
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo)
   }
 

@@ -15,7 +15,7 @@ const StyledBadge = styled(Badge, {
   }),
 }))
 
-export function Footer() {
+export default function Footer() {
   return (
     <Paper>
       <Stack

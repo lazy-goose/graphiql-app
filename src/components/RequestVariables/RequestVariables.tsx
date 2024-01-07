@@ -29,8 +29,11 @@ export default function RequestVariables() {
         position: 'relative',
         '.jsonLabel': {
           boxSizing: 'border-box',
-          padding: 0.5,
-          paddingTop: 3,
+          height: 'auto',
+          pt: '24px',
+          pb: 0.5,
+          pr: 2,
+          pl: 0.5,
           position: 'absolute',
           top: 0,
           right: 0,

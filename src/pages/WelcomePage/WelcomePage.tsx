@@ -1,4 +1,4 @@
-import { Footer } from '@/components/Footer/Footer'
+import { Footer } from '@/components/Footer'
 import { TeammateCard } from '@/components/TeammateCard'
 import { userAvatars } from '@/constants'
 import { useLocale } from '@/hooks/useLocale'
