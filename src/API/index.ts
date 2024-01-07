@@ -1,4 +1,4 @@
-import { buildClientSchema, getIntrospectionQuery } from 'graphql'
+import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql'
 
 export const getApiIntrospectionSchema = (baseUrl: string) => {
   return fetch(baseUrl, {
@@ -11,17 +11,18 @@ export const getApiIntrospectionSchema = (baseUrl: string) => {
     .then((res) => res.json())
     .then((result) => {
       const clientSchema = buildClientSchema(result.data)
-      return clientSchema
+      return printSchema(clientSchema)
     })
 }
 
 // TODO change api url from default to user input
 export const getApiResponse = (
+  baseUrl: string,
   schema: string,
   headers: Record<string, string>,
   variables?: Record<string, string>,
 ) => {
-  return fetch('https://countries.trevorblades.com/graphql', {
+  return fetch(baseUrl, {
     method: 'POST',
     headers,
     body: JSON.stringify({
