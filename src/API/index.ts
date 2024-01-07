@@ -1,7 +1,7 @@
-import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql'
+import { buildClientSchema, getIntrospectionQuery } from 'graphql'
 
-export const getApiIntrospectionSchema = () => {
-  return fetch('https://countries.trevorblades.com/graphql', {
+export const getApiIntrospectionSchema = (baseUrl: string) => {
+  return fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ export const getApiIntrospectionSchema = () => {
     .then((res) => res.json())
     .then((result) => {
       const clientSchema = buildClientSchema(result.data)
-      return printSchema(clientSchema)
+      return clientSchema
     })
 }
 

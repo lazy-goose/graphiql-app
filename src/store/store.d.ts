@@ -1,4 +1,5 @@
 import { type User } from 'firebase/auth'
+import { type GraphQLSchema } from 'graphql'
 import { type StateCreator } from 'zustand'
 
 type Header = {
@@ -8,6 +9,10 @@ type Header = {
   headerVal: string
 }
 
+export type SchemaSlice = {
+  schema: GraphQLSchema | null
+  fetchSchema: (baseUrl?: string) => void
+}
 export type RequestSettingsSlice = {
   headers: Header[]
   deleteHeader: (id: React.Key) => void
@@ -15,6 +20,11 @@ export type RequestSettingsSlice = {
   changeHeader: (id: React.Key, toChange: Optional<Omit<Header, 'id'>>) => void
   stringifiedVariables: string
   setStringifiedVariables: (stringifiedVariables) => void
+  defaultUrl: string
+  baseUrl: string
+  setBaseUrl: (baseUrl: string) => void
+  stringifiedQuery: string
+  setStringifiedQuery: (query: string) => void
 }
 export type MainLayoutSlice = {
   isAsideOpen: boolean
@@ -25,7 +35,10 @@ export type AuthSlice = {
   setUser: (user: User | null) => void
 }
 
-export type Store = AuthSlice & MainLayoutSlice & RequestSettingsSlice
+export type Store = AuthSlice &
+  MainLayoutSlice &
+  RequestSettingsSlice &
+  SchemaSlice
 
 export type Mutators = [['zustand/devtools', never], ['zustand/immer', never]]
 export type SliceCreator<T, R = Store> = StateCreator<R, Mutators, [], T>
