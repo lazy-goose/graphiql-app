@@ -4,6 +4,7 @@ import { immer } from 'zustand/middleware/immer'
 import { createAuthSlice } from './slices/authSlice'
 import { createMainLayoutSlice } from './slices/mainLayoutSlice'
 import { createRequestSettingsSlice } from './slices/requestSettings'
+import { createResponseSlice } from './slices/responseSlice'
 import { createSchemaSlice } from './slices/schemaSlice'
 import { type Store } from './store.d'
 
@@ -16,6 +17,7 @@ export const useBoundStore = create<Store>()(
       ...createMainLayoutSlice(...args),
       ...createRequestSettingsSlice(...args),
       ...createSchemaSlice(...args),
+      ...createResponseSlice(...args),
     })),
     { enabled: isDevMode },
   ),

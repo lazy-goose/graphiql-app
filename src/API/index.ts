@@ -15,12 +15,11 @@ export const getApiIntrospectionSchema = (baseUrl: string) => {
     })
 }
 
-// TODO change api url from default to user input
 export const getApiResponse = (
   baseUrl: string,
   schema: string,
   headers: Record<string, string>,
-  variables?: Record<string, string>,
+  variables: string,
 ) => {
   return fetch(baseUrl, {
     method: 'POST',
@@ -32,27 +31,6 @@ export const getApiResponse = (
   })
     .then((res) => res.json())
     .then((result) => {
-      return result.data
+      return JSON.stringify(result.data, null, 2)
     })
 }
-
-// TODO remove all examples
-// const ExampleSchema = `
-//   query countries($filter: CountryFilterInput) {
-//     countries(filter: $filter) {
-//       __typename
-//       code
-//       name
-//       native
-//       phone
-//       capital
-//       currency
-//       emoji
-//       emojiU
-//     }
-//   }
-// `;
-
-// const exampleHeaders =  {
-//   'Content-Type': 'application/json',
-// };
