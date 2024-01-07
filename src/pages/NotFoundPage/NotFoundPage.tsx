@@ -1,4 +1,4 @@
-import { Footer } from '@/components/Footer/Footer'
+import { Footer } from '@/components/Footer'
 import { RouterPath } from '@/constants'
 import WelcomePageHeader from '@/pages/WelcomePage/WelcomePageHeader'
 import { Box, Button, Container, Stack, Typography } from '@mui/material'
