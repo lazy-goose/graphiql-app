@@ -9,7 +9,7 @@ export default function MainControls() {
   return (
     <Stack
       component="nav"
-      py={1}
+      py={1.5}
       spacing={1}
       direction="row"
       justifyContent="start"
