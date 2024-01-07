@@ -15,8 +15,8 @@ import { Link, useLocation } from 'react-router-dom'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
-export function Header(props: { leftSlot?: React.ReactNode }) {
-  const { leftSlot } = props
+export function Header(props: { leftSlot?: React.ReactNode; page?: string }) {
+  const { leftSlot, page } = props
   const location = useLocation()
   const { locale } = useLocale()
 
@@ -35,9 +35,20 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
     <Stack direction="row" spacing={1}>
       <LanguageMenu />
       {user ? (
-        <Button variant="contained" onClick={handleSignOutButton}>
-          {locale.header.button.signOut}
-        </Button>
+        !!page && page === 'welcome' ? (
+          <Button
+            variant="outlined"
+            component={Link}
+            to={RouterPath.Main}
+            color="secondary"
+          >
+            {locale.header.button.explorer}
+          </Button>
+        ) : (
+          <Button variant="outlined" onClick={handleSignOutButton}>
+            {locale.header.button.signOut}
+          </Button>
+        )
       ) : (
         <>
           <Button
