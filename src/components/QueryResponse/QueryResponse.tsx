@@ -40,8 +40,13 @@ export default function QueryResponse() {
       }}
     >
       <CodeMirror
-        editable={false}
         value={exampleData}
+        /* Fucking bug that causes Mozilla Firefox to crash.
+         * Can't use editable={false}.
+         */
+        onBeforeInput={(e) => {
+          e.preventDefault()
+        }}
         extensions={[json(), baseTheme, jsonStyleExtension]}
         basicSetup={{
           highlightActiveLine: false,
