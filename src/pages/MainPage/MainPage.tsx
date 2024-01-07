@@ -18,6 +18,9 @@ const RequestHeaders = React.lazy(() => {
 const RequestVariables = React.lazy(() => {
   return import('@/components/RequestVariables/RequestVariables')
 })
+const Documentation = React.lazy(() => {
+  return import('@/components/Documentation/Documentation')
+})
 
 export default function MainPage() {
   const theme = useTheme()
@@ -28,7 +31,7 @@ export default function MainPage() {
       {mobile && <SchemaControls variant="mobile" mt={1.5} mb={0.5} />}
       <MainControls />
       <MainLayout
-        documentation={<div>Documentation</div>}
+        documentation={<Documentation />}
         request={<QueryRequest />}
         variables={<RequestVariables />}
         headers={<RequestHeaders />}

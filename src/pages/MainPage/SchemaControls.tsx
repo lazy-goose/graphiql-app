@@ -1,6 +1,7 @@
 import { useBoundStore } from '@/store'
 import { Refresh } from '@mui/icons-material'
 import { Button, Stack, TextField, type StackProps } from '@mui/material'
+import { useState } from 'react'
 
 export default function SchemaControls(
   props: StackProps & {
@@ -10,8 +11,11 @@ export default function SchemaControls(
   const { variant = 'desktop', ...passStackProps } = props
   const baseUrl = useBoundStore((state) => state.baseUrl)
   const setBaseUrl = useBoundStore((state) => state.setBaseUrl)
+  const [urlInput, setUrlInput] = useState(baseUrl)
 
-  const handleRefetchButtonClick = () => {}
+  const handleRefetchButtonClick = () => {
+    setBaseUrl(urlInput)
+  }
 
   return (
     <Stack
@@ -26,8 +30,8 @@ export default function SchemaControls(
         label="Endpoint"
         variant="standard"
         size="small"
-        value={baseUrl}
-        onChange={(e) => setBaseUrl(e.currentTarget.value)}
+        value={urlInput}
+        onChange={(e) => setUrlInput(e.currentTarget.value)}
         sx={{
           ...(variant === 'desktop' && {
             maxWidth: 'min(36ch, 100%)',
