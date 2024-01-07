@@ -1,9 +1,8 @@
-import { useCodeMirrorJsonStyles } from '@/hooks/useCodeMirrorJsonStyles'
+import { useBaseTheme } from '@/hooks/@CodeMirror/useBaseTheme'
+import { useJsonStyle } from '@/hooks/@CodeMirror/useJsonStyle'
 import { json } from '@codemirror/lang-json'
 import { Box } from '@mui/material'
 import CodeMirror from '@uiw/react-codemirror'
-
-import '@fontsource/source-code-pro'
 
 const exampleData = JSON.stringify(
   {
@@ -28,29 +27,22 @@ const exampleData = JSON.stringify(
 )
 
 export default function QueryResponse() {
-  const jsonHighlightExtensions = useCodeMirrorJsonStyles()
+  const baseTheme = useBaseTheme()
+  const jsonStyleExtension = useJsonStyle()
 
   return (
     <Box
       height={1}
+      padding={2}
+      boxSizing="border-box"
       sx={{
-        boxSizing: 'border-box',
-        padding: 2,
-        '& > *:first-of-type': {
-          height: 1,
-        },
-        '.cm-editor': {
-          height: 1,
-        },
-        '.cm-line': {
-          paddingLeft: 1,
-        },
+        '> *': { height: 1 },
       }}
     >
       <CodeMirror
         editable={false}
         value={exampleData}
-        extensions={[json(), ...jsonHighlightExtensions]}
+        extensions={[json(), baseTheme, jsonStyleExtension]}
         basicSetup={{
           highlightActiveLine: false,
           highlightActiveLineGutter: false,

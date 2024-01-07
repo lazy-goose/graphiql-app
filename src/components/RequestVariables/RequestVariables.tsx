@@ -1,42 +1,32 @@
-import { useCodeMirrorJsonStyles } from '@/hooks/useCodeMirrorJsonStyles'
+import { useBaseTheme } from '@/hooks/@CodeMirror/useBaseTheme'
+import { useJsonStyle } from '@/hooks/@CodeMirror/useJsonStyle'
 import { useBoundStore } from '@/store'
 import { json, jsonParseLinter } from '@codemirror/lang-json'
 import { lintGutter, linter } from '@codemirror/lint'
 import { Box } from '@mui/material'
-import CodeMirror, { type Extension } from '@uiw/react-codemirror'
-
-const baseJsonExtensions = [
-  json(),
-  linter(jsonParseLinter()),
-  lintGutter(),
-] satisfies Extension[]
+import CodeMirror from '@uiw/react-codemirror'
 
 export default function RequestVariables() {
-  const jsonHighlightExtensions = useCodeMirrorJsonStyles()
+  const baseTheme = useBaseTheme()
+  const jsonStyleExtension = useJsonStyle()
+
   const stringifiedVariables = useBoundStore(
     (state) => state.stringifiedVariables,
   )
   const setStringifiedVariables = useBoundStore(
     (state) => state.setStringifiedVariables,
   )
+
   return (
     <Box
       height={1}
       sx={(theme) => ({
-        position: 'relative',
-        boxSizing: 'border-box',
-        padding: 2,
-        '& > *:first-of-type': {
+        '> *': {
           height: 1,
         },
-        '.cm-editor.cm-focused': {
-          outlineColor: 'transparent',
-        },
-        '.cm-lint-marker': {
-          width: '0.8em',
-          height: '0.8em',
-          margin: '0.1em',
-        },
+        boxSizing: 'border-box',
+        padding: 2,
+        position: 'relative',
         '.jsonLabel': {
           boxSizing: 'border-box',
           padding: 0.5,
@@ -54,7 +44,13 @@ export default function RequestVariables() {
       <CodeMirror
         height="100%"
         value={stringifiedVariables}
-        extensions={[...baseJsonExtensions, ...jsonHighlightExtensions]}
+        extensions={[
+          json(),
+          linter(jsonParseLinter()),
+          lintGutter(),
+          baseTheme,
+          jsonStyleExtension,
+        ]}
         basicSetup={{
           highlightActiveLine: false,
           foldGutter: false,
