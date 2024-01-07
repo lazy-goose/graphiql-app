@@ -112,12 +112,18 @@ const locale = {
   welcomePage: {
     typography: {
       heading: {
-        functional: { part1: `Fully functional `, part2: 'GraphQL explorer' },
+        functional: { part1: `Fully functional`, part2: 'GraphQL explorer' },
         sponsor: 'Sponsor',
         team: 'Our team',
         wishes: 'Wishes a Happy New Year!',
       },
       text: {
+        functional: {
+          part1:
+            'GraphiQL is an in-browser tool for writing, validating, and testing GraphQL queries.',
+          part2:
+            'Type queries into left side of the screen, and you will see intelligent typeaheads aware of the current GraphQL type schema and live syntax and validation errors highlighted within the text',
+        },
         sponsor: {
           part1:
             'is free-of-charge and community-based education program conducted by',
@@ -130,15 +136,15 @@ const locale = {
         team: {
           teammate1: {
             name: 'Alena Shupianiova',
-            roleList: ['Authentication'],
+            roleList: ['Authentication', 'Welcome page'],
           },
           teammate2: {
             name: 'Aleksandr Korobeinikov',
-            roleList: ['Organizational matters'],
+            roleList: ['Organizational matters', 'API calls'],
           },
           teammate3: {
             name: 'Maksim Shamal',
-            roleList: ['Project setup', 'Design'],
+            roleList: ['Project setup', 'Design', 'Main page'],
           },
         },
         wishes: 'We sincerely congratulate you on the upcoming New Year.',

@@ -1,54 +1,20 @@
 import { Footer } from '@/components/Footer/Footer'
+import { TeammateCard } from '@/components/TeammateCard'
 import { userAvatars } from '@/constants'
 import { useLocale } from '@/hooks/useLocale'
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Container,
-  Link,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Box, Container, Link, Stack, Typography } from '@mui/material'
 import WelcomePageHeader from './WelcomePageHeader'
 
-function TeammateCard(props: {
-  href: string
-  cvHref: string
-  imgSrc: string
-  imgAlt: string
-  id: string
-}) {
-  const { href, imgSrc, imgAlt, cvHref } = props
-  //const {locale} = useLocale()
-  return (
-    <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">
-        <CardContent>
-          <Avatar variant="square" src={imgSrc} alt={imgAlt} />
-          <Link href={cvHref} variant="h5">
-            {/*locale.welcomePage.typography.text.team[id].name*/}
-          </Link>
-        </CardContent>
-        <CardActions>
-          <Button href={href} size="small">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-    </Box>
-  )
-}
 export default function WelcomePage() {
-  const { locale } = useLocale()
+  const {
+    locale: { welcomePage },
+  } = useLocale()
   return (
     <Stack minHeight="inherit" justifyContent="center">
       <WelcomePageHeader />
       <Container
         component="main"
+        maxWidth={false}
         sx={{
           marginBlock: 2,
           flex: 1,
@@ -56,19 +22,97 @@ export default function WelcomePage() {
           placeContent: 'center',
         }}
       >
-        <Stack gap={'3em'} alignItems="center">
-          <Stack gap={'1em'} maxWidth={695} component="section">
+        <Stack gap={'2em'} alignItems="center">
+          <Stack gap={'0.5em'} maxWidth={695} component="section">
             <Typography
               textAlign="center"
               component="h2"
-              sx={{ typography: { md: 'h2', sm: 'h3', xs: 'h4' } }}
+              sx={{
+                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
+                fontWeight: 'light',
+              }}
             >
-              {locale.welcomePage.typography.heading.sponsor}
+              {welcomePage.typography.heading.functional.part1}
+              <Typography
+                component="span"
+                color="secondary"
+                ml="1rem"
+                sx={{
+                  fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
+                  fontWeight: 'light',
+                }}
+              >
+                {welcomePage.typography.heading.functional.part2}
+              </Typography>
             </Typography>
             <Typography
               component="p"
               sx={{
-                typography: { sm: 'h5', xs: 'body1' },
+                fontSize: { sm: '1.375rem', xs: '1rem' },
+                fontWeight: 'light',
+                textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
+              }}
+            >
+              {welcomePage.typography.text.functional.part1}
+            </Typography>
+            <Typography
+              component="p"
+              sx={{
+                fontSize: { sm: '1rem' },
+                fontWeight: 'light',
+                textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
+              }}
+            >
+              {welcomePage.typography.text.functional.part2}
+            </Typography>
+          </Stack>
+          <Stack spacing={2} component="section" textAlign="center">
+            <Typography
+              component="h2"
+              sx={{
+                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
+                fontWeight: 'light',
+              }}
+            >
+              {welcomePage.typography.heading.team}
+            </Typography>
+            <Stack
+              direction="row"
+              gap="1.25rem"
+              flexWrap="wrap"
+              justifyContent="center"
+            >
+              {userAvatars.map(
+                ({ href, imgSrc, imgAlt, id, cvHref, tgHref }) => (
+                  <TeammateCard
+                    href={href}
+                    imgSrc={imgSrc}
+                    imgAlt={imgAlt}
+                    id={id}
+                    key={id}
+                    cvHref={cvHref}
+                    tgHref={tgHref}
+                  />
+                ),
+              )}
+            </Stack>
+          </Stack>
+          <Stack gap={'0.5em'} maxWidth={695} component="section">
+            <Typography
+              textAlign="center"
+              component="h2"
+              sx={{
+                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
+                fontWeight: 'light',
+              }}
+            >
+              {welcomePage.typography.heading.sponsor}
+            </Typography>
+            <Typography
+              component="p"
+              sx={{
+                fontSize: { sm: '1.375rem', xs: '1rem' },
+                fontWeight: 'light',
                 textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
               }}
             >
@@ -81,7 +125,7 @@ export default function WelcomePage() {
               >
                 RS School
               </Typography>
-              {locale.welcomePage.typography.text.sponsor.part1}
+              {welcomePage.typography.text.sponsor.part1}
               <Link
                 ml={1}
                 mr={1}
@@ -98,58 +142,70 @@ export default function WelcomePage() {
               </Link>
               <Typography
                 component="span"
-                sx={{ typography: { sm: 'h5', xs: 'body1' } }}
+                sx={{
+                  fontSize: { sm: '1.375rem', xs: '1rem' },
+                  fontWeight: 'light',
+                }}
               >
-                {locale.welcomePage.typography.text.sponsor.part2}
+                {welcomePage.typography.text.sponsor.part2}
               </Typography>
             </Typography>
             <Typography
               component="p"
               sx={{
-                typography: { sm: 'body1' },
+                fontSize: { sm: '1rem' },
+                fontWeight: 'light',
                 textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
               }}
             >
-              {locale.welcomePage.typography.text.sponsor.part3}
+              {welcomePage.typography.text.sponsor.part3}
             </Typography>
             <Typography
               component="p"
               sx={{
-                typography: { sm: 'body1' },
+                fontSize: { sm: '1rem' },
+                fontWeight: 'light',
                 textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
               }}
             >
-              {locale.welcomePage.typography.text.sponsor.part4}
+              {welcomePage.typography.text.sponsor.part4}
             </Typography>
           </Stack>
-          <Box component="section" textAlign="center">
+          <Stack
+            spacing={2}
+            component="section"
+            textAlign="center"
+            alignItems="center"
+          >
             <Typography
               component="h2"
-              sx={{ typography: { md: 'h2', sm: 'h3', xs: 'h4' } }}
+              sx={{
+                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
+                fontWeight: 'light',
+              }}
             >
-              {locale.welcomePage.typography.heading.team}
+              {welcomePage.typography.heading.wishes}
             </Typography>
-            <Stack direction="row" flexWrap="wrap" justifyContent="center">
-              {userAvatars.map(({ href, imgSrc, imgAlt, id, cvHref }) => (
-                <TeammateCard
-                  href={href}
-                  imgSrc={imgSrc}
-                  imgAlt={imgAlt}
-                  id={id}
-                  key={id}
-                  cvHref={cvHref}
-                />
-              ))}
-            </Stack>
-          </Box>
-          <Box component="section" textAlign="center">
             <Typography
-              component="h2"
-              sx={{ typography: { md: 'h2', sm: 'h3', xs: 'h4' } }}
+              component="p"
+              sx={{
+                fontWeight: 'light',
+                fontSize: { sm: '1.375rem', xs: '1rem' },
+              }}
             >
-              {locale.welcomePage.typography.heading.wishes}
+              {welcomePage.typography.text.wishes}
             </Typography>
-          </Box>
+            <Box
+              component="img"
+              sx={{
+                width: 333,
+                maxHeight: { xs: 290, md: 333 },
+                maxWidth: { xs: 290, md: 333 },
+              }}
+              alt="New Year image"
+              src="src/assets/presents.png"
+            />
+          </Stack>
         </Stack>
       </Container>
       <Footer />
