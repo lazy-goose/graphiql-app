@@ -52,6 +52,7 @@ export function Header(props: { leftSlot?: React.ReactNode; page?: string }) {
       ) : (
         <>
           <Button
+            size="small"
             component={Link}
             to={RouterPath.SignIn}
             variant="contained"
@@ -60,6 +61,7 @@ export function Header(props: { leftSlot?: React.ReactNode; page?: string }) {
             {locale.header.button.signIn}
           </Button>
           <Button
+            size="small"
             component={Link}
             to={RouterPath.SignUp}
             variant="contained"
@@ -85,7 +87,7 @@ export function Header(props: { leftSlot?: React.ReactNode; page?: string }) {
         backdropFilter: 'blur(8px)',
         '.MuiToolbar-root': {
           paddingBlock: 1,
-          paddingInline: 2,
+          paddingInline: { sm: 2, xs: 1 },
           boxSizing: 'border-box',
         },
         '&::after': {
