@@ -11,7 +11,7 @@ export default function WelcomePage() {
   } = useLocale()
   return (
     <Stack minHeight="inherit" justifyContent="center">
-      <WelcomePageHeader page="welcome" />
+      <WelcomePageHeader />
       <Container
         component="main"
         maxWidth={false}

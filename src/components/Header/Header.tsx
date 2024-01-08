@@ -15,10 +15,10 @@ import { Link, useLocation } from 'react-router-dom'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
-export function Header(props: { leftSlot?: React.ReactNode; page?: string }) {
-  const { leftSlot, page } = props
-  const location = useLocation()
+export function Header(props: { leftSlot?: React.ReactNode }) {
+  const { leftSlot } = props
   const { locale } = useLocale()
+  const location = useLocation()
 
   const user = useBoundStore((state) => state.user)
 
@@ -35,7 +35,7 @@ export function Header(props: { leftSlot?: React.ReactNode; page?: string }) {
     <Stack direction="row" spacing={1}>
       <LanguageMenu />
       {user ? (
-        !!page && page === 'welcome' ? (
+        location.pathname === RouterPath.Welcome ? (
           <Button
             variant="outlined"
             component={Link}
