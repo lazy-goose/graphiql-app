@@ -1,5 +1,6 @@
 import { RouterPath } from '@/constants'
 import { auth } from '@/firebase'
+import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
 import { useLocale } from '@/hooks/useLocale'
 import { useLocaleForm } from '@/hooks/useLocaleForm'
 import { useValidators } from '@/hooks/useValidators'
@@ -20,6 +21,8 @@ export default function SignUpForm() {
 
   const { locale } = useLocale()
 
+  const { pushSnackbar } = useEnqueueSnackbar()
+
   const {
     register,
     watch,
@@ -38,12 +41,10 @@ export default function SignUpForm() {
     email,
     password,
   }) => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password)
-      reset()
-    } catch (error) {
-      console.error(error)
-    }
+    createUserWithEmailAndPassword(auth, email, password).then(
+      () => reset(),
+      (error: Error) => pushSnackbar({ message: error.message }),
+    )
   }
 
   return (
