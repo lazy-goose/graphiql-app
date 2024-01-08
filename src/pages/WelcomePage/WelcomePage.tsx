@@ -203,7 +203,7 @@ export default function WelcomePage() {
                 maxWidth: { xs: 290, md: 333 },
               }}
               alt="New Year image"
-              src="src/assets/presents.png"
+              src="presents.png"
             />
           </Stack>
         </Stack>
