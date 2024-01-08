@@ -16,7 +16,8 @@ export default function Documentation() {
       (result) => setDocumentation(result),
       (error: Error) => pushSnackbar({ message: error.message }),
     )
-  }, [baseUrl, pushSnackbar])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [baseUrl])
   return (
     <Stack direction="row">
       <TextField sx={{ width: '100%' }} multiline value={documentation} />

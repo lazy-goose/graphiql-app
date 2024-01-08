@@ -26,7 +26,7 @@ export const getApiResponse = (
     headers,
     body: JSON.stringify({
       query: schema,
-      variables,
+      variables: JSON.parse(variables),
     }),
   })
     .then((res) => res.json())
