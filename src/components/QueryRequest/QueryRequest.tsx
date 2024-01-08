@@ -1,6 +1,7 @@
 import { getApiResponse } from '@/API'
 import { useBaseTheme } from '@/hooks/@CodeMirror/useBaseTheme'
 import { useGraphQlStyle } from '@/hooks/@CodeMirror/useGraphQlStyle'
+import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
 import { useBoundStore } from '@/store'
 import { getHeadersObject } from '@/utils/getHeadersObject'
 import { queryPrettify } from '@/utils/queryPrettify'
@@ -19,6 +20,7 @@ export default function QueryRequest() {
   const queryHeaders = useBoundStore((state) => state.headers)
   const baseUrl = useBoundStore((state) => state.baseUrl)
   const changeResponse = useBoundStore((state) => state.changeResponse)
+  const { pushSnackbar } = useEnqueueSnackbar()
 
   const lintErrorsRef = useRef(0)
 
@@ -30,7 +32,7 @@ export default function QueryRequest() {
       try {
         setQueryInput(queryPrettify(queryInput))
       } catch {
-        console.error('Unable to prettify query')
+        pushSnackbar({ message: 'Unable to prettify query' })
       }
     }
   }
@@ -42,7 +44,7 @@ export default function QueryRequest() {
       queryVariables,
     ).then(
       (result) => changeResponse(result),
-      (error: Error) => console.error(error),
+      (error: Error) => pushSnackbar({ message: error.message }),
     )
   }
 
