@@ -1,3 +1,4 @@
+import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import { Refresh } from '@mui/icons-material'
 import { Button, Stack, TextField, type StackProps } from '@mui/material'
@@ -12,6 +13,9 @@ export default function SchemaControls(
   const baseUrl = useBoundStore((state) => state.baseUrl)
   const setBaseUrl = useBoundStore((state) => state.setBaseUrl)
   const [urlInput, setUrlInput] = useState(baseUrl)
+  const {
+    locale: { header },
+  } = useLocale()
 
   const handleRefetchButtonClick = () => {
     setBaseUrl(urlInput)
@@ -48,7 +52,7 @@ export default function SchemaControls(
           alignSelf: 'end',
         }}
       >
-        Refetch
+        {header.button.refetch}
       </Button>
     </Stack>
   )

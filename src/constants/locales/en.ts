@@ -72,7 +72,7 @@ const locale = {
   },
   mainPage: {
     button: {
-      openDocs: '',
+      openDocs: 'documentation',
       addHeader: 'add header',
       prettify: 'prettify',
       run: 'run',
