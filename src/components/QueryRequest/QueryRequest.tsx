@@ -2,6 +2,7 @@ import { getApiResponse } from '@/API'
 import { useBaseTheme } from '@/hooks/@CodeMirror/useBaseTheme'
 import { useGraphQlStyle } from '@/hooks/@CodeMirror/useGraphQlStyle'
 import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
+import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import { getHeadersObject } from '@/utils/getHeadersObject'
 import { queryPrettify } from '@/utils/queryPrettify'
@@ -21,6 +22,9 @@ export default function QueryRequest() {
   const baseUrl = useBoundStore((state) => state.baseUrl)
   const changeResponse = useBoundStore((state) => state.changeResponse)
   const { pushSnackbar } = useEnqueueSnackbar()
+  const {
+    locale: { mainPage },
+  } = useLocale()
 
   const lintErrorsRef = useRef(0)
 
@@ -91,14 +95,14 @@ export default function QueryRequest() {
           })}
           onClick={handlePrettifyButtonClick}
         >
-          Prettify
+          {mainPage.button.prettify}
         </Button>
         <Button
           startIcon={<PlayArrowRounded viewBox="5 5 15 15" />}
           variant="contained"
           onClick={handleRunButtonClick}
         >
-          Run
+          {mainPage.button.run}
         </Button>
       </Stack>
     </Box>
