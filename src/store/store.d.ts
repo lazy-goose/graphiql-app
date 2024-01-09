@@ -36,6 +36,7 @@ export type MainLayoutSlice = {
 }
 export type AuthSlice = {
   user: User | null
+  isUserLoading: boolean
   setUser: (user: User | null) => void
 }
 
