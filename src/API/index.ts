@@ -1,4 +1,4 @@
-import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql'
+import { buildClientSchema, getIntrospectionQuery } from 'graphql'
 
 export const getApiIntrospectionSchema = (baseUrl: string) => {
   return fetch(baseUrl, {
@@ -10,8 +10,7 @@ export const getApiIntrospectionSchema = (baseUrl: string) => {
   })
     .then((res) => res.json())
     .then((result) => {
-      const clientSchema = buildClientSchema(result.data)
-      return printSchema(clientSchema)
+      return buildClientSchema(result.data)
     })
 }
 

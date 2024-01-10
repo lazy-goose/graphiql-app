@@ -1,6 +1,7 @@
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { RouterPath } from '@/constants'
+import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
 import { useBoundStore } from '@/store'
 import { Stack, useMediaQuery, useTheme } from '@mui/material'
 import React, { useEffect } from 'react'
@@ -39,6 +40,22 @@ export default function MainPage() {
   }
 
   useEffect(handleRedirect)
+
+  /** Fetch schema */
+
+  const fetchSchema = useBoundStore((state) => state.fetchSchema)
+  const schemaError = useBoundStore((state) => state.schemaError)
+  const { pushSnackbar } = useEnqueueSnackbar()
+
+  useEffect(() => {
+    fetchSchema()
+  }, [fetchSchema])
+
+  useEffect(() => {
+    if (schemaError?.message) {
+      pushSnackbar({ message: schemaError.message })
+    }
+  }, [schemaError, pushSnackbar])
 
   return (
     <Stack>

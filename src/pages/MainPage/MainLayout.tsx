@@ -130,9 +130,16 @@ const MainDesktopLayout = ({
 }: MainLayoutSlots) => {
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   const { locale } = useLocale()
+  const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
+  const schemaError = useBoundStore((state) => state.schemaError)
   return (
     <ResizeGroup direction="row" initialSizes={[0.2, 0.4, 0.4]}>
-      <ResizeFragment id="Col1" min={0.2} max={0.4} collapse={!isAsideOpen}>
+      <ResizeFragment
+        id="Col1"
+        min={0.2}
+        max={0.4}
+        collapse={isSchemaFetching || !!schemaError || !isAsideOpen}
+      >
         <Box height={1} overflow="auto">
           {documentation}
         </Box>

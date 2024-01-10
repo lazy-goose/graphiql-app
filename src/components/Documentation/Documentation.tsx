@@ -1,26 +1,31 @@
-import { getApiIntrospectionSchema } from '@/API'
-import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
 import { useBoundStore } from '@/store'
-import { Stack, TextField } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { Box, CircularProgress, Stack, TextField } from '@mui/material'
+import { printSchema } from 'graphql'
 
 export default function Documentation() {
-  const baseUrl = useBoundStore((state) => state.baseUrl)
-  const [documentation, setDocumentation] = useState('')
+  const schema = useBoundStore((state) => state.schema)
+  const schemaError = useBoundStore((state) => state.schemaError)
+  const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
 
-  const { pushSnackbar } = useEnqueueSnackbar()
-
-  useEffect(() => {
-    setDocumentation('')
-    getApiIntrospectionSchema(baseUrl).then(
-      (result) => setDocumentation(result),
-      (error: Error) => pushSnackbar({ message: error.message }),
+  if (isSchemaFetching) {
+    return (
+      <Box height={1} sx={{ display: 'grid', placeContent: 'center' }}>
+        <CircularProgress />
+      </Box>
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [baseUrl])
+  }
+
+  if (schemaError) {
+    return schemaError?.message
+  }
+
+  if (!schema) {
+    return 'No schema'
+  }
+
   return (
     <Stack direction="row">
-      <TextField sx={{ width: '100%' }} multiline value={documentation} />
+      <TextField sx={{ width: '100%' }} multiline value={printSchema(schema)} />
     </Stack>
   )
 }

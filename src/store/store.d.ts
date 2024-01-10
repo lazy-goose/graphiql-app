@@ -11,6 +11,8 @@ type Header = {
 
 export type SchemaSlice = {
   schema: GraphQLSchema | null
+  schemaError: Error | null
+  isSchemaFetching: boolean
   fetchSchema: (baseUrl?: string) => void
 }
 export type ResponseSlice = {

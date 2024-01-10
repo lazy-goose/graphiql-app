@@ -11,14 +11,16 @@ export default function SchemaControls(
 ) {
   const { variant = 'desktop', ...passStackProps } = props
   const baseUrl = useBoundStore((state) => state.baseUrl)
-  const setBaseUrl = useBoundStore((state) => state.setBaseUrl)
+  const fetchSchema = useBoundStore((state) => state.fetchSchema)
   const [urlInput, setUrlInput] = useState(baseUrl)
   const {
     locale: { header },
   } = useLocale()
 
+  const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
+
   const handleRefetchButtonClick = () => {
-    setBaseUrl(urlInput)
+    fetchSchema(urlInput)
   }
 
   return (
@@ -47,6 +49,7 @@ export default function SchemaControls(
         variant="outlined"
         startIcon={<Refresh />}
         onClick={handleRefetchButtonClick}
+        disabled={isSchemaFetching}
         sx={{
           flexShrink: 0,
           alignSelf: 'end',
