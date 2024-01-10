@@ -11,6 +11,7 @@ export const queryPrettify = (query: string) => {
   }
   return indent(
     query
+      .replaceAll(/\n{2,}/g, '')
       .split('\n')
       .map((line) => line.trim())
       .map((line) =>
