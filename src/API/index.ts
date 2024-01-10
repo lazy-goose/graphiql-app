@@ -1,10 +1,14 @@
 import { buildClientSchema, getIntrospectionQuery } from 'graphql'
 
-export const getApiIntrospectionSchema = (baseUrl: string) => {
+export const getApiIntrospectionSchema = (
+  baseUrl: string,
+  headers: Record<string, string>,
+) => {
   return fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      ...headers,
     },
     body: JSON.stringify({ query: getIntrospectionQuery() }),
   })
