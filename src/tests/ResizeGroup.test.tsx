@@ -1,13 +1,11 @@
 import { ResizeGroup, useResizer } from '@/pages/MainPage/ResizeGroup'
 import ResizeFragment from '@/pages/MainPage/ResizeGroup/ResizeFragment'
 import { describe, expect, test, vi } from 'vitest'
-import renderInContext from './renderInContext'
+import renderInContext from './utils/renderInContext'
 
 import { moveFlexSpace } from '@/pages/MainPage/ResizeGroup/utils/calculate'
 import { toFr, toFrArray } from '@/pages/MainPage/ResizeGroup/utils/convert'
 import { fireEvent, render, renderHook, screen } from '@testing-library/react'
-
-window.matchMedia = vi.fn().mockReturnValue(false)
 
 describe('Correct ResizeGroup snapshot', () => {
   test('Correct ResizeGroup snapshot', () => {
