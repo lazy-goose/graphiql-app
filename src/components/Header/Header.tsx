@@ -2,25 +2,85 @@ import { RouterPath } from '@/constants/constants'
 import { auth } from '@/firebase'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
-import { Logout } from '@mui/icons-material'
+import { Logout, NavigateBefore, NavigateNext } from '@mui/icons-material'
 import {
   AppBar,
   Box,
   Button,
+  Collapse,
+  IconButton,
   Stack,
   Toolbar,
+  useMediaQuery,
   useScrollTrigger,
+  useTheme,
+  type BoxProps,
 } from '@mui/material'
 import { signOut } from 'firebase/auth'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { OutlineButton } from '../OutlineButton'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
+const AsBurgerMenu = (props: {
+  media?: string
+  children: React.ReactNode
+  BoxProps?: BoxProps
+}) => {
+  const [open, setOpen] = useState(false)
+  const { children, media = '', BoxProps } = props
+  const isMedia = useMediaQuery(media)
+
+  if (!isMedia) {
+    return (
+      <Box minWidth="max-content" {...BoxProps}>
+        {children}
+      </Box>
+    )
+  }
+
+  return (
+    <Box paddingRight="inherit" {...BoxProps}>
+      <Box
+        sx={{
+          paddingRight: 'inherit',
+          position: 'absolute',
+          translate: '0 -50%',
+          right: 0,
+          minWidth: 'max-content',
+          borderTopLeftRadius: 15,
+          borderBottomLeftRadius: 15,
+          border: '1px solid',
+          borderColor: '#ffffffaa',
+          backdropFilter: 'blur(2px)',
+        }}
+      >
+        <Collapse
+          orientation="horizontal"
+          in={open}
+          collapsedSize={40}
+          sx={{
+            py: 0.5,
+          }}
+        >
+          <Stack direction="row" alignItems="center">
+            <IconButton color="inherit" onClick={() => setOpen(!open)}>
+              {open ? <NavigateNext /> : <NavigateBefore />}
+            </IconButton>
+            <Box minWidth="max-content">{children}</Box>
+          </Stack>
+        </Collapse>
+      </Box>
+    </Box>
+  )
+}
+
 export default function Header(props: { leftSlot?: React.ReactNode }) {
   const { leftSlot } = props
   const { locale } = useLocale()
 
+  const theme = useTheme()
   const user = useBoundStore((state) => state.user)
 
   const handleSignOutButton = async () => {
@@ -33,7 +93,7 @@ export default function Header(props: { leftSlot?: React.ReactNode }) {
   })
 
   const rightSlot = (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" gap={1} alignItems="center">
       <LanguageMenu />
       {user ? (
         <OutlineButton onClick={handleSignOutButton} startIcon={<Logout />}>
@@ -95,7 +155,9 @@ export default function Header(props: { leftSlot?: React.ReactNode }) {
         <Box pl={2} flexGrow={1}>
           {leftSlot}
         </Box>
-        <Box flexShrink={0}>{rightSlot}</Box>
+        <AsBurgerMenu media={theme.breakpoints.down('sm')}>
+          {rightSlot}
+        </AsBurgerMenu>
       </Toolbar>
     </AppBar>
   )

@@ -26,8 +26,7 @@ export default function SchemaControls(
   return (
     <Stack
       direction="row"
-      ml={1}
-      mr={2}
+      mx={1.5}
       gap={1}
       alignItems="center"
       {...passStackProps}
@@ -47,12 +46,12 @@ export default function SchemaControls(
       />
       <Button
         variant="outlined"
-        startIcon={<Refresh />}
+        startIcon={<Refresh viewBox="2 2 21 21" />}
         onClick={handleRefetchButtonClick}
         disabled={isSchemaFetching}
         sx={{
           flexShrink: 0,
-          alignSelf: 'end',
+          alignSelf: variant === 'mobile' ? 'end' : null,
         }}
       >
         {header.button.refetch}
