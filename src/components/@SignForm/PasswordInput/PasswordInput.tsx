@@ -31,8 +31,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, TextFieldProps>(
               <IconButton
                 type="button"
                 aria-label="toggle password visibility"
-                onClick={toggleShowPassword}
-                onMouseDown={toggleShowPassword}
+                onPointerDown={toggleShowPassword}
                 disableTouchRipple
                 sx={(theme) => ({
                   color: theme.palette.grey[500],
