@@ -1,6 +1,5 @@
 import { RouterPath } from '@/constants'
 import { auth } from '@/firebase'
-import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
 import { useLocale } from '@/hooks/useLocale'
 import { useLocaleForm } from '@/hooks/useLocaleForm'
 import { useValidators } from '@/hooks/useValidators'
@@ -9,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Link, Stack, TextField, Typography } from '@mui/material'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { useSnackbar } from 'notistack'
 import { type SubmitHandler } from 'react-hook-form'
 import { Link as RouterLink } from 'react-router-dom'
 import { PasswordInput } from '../PasswordInput'
@@ -21,7 +21,7 @@ export default function SignUpForm() {
 
   const { locale } = useLocale()
 
-  const { pushSnackbar } = useEnqueueSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
 
   const {
     register,
@@ -41,10 +41,14 @@ export default function SignUpForm() {
     email,
     password,
   }) => {
-    createUserWithEmailAndPassword(auth, email, password).then(
-      () => reset(),
-      (error: Error) => pushSnackbar({ message: error.message }),
-    )
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => reset())
+      .catch((error: Error) => {
+        enqueueSnackbar({
+          variant: 'customAlert',
+          message: error?.message,
+        })
+      })
   }
 
   return (

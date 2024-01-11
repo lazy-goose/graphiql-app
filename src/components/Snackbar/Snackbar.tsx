@@ -1,23 +1,33 @@
 import { Alert, type AlertProps } from '@mui/material'
-import { useSnackbar, type SnackbarKey, type SnackbarMessage } from 'notistack'
+import { useSnackbar, type CustomContentProps } from 'notistack'
 import React from 'react'
 
-type Props = Omit<AlertProps, 'id' | 'message'> & {
-  id: SnackbarKey
-  message: SnackbarMessage
+export type CustomSnackbarProps = {
+  AlertProps?: Omit<AlertProps, 'id' | 'message'>
 }
 
-const Snackbar = React.forwardRef<HTMLDivElement, Props>(
-  function Snackbar(props, ref) {
-    const { id, message, severity = 'error', ...alertProps } = props
-    const { closeSnackbar } = useSnackbar()
-    const onClose = () => closeSnackbar(id)
-    return (
-      <Alert ref={ref} severity={severity} onClose={onClose} {...alertProps}>
-        {message}
-      </Alert>
-    )
-  },
-)
+declare module 'notistack' {
+  interface VariantOverrides {
+    customAlert: CustomSnackbarProps
+  }
+}
+
+const Snackbar = React.forwardRef<
+  HTMLDivElement,
+  CustomContentProps & CustomSnackbarProps
+>(function Snackbar(props, ref) {
+  const {
+    message,
+    id,
+    AlertProps: { severity = 'error', ...alertProps } = {},
+  } = props
+  const { closeSnackbar } = useSnackbar()
+  const onClose = () => closeSnackbar(id)
+  return (
+    <Alert ref={ref} severity={severity} onClose={onClose} {...alertProps}>
+      {message}
+    </Alert>
+  )
+})
 
 export default Snackbar

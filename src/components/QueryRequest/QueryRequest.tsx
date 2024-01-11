@@ -1,7 +1,6 @@
 import { getApiResponse } from '@/API'
 import { useBaseTheme } from '@/hooks/@CodeMirror/useBaseTheme'
 import { useGraphQlStyle } from '@/hooks/@CodeMirror/useGraphQlStyle'
-import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import { getHeadersObject } from '@/utils/getHeadersObject'
@@ -11,6 +10,7 @@ import { FormatIndentIncrease, PlayArrowRounded } from '@mui/icons-material'
 import { Box, Button, Stack } from '@mui/material'
 import CodeMirror from '@uiw/react-codemirror'
 import { graphql as cm6graphql } from 'cm6-graphql'
+import { useSnackbar } from 'notistack'
 import { useRef } from 'react'
 
 export default function QueryRequest() {
@@ -21,7 +21,7 @@ export default function QueryRequest() {
   const queryHeaders = useBoundStore((state) => state.headers)
   const baseUrl = useBoundStore((state) => state.baseUrl)
   const changeResponse = useBoundStore((state) => state.changeResponse)
-  const { pushSnackbar } = useEnqueueSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const {
     locale: { mainPage },
   } = useLocale()
@@ -36,7 +36,10 @@ export default function QueryRequest() {
       try {
         setQueryInput(queryPrettify(queryInput))
       } catch {
-        pushSnackbar({ message: 'Unable to prettify query' })
+        enqueueSnackbar({
+          variant: 'customAlert',
+          message: 'Unable to prettify query',
+        })
       }
     }
   }
@@ -46,10 +49,14 @@ export default function QueryRequest() {
       queryInput,
       getHeadersObject(queryHeaders),
       queryVariables,
-    ).then(
-      (result) => changeResponse(result),
-      (error: Error) => pushSnackbar({ message: error.message }),
     )
+      .then((result) => changeResponse(result))
+      .catch((error: Error) => {
+        enqueueSnackbar({
+          variant: 'customAlert',
+          message: error?.message,
+        })
+      })
   }
 
   return (

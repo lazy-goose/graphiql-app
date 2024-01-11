@@ -43,7 +43,9 @@ export function App() {
         <SnackbarProvider
           maxSnack={3}
           anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-          content={(key, message) => <Snackbar id={key} message={message} />}
+          Components={{
+            customAlert: Snackbar,
+          }}
           classes={{ root: 'SnackbarContainer' }}
         >
           {isLoading ? <AppLoader /> : <RouterProvider router={router} />}

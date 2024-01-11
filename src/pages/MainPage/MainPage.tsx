@@ -1,9 +1,9 @@
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { RouterPath } from '@/constants'
-import { useEnqueueSnackbar } from '@/hooks/useEnqueueSnackbar'
 import { useBoundStore } from '@/store'
 import { Stack, useMediaQuery, useTheme } from '@mui/material'
+import { useSnackbar } from 'notistack'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MainControls from './MainControls'
@@ -45,7 +45,7 @@ export default function MainPage() {
 
   const fetchSchema = useBoundStore((state) => state.fetchSchema)
   const schemaError = useBoundStore((state) => state.schemaError)
-  const { pushSnackbar } = useEnqueueSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     fetchSchema()
@@ -53,9 +53,12 @@ export default function MainPage() {
 
   useEffect(() => {
     if (schemaError?.message) {
-      pushSnackbar({ message: schemaError.message })
+      enqueueSnackbar({
+        variant: 'customAlert',
+        message: schemaError.message,
+      })
     }
-  }, [schemaError, pushSnackbar])
+  }, [schemaError, enqueueSnackbar])
 
   return (
     <Stack>
