@@ -1,7 +1,7 @@
 import { Header } from '@/components/Header'
+import { OutlineButton } from '@/components/OutlineButton'
 import { RouterPath } from '@/constants'
 import { useLocale } from '@/hooks/useLocale'
-import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export default function WelcomePageHeader() {
@@ -11,20 +11,9 @@ export default function WelcomePageHeader() {
   return (
     <Header
       leftSlot={
-        <Button
-          component={Link}
-          to={RouterPath.Main}
-          variant="outlined"
-          color="secondary"
-          sx={(theme) => ({
-            '&:hover': {
-              color: theme.palette.background.paper,
-              backgroundColor: theme.palette.secondary.main,
-            },
-          })}
-        >
+        <OutlineButton component={Link} to={RouterPath.Main} color="secondary">
           {l.button.explorer}
-        </Button>
+        </OutlineButton>
       }
     />
   )

@@ -2,6 +2,7 @@ import { RouterPath } from '@/constants/constants'
 import { auth } from '@/firebase'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
+import { Logout } from '@mui/icons-material'
 import {
   AppBar,
   Box,
@@ -12,6 +13,7 @@ import {
 } from '@mui/material'
 import { signOut } from 'firebase/auth'
 import { Link } from 'react-router-dom'
+import { OutlineButton } from '../OutlineButton'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
@@ -34,15 +36,14 @@ export default function Header(props: { leftSlot?: React.ReactNode }) {
     <Stack direction="row" spacing={1}>
       <LanguageMenu />
       {user ? (
-        <Button variant="outlined" onClick={handleSignOutButton}>
+        <OutlineButton onClick={handleSignOutButton} startIcon={<Logout />}>
           {locale.header.button.signOut}
-        </Button>
+        </OutlineButton>
       ) : (
         <>
           <Button
             component={Link}
             to={RouterPath.SignIn}
-            size="small"
             variant="contained"
             disabled={location.pathname === RouterPath.SignIn}
           >
@@ -51,7 +52,6 @@ export default function Header(props: { leftSlot?: React.ReactNode }) {
           <Button
             component={Link}
             to={RouterPath.SignUp}
-            size="small"
             variant="contained"
             disabled={location.pathname === RouterPath.SignUp}
           >
