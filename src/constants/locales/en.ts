@@ -136,15 +136,15 @@ const locale = {
         team: {
           teammate1: {
             name: 'Alena Shupianiova',
-            roleList: ['Authentication', 'Welcome page'],
+            tasks: ['Authentication', 'Welcome page'],
           },
           teammate2: {
             name: 'Aleksandr Korobeinikov',
-            roleList: ['Organizational matters', 'API calls'],
+            tasks: ['Organizational matters', 'API calls'],
           },
           teammate3: {
             name: 'Maksim Shamal',
-            roleList: ['Project setup', 'Design', 'Main page'],
+            tasks: ['Project setup', 'Design', 'Main page'],
           },
         },
         wishes: 'We sincerely congratulate you on the upcoming New Year.',

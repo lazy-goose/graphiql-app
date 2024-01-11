@@ -1,213 +1,171 @@
 import { Footer } from '@/components/Footer'
-import { TeammateCard } from '@/components/TeammateCard'
-import { userAvatars } from '@/constants'
+import { teammates } from '@/constants'
+import { mainTheme } from '@/globals/themes/main'
 import { useLocale } from '@/hooks/useLocale'
-import { Box, Container, Link, Stack, Typography } from '@mui/material'
+import {
+  Box,
+  Container,
+  Grid,
+  Link,
+  Stack,
+  ThemeProvider,
+  Typography,
+  createTheme,
+  type BoxProps,
+} from '@mui/material'
+import TeammateCard from './TeammateCard'
 import WelcomePageHeader from './WelcomePageHeader'
+import EditorImg from './assets/editor.png'
+import PresentsImg from './assets/presents.svg'
+
+const section = { component: 'section' } satisfies BoxProps
+
+const welcomePageTheme = createTheme(mainTheme, {
+  typography: {
+    h2: {
+      textAlign: 'center',
+      marginBlock: '1.2em',
+      fontSize: '3rem',
+      [mainTheme.breakpoints.down('sm')]: {
+        fontSize: '2.2rem',
+      },
+    },
+    body1: {
+      fontWeight: 'lighter',
+      marginBlock: 25,
+      fontSize: '1.6rem',
+      [mainTheme.breakpoints.down('md')]: {
+        fontSize: '1.25rem',
+      },
+    },
+    body2: {
+      fontWeight: 'lighter',
+      marginBlock: 25,
+      fontSize: '1.25rem',
+      [mainTheme.breakpoints.down('sm')]: {
+        fontSize: '1rem',
+      },
+    },
+  },
+})
 
 export default function WelcomePage() {
   const {
-    locale: { welcomePage },
+    locale: { welcomePage: l },
   } = useLocale()
   return (
-    <Stack minHeight="inherit" justifyContent="center">
+    <Stack minHeight="inherit">
       <WelcomePageHeader />
-      <Container
-        component="main"
-        maxWidth={false}
-        sx={{
-          marginBlock: 2,
-          flex: 1,
-          display: 'grid',
-          placeContent: 'center',
-        }}
-      >
-        <Stack gap={'2em'} alignItems="center">
-          <Stack gap={'0.5em'} maxWidth={695} component="section">
-            <Typography
-              textAlign="center"
-              component="h2"
-              sx={{
-                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
-                fontWeight: 'light',
-              }}
-            >
-              {welcomePage.typography.heading.functional.part1}
-              <Typography
-                component="span"
-                color="secondary"
-                ml="1rem"
-                sx={{
-                  fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
-                  fontWeight: 'light',
-                }}
-              >
-                {welcomePage.typography.heading.functional.part2}
+      <ThemeProvider theme={welcomePageTheme}>
+        <Box component="main" flex={1}>
+          <Container maxWidth="xl">
+            <Box {...section}>
+              {/* prettier-ignore */}
+              <Typography variant="h2" maxWidth="md" mx="auto">
+                {l.typography.heading.functional.part1}
+                {' '}
+                <Box component="span" color="secondary.main">
+                  {l.typography.heading.functional.part2}
+                </Box>
               </Typography>
-            </Typography>
-            <Typography
-              component="p"
-              sx={{
-                fontSize: { sm: '1.375rem', xs: '1rem' },
-                fontWeight: 'light',
-                textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
-              }}
-            >
-              {welcomePage.typography.text.functional.part1}
-            </Typography>
-            <Typography
-              component="p"
-              sx={{
-                fontSize: { sm: '1rem' },
-                fontWeight: 'light',
-                textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
-              }}
-            >
-              {welcomePage.typography.text.functional.part2}
-            </Typography>
-          </Stack>
-          <Stack spacing={2} component="section" textAlign="center">
-            <Typography
-              component="h2"
-              sx={{
-                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
-                fontWeight: 'light',
-              }}
-            >
-              {welcomePage.typography.heading.team}
-            </Typography>
-            <Stack
-              direction="row"
-              gap="1.25rem"
-              flexWrap="wrap"
-              justifyContent="center"
-            >
-              {userAvatars.map(
-                ({ href, imgSrc, imgAlt, id, cvHref, tgHref }) => (
-                  <TeammateCard
-                    href={href}
-                    imgSrc={imgSrc}
-                    imgAlt={imgAlt}
-                    id={id}
-                    key={id}
-                    cvHref={cvHref}
-                    tgHref={tgHref}
-                  />
-                ),
-              )}
-            </Stack>
-          </Stack>
-          <Stack gap={'0.5em'} maxWidth={695} component="section">
-            <Typography
-              textAlign="center"
-              component="h2"
-              sx={{
-                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
-                fontWeight: 'light',
-              }}
-            >
-              {welcomePage.typography.heading.sponsor}
-            </Typography>
-            <Typography
-              component="p"
-              sx={{
-                fontSize: { sm: '1.375rem', xs: '1rem' },
-                fontWeight: 'light',
-                textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
-              }}
-            >
-              <Typography
-                textAlign="center"
-                component="span"
-                fontWeight="bold"
-                variant="inherit"
-                mr={1}
-              >
-                RS School
-              </Typography>
-              {welcomePage.typography.text.sponsor.part1}
-              <Link
-                ml={1}
-                mr={1}
-                href="https://rs.school/react"
+              <Box
                 sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  textDecorationColor: theme.palette.text.primary,
-                  '&:hover': {
-                    color: theme.palette.info.main,
-                  },
+                  boxSizing: 'border-box',
+                  border: `1px solid`,
+                  borderColor: theme.palette.divider,
+                  marginInline: -2,
                 })}
               >
-                The Rolling Scopes
-              </Link>
-              <Typography
-                component="span"
-                sx={{
-                  fontSize: { sm: '1.375rem', xs: '1rem' },
-                  fontWeight: 'light',
-                }}
-              >
-                {welcomePage.typography.text.sponsor.part2}
+                <Box
+                  component="img"
+                  src={EditorImg}
+                  alt="Editor screenshot"
+                  display="block"
+                  maxWidth={1}
+                  marginInline="auto"
+                />
+              </Box>
+            </Box>
+          </Container>
+          <Container maxWidth="md">
+            <Box {...section}>
+              <Typography variant="h2">
+                {l.typography.heading.sponsor}
               </Typography>
-            </Typography>
-            <Typography
-              component="p"
-              sx={{
-                fontSize: { sm: '1rem' },
-                fontWeight: 'light',
-                textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
-              }}
-            >
-              {welcomePage.typography.text.sponsor.part3}
-            </Typography>
-            <Typography
-              component="p"
-              sx={{
-                fontSize: { sm: '1rem' },
-                fontWeight: 'light',
-                textAlign: { md: 'left', sm: 'justify', xs: 'justify' },
-              }}
-            >
-              {welcomePage.typography.text.sponsor.part4}
-            </Typography>
-          </Stack>
-          <Stack
-            spacing={2}
-            component="section"
-            textAlign="center"
-            alignItems="center"
-          >
-            <Typography
-              component="h2"
-              sx={{
-                fontSize: { md: '3rem', sm: '2rem', xs: '1.5rem' },
-                fontWeight: 'light',
-              }}
-            >
-              {welcomePage.typography.heading.wishes}
-            </Typography>
-            <Typography
-              component="p"
-              sx={{
-                fontWeight: 'light',
-                fontSize: { sm: '1.375rem', xs: '1rem' },
-              }}
-            >
-              {welcomePage.typography.text.wishes}
-            </Typography>
-            <Box
-              component="img"
-              sx={{
-                width: 333,
-                maxHeight: { xs: 290, md: 333 },
-                maxWidth: { xs: 290, md: 333 },
-              }}
-              alt="New Year image"
-              src="presents.png"
-            />
-          </Stack>
-        </Stack>
-      </Container>
+              {/* prettier-ignore */}
+              <Typography variant="body1">
+                <Box component="span" fontWeight="bold">RS School</Box>
+                {' '}
+                {l.typography.text.sponsor.part1}
+                {' '}
+                <Link variant="inherit" href="https://rs.school/react">The Rolling Scopes</Link>
+                {' '}
+                {l.typography.text.sponsor.part2}
+              </Typography>
+              <Typography variant="body2">
+                {l.typography.text.sponsor.part3}
+              </Typography>
+              <Typography variant="body2">
+                {l.typography.text.sponsor.part4}
+              </Typography>
+            </Box>
+          </Container>
+          <Container maxWidth="lg">
+            <Box {...section}>
+              <Typography variant="h2">{l.typography.heading.team}</Typography>
+              <Grid container gap={2} justifyContent="center">
+                {teammates.map(({ id, avatar, github, telegram }) => (
+                  <Grid
+                    key={id}
+                    item
+                    xs
+                    sx={(theme) => ({
+                      [theme.breakpoints.up('xs')]: {
+                        minWidth: '300px',
+                        maxWidth: '400px',
+                      },
+                    })}
+                  >
+                    <TeammateCard
+                      personName={l.typography.text.team[id].name}
+                      taskList={l.typography.text.team[id].tasks}
+                      avatarSrc={avatar}
+                      socials={{
+                        github,
+                        telegram,
+                      }}
+                      CardProps={{
+                        sx: {
+                          height: 1,
+                        },
+                      }}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          </Container>
+          <Container maxWidth="md">
+            <Box {...section}>
+              <Typography variant="h2">
+                {l.typography.heading.wishes}
+              </Typography>
+              <Typography variant="body1" textAlign="center">
+                {l.typography.text.wishes}
+              </Typography>
+              <Box
+                display="block"
+                maxWidth={0.8}
+                my={5}
+                mx="auto"
+                component="img"
+                src={PresentsImg}
+                alt="Congratulations with New Year"
+              />
+            </Box>
+          </Container>
+        </Box>
+      </ThemeProvider>
       <Footer />
     </Stack>
   )

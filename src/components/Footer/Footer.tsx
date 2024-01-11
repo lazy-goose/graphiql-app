@@ -1,4 +1,4 @@
-import { userAvatars } from '@/constants/constants'
+import { teammates } from '@/constants/constants'
 import { Avatar, Badge, Link, Paper, Stack, styled } from '@mui/material'
 import { RSSLogo } from './RSSLogo'
 
@@ -26,20 +26,18 @@ export default function Footer() {
         justifyContent="space-between"
       >
         <Stack direction="row" spacing={1} alignItems="center">
-          {userAvatars.map(
-            ({ href, imgSrc, imgAlt, active = false }, index) => (
-              <Link key={index} href={href}>
-                <StyledBadge
-                  active={active}
-                  overlap="circular"
-                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                  variant="dot"
-                >
-                  <Avatar variant="rounded" src={imgSrc} alt={imgAlt} />
-                </StyledBadge>
-              </Link>
-            ),
-          )}
+          {teammates.map(({ id, github, avatar, active = false }, index) => (
+            <Link key={index} href={github}>
+              <StyledBadge
+                active={active}
+                overlap="circular"
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                variant="dot"
+              >
+                <Avatar variant="rounded" src={avatar} alt={id + ' avatar'} />
+              </StyledBadge>
+            </Link>
+          ))}
         </Stack>
         <RSSLogo />
       </Stack>

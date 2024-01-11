@@ -11,14 +11,13 @@ import {
   useScrollTrigger,
 } from '@mui/material'
 import { signOut } from 'firebase/auth'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import LanguageMenu from './LanguageMenu'
 import Logo from './Logo'
 
-export function Header(props: { leftSlot?: React.ReactNode }) {
+export default function Header(props: { leftSlot?: React.ReactNode }) {
   const { leftSlot } = props
   const { locale } = useLocale()
-  const location = useLocation()
 
   const user = useBoundStore((state) => state.user)
 
@@ -35,35 +34,24 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
     <Stack direction="row" spacing={1}>
       <LanguageMenu />
       {user ? (
-        location.pathname === RouterPath.Welcome ? (
-          <Button
-            variant="outlined"
-            component={Link}
-            to={RouterPath.Main}
-            color="secondary"
-          >
-            {locale.header.button.explorer}
-          </Button>
-        ) : (
-          <Button variant="outlined" onClick={handleSignOutButton}>
-            {locale.header.button.signOut}
-          </Button>
-        )
+        <Button variant="outlined" onClick={handleSignOutButton}>
+          {locale.header.button.signOut}
+        </Button>
       ) : (
         <>
           <Button
-            size="small"
             component={Link}
             to={RouterPath.SignIn}
+            size="small"
             variant="contained"
             disabled={location.pathname === RouterPath.SignIn}
           >
             {locale.header.button.signIn}
           </Button>
           <Button
-            size="small"
             component={Link}
             to={RouterPath.SignUp}
+            size="small"
             variant="contained"
             disabled={location.pathname === RouterPath.SignUp}
           >
@@ -104,7 +92,7 @@ export function Header(props: { leftSlot?: React.ReactNode }) {
     >
       <Toolbar>
         <Logo />
-        <Box pl={1} flexGrow={1}>
+        <Box pl={2} flexGrow={1}>
           {leftSlot}
         </Box>
         <Box flexShrink={0}>{rightSlot}</Box>

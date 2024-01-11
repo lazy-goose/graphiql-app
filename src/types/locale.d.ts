@@ -89,20 +89,19 @@ export type Locale = {
         wishes: string
       }
       text: {
-        functional: { part1: string; part2: string }
         sponsor: { part1: string; part2: string; part3: string; part4: string }
         team: {
           teammate1: {
             name: string
-            roleList: string[]
+            tasks: string[]
           }
           teammate2: {
             name: string
-            roleList: string[]
+            tasks: string[]
           }
           teammate3: {
             name: string
-            roleList: string[]
+            tasks: string[]
           }
         }
         wishes: string
