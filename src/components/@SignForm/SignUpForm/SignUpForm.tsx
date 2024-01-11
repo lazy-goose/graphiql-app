@@ -60,14 +60,16 @@ export default function SignUpForm() {
       </Typography>
       <TextField
         type="email"
-        label={locale.signInUpPage.inputLabel.email}
+        id="new-email"
         autoComplete="off"
+        label={locale.signInUpPage.inputLabel.email}
         disabled={isSubmitting}
         error={Boolean(errors.email)}
         helperText={errors.email?.message || ' '}
         {...register('email')}
       />
       <PasswordInput
+        id="new-password"
         autoComplete="new-password"
         error={Boolean(errors.password)}
         disabled={isSubmitting}
@@ -75,6 +77,7 @@ export default function SignUpForm() {
       />
       <PasswordStrength password={watch('password')} disabled={isSubmitting} />
       <PasswordInput
+        id="confirm-new-password"
         autoComplete="new-password"
         error={Boolean(errors.confirmPassword)}
         helperText={errors.confirmPassword?.message || ' '}

@@ -56,14 +56,16 @@ export default function SignInForm() {
       </Typography>
       <TextField
         type="email"
+        id="email"
+        autoComplete="username"
         label={locale.signInUpPage.inputLabel.email}
-        autoComplete="email"
         error={Boolean(errors.email)}
         helperText={errors.email?.message || ' '}
         disabled={isSubmitting}
         {...register('email')}
       />
       <PasswordInput
+        id="current-password"
         autoComplete="current-password"
         error={Boolean(errors.password)}
         helperText={errors.password?.message || ' '}
