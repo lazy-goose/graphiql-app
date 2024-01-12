@@ -14,6 +14,7 @@ import { useRef } from 'react'
 export default function QueryRequest() {
   const schema = undefined
   const queryInput = useBoundStore((state) => state.stringifiedQuery)
+  const isResponseFetching = useBoundStore((state) => state.isResponseFetching)
   const setQueryInput = useBoundStore((state) => state.setStringifiedQuery)
   const fetchResponse = useBoundStore((state) => state.fetchQueryResponse)
   const { enqueueSnackbar } = useSnackbar()
@@ -50,7 +51,9 @@ export default function QueryRequest() {
         boxSizing: 'border-box',
         padding: 2,
         position: 'relative',
-        '> *:has(.cm-editor)': { height: 1 },
+        '> :has(.cm-editor)': {
+          display: 'contents',
+        },
       }}
     >
       <CodeMirror
@@ -92,6 +95,9 @@ export default function QueryRequest() {
           startIcon={<PlayArrowRounded viewBox="5 5 15 15" />}
           variant="contained"
           onClick={handleRunButtonClick}
+          sx={{
+            pointerEvents: isResponseFetching ? 'none' : undefined,
+          }}
         >
           {mainPage.button.run}
         </Button>
