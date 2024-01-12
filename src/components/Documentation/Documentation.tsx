@@ -1,6 +1,7 @@
 import { useBoundStore } from '@/store'
-import { Box, CircularProgress, Stack, TextField } from '@mui/material'
+import { Stack, TextField } from '@mui/material'
 import { printSchema } from 'graphql'
+import { Loader } from '../Loader'
 
 export default function Documentation() {
   const schema = useBoundStore((state) => state.schema)
@@ -8,11 +9,7 @@ export default function Documentation() {
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
 
   if (isSchemaFetching) {
-    return (
-      <Box height={1} sx={{ display: 'grid', placeContent: 'center' }}>
-        <CircularProgress />
-      </Box>
-    )
+    return <Loader />
   }
 
   if (schemaError) {

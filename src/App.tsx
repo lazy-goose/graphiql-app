@@ -1,8 +1,9 @@
 import { ThemeProvider } from '@emotion/react'
-import { Backdrop, CircularProgress, GlobalStyles } from '@mui/material'
+import { Backdrop, GlobalStyles } from '@mui/material'
 import { SnackbarProvider } from 'notistack'
 import { useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
+import { Loader } from './components/Loader'
 import { Snackbar } from './components/Snackbar'
 import { LocaleProvider } from './contexts/localeContext'
 import { auth } from './firebase'
@@ -16,7 +17,7 @@ const AppLoader = () => {
       open={true}
       sx={(theme) => ({ background: theme.palette.background.paper })}
     >
-      <CircularProgress />
+      <Loader />
     </Backdrop>
   )
 }

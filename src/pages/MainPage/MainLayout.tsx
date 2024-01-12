@@ -1,13 +1,7 @@
+import { Loader } from '@/components/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Drawer,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material'
+import { Box, Button, Drawer, useMediaQuery, useTheme } from '@mui/material'
 import { Suspense, useLayoutEffect, useRef } from 'react'
 import {
   ResizeGroup,
@@ -201,14 +195,6 @@ const MainDesktopLayout = ({
   )
 }
 
-const Fallback = () => {
-  return (
-    <Box height={1} display="flex" justifyContent="center" alignItems="center">
-      <CircularProgress />
-    </Box>
-  )
-}
-
 export default function MainLayout(slots: MainLayoutSlots) {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down('sm'))
@@ -218,7 +204,7 @@ export default function MainLayout(slots: MainLayoutSlots) {
   const suspendedSlots = Object.fromEntries(
     Object.entries(slots).map(([key, jsx]) => [
       key,
-      <Suspense key={key} fallback={<Fallback />}>
+      <Suspense key={key} fallback={<Loader />}>
         {jsx}
       </Suspense>,
     ]),
