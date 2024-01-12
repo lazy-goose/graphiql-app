@@ -22,7 +22,7 @@ export default function PasswordStrength(props: {
 }) {
   const { password = '', disabled } = props
   const {
-    password: { schema, strength, errors: allErrors },
+    password: { schema, strength, errors: validatorErrors },
   } = useValidators()
   const { locale } = useLocale()
 
@@ -31,14 +31,14 @@ export default function PasswordStrength(props: {
   const shouldContain = () => {
     return (
       <Box component="span">
-        {allErrors.map(([long, short], index) => {
+        {validatorErrors.map(({ long, short }, index) => {
           const color = passwordErrors[0] === long ? 'error.main' : 'inherit'
           return (
             <Fragment key={short}>
               <Box component="span" color={color}>
                 {short}
               </Box>
-              {index !== allErrors.length - 1 ? ', ' : ''}
+              {index !== validatorErrors.length - 1 ? ', ' : ''}
             </Fragment>
           )
         })}

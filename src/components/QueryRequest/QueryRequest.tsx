@@ -34,7 +34,7 @@ export default function QueryRequest() {
       } catch {
         enqueueSnackbar({
           variant: 'customAlert',
-          message: 'Unable to prettify query',
+          message: mainPage.error.prettify,
         })
       }
     }

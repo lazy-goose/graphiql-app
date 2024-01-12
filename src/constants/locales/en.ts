@@ -1,13 +1,11 @@
-import { type Locale } from '@/types/locale'
-
 const locale = {
   header: {
     button: {
-      refetch: 'refetch',
-      signIn: 'sign in',
-      signUp: 'sign up',
-      signOut: 'sign out',
-      explorer: 'explorer',
+      refetch: 'Refetch',
+      signIn: 'Sign in',
+      signUp: 'Sign up',
+      signOut: 'Sign out',
+      explorer: 'Explorer',
     },
     inputLabel: 'Endpoint',
   },
@@ -31,7 +29,7 @@ const locale = {
       },
     },
     button: {
-      submit: 'submit',
+      submit: 'Submit',
     },
     inputLabel: {
       email: 'Email',
@@ -44,56 +42,65 @@ const locale = {
     },
     error: {
       email: {
-        length: 'Email is required',
+        required: 'Email is required',
         validation: 'Must be a valid email',
       },
       password: {
-        length: 'Password is required',
-        characters: ['Must be at least 8 characters or more', '8 characters'],
-        uppercase: [
-          'Should have at least one Uppercase letter',
-          'uppercase letter',
-        ],
-        lowercase: [
-          'Should have at least one Lowercase letter',
-          'lowercase letter',
-        ],
-        digit: ['Should have at least one digit', 'one digit'],
-        specialCharacter: [
-          'Should have at least one special character: !@#$%^&*(),.?":{}|<>',
-          'one special character',
-        ],
+        required: 'Password is required',
+        minLength: {
+          long: 'Must be at least 8 characters or more',
+          short: '8 characters',
+        },
+        uppercase: {
+          long: 'Should have at least one Uppercase letter',
+          short: 'uppercase letter',
+        },
+        lowercase: {
+          long: 'Should have at least one Lowercase letter',
+          short: 'lowercase letter',
+        },
+        digit: {
+          long: 'Should have at least one digit',
+          short: 'one digit',
+        },
+        specialCharacter: {
+          long: 'Should have at least one special character: !@#$%^&*(),.?":{}|<>',
+          short: 'one special character',
+        },
       },
       confirmPassword: {
-        length: 'Password confirm is required',
+        required: 'Password confirm is required',
         matching: 'Passwords do not match',
       },
     },
   },
   mainPage: {
     button: {
-      openDocs: 'documentation',
-      addHeader: 'add header',
-      prettify: 'prettify',
-      run: 'run',
+      openDocs: 'Documentation',
+      addHeader: 'Add header',
+      prettify: 'Prettify',
+      run: 'Run',
     },
     tab: {
-      request: 'request',
-      response: 'response',
-      variables: 'variables',
-      headers: 'headers',
+      request: 'Request',
+      response: 'Response',
+      variables: 'Variables',
+      headers: 'Headers',
     },
     inputLabel: {
       headerKey: 'Header key',
       headerValue: 'Value',
     },
+    error: {
+      prettify: 'Unable to prettify the query',
+    },
     codeEditor: `# Welcome to GraphiQL
 #
 # GraphiQL is an in-browser tool for writing, validating, and
 # testing GraphQL queries.
-# 
+#
 # Type queries into this side of the screen, and you will see intelligent
-# typeaheads aware of the current GraphQL type schema and live syntax and 
+# typeaheads aware of the current GraphQL type schema and live syntax and
 # validation errors highlighted within the text.
 #
 # GraphQL queries typically start with a "{" character. Lines that starts
@@ -112,7 +119,7 @@ const locale = {
   welcomePage: {
     typography: {
       heading: {
-        functional: { part1: `Fully functional`, part2: 'GraphQL explorer' },
+        functional: { part1: 'Fully functional', part2: 'GraphQL explorer' },
         sponsor: 'Sponsor',
         team: 'Our team',
         wishes: 'Wishes a Happy New Year!',
@@ -126,7 +133,7 @@ const locale = {
         },
         sponsor: {
           part1:
-            'is free-of-charge and community-based education program conducted by',
+            'Is free-of-charge and community-based education program conducted by',
           part2: 'developer community since 2013.',
           part3:
             'Everyone can study at RS School, regardless of age, professional employment, or place of residence.',
@@ -154,9 +161,9 @@ const locale = {
   errorBoundary: {
     typography: 'Something went wrong',
     button: {
-      reload: 'reload page',
+      reload: 'Reload page',
     },
   },
 }
 
-export default locale satisfies Locale
+export default locale

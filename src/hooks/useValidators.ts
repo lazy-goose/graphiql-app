@@ -4,8 +4,8 @@ import { useLocale } from './useLocale'
 export const useValidators = () => {
   const { locale } = useLocale()
 
-  const passwordStrengthSchemaErrors = [
-    locale.signInUpPage.error.password.characters,
+  const passwordErrors = [
+    locale.signInUpPage.error.password.minLength,
     locale.signInUpPage.error.password.uppercase,
     locale.signInUpPage.error.password.lowercase,
     locale.signInUpPage.error.password.digit,
@@ -22,20 +22,20 @@ export const useValidators = () => {
 
   const passwordStrengthSchema = z
     .string()
-    .min(8, passwordStrengthSchemaErrors[0][0])
-    .regex(/\p{Uppercase_Letter}/u, passwordStrengthSchemaErrors[1][0])
-    .regex(/\p{Lowercase_Letter}/u, passwordStrengthSchemaErrors[2][0])
-    .regex(/\d/, passwordStrengthSchemaErrors[3][0])
-    .regex(/[!@#$%^&*(),.?":{}|<>]/, passwordStrengthSchemaErrors[4][0])
+    .min(8, passwordErrors[0].long)
+    .regex(/\p{Uppercase_Letter}/u, passwordErrors[1].long)
+    .regex(/\p{Lowercase_Letter}/u, passwordErrors[2].long)
+    .regex(/\d/, passwordErrors[3].long)
+    .regex(/[!@#$%^&*(),.?":{}|<>]/, passwordErrors[4].long)
 
   const passwordSchema = z
     .string()
-    .min(1, locale.signInUpPage.error.password.length)
+    .min(1, locale.signInUpPage.error.password.required)
     .and(passwordStrengthSchema)
 
   const emailSchema = z
     .string()
-    .min(1, locale.signInUpPage.error.email.length)
+    .min(1, locale.signInUpPage.error.email.required)
     .email(locale.signInUpPage.error.email.validation)
 
   const signInSchema = z.object({
@@ -47,7 +47,7 @@ export const useValidators = () => {
     .extend({
       confirmPassword: z
         .string()
-        .min(1, locale.signInUpPage.error.confirmPassword.length),
+        .min(1, locale.signInUpPage.error.confirmPassword.required),
     })
     .refine((data) => data.password === data.confirmPassword, {
       path: ['confirmPassword'],
@@ -57,7 +57,7 @@ export const useValidators = () => {
   return {
     password: {
       strength: passwordStrength,
-      errors: passwordStrengthSchemaErrors,
+      errors: passwordErrors,
       schema: passwordStrengthSchema,
     },
     email: {
