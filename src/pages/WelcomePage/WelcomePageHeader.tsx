@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom'
 
 export default function WelcomePageHeader() {
   const {
-    locale: { header: l },
+    locale: { header },
   } = useLocale()
   return (
     <Header
       leftSlot={
         <OutlineButton component={Link} to={RouterPath.Main} color="secondary">
-          {l.button.explorer}
+          {header.button.explorer}
         </OutlineButton>
       }
     />

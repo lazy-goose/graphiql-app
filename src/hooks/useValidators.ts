@@ -2,22 +2,24 @@ import { z } from 'zod'
 import { useLocale } from './useLocale'
 
 export const useValidators = () => {
-  const { locale } = useLocale()
+  const {
+    locale: { signInUpPage },
+  } = useLocale()
 
   const passwordErrors = [
-    locale.signInUpPage.error.password.minLength,
-    locale.signInUpPage.error.password.uppercase,
-    locale.signInUpPage.error.password.lowercase,
-    locale.signInUpPage.error.password.digit,
-    locale.signInUpPage.error.password.specialCharacter,
+    signInUpPage.error.password.minLength,
+    signInUpPage.error.password.uppercase,
+    signInUpPage.error.password.lowercase,
+    signInUpPage.error.password.digit,
+    signInUpPage.error.password.specialCharacter,
   ]
 
   const passwordStrength = [
-    ['#d32f2f', locale.signInUpPage.typography.passwordStrength.tooWeak],
-    ['#ef9d00', locale.signInUpPage.typography.passwordStrength.weak],
-    ['#dedb0a', locale.signInUpPage.typography.passwordStrength.fair],
-    ['#98bf54', locale.signInUpPage.typography.passwordStrength.good],
-    ['#5eb762', locale.signInUpPage.typography.passwordStrength.strong],
+    ['#d32f2f', signInUpPage.typography.passwordStrength.tooWeak],
+    ['#ef9d00', signInUpPage.typography.passwordStrength.weak],
+    ['#dedb0a', signInUpPage.typography.passwordStrength.fair],
+    ['#98bf54', signInUpPage.typography.passwordStrength.good],
+    ['#5eb762', signInUpPage.typography.passwordStrength.strong],
   ]
 
   const passwordStrengthSchema = z
@@ -30,13 +32,13 @@ export const useValidators = () => {
 
   const passwordSchema = z
     .string()
-    .min(1, locale.signInUpPage.error.password.required)
+    .min(1, signInUpPage.error.password.required)
     .and(passwordStrengthSchema)
 
   const emailSchema = z
     .string()
-    .min(1, locale.signInUpPage.error.email.required)
-    .email(locale.signInUpPage.error.email.validation)
+    .min(1, signInUpPage.error.email.required)
+    .email(signInUpPage.error.email.validation)
 
   const signInSchema = z.object({
     email: emailSchema,
@@ -47,11 +49,11 @@ export const useValidators = () => {
     .extend({
       confirmPassword: z
         .string()
-        .min(1, locale.signInUpPage.error.confirmPassword.required),
+        .min(1, signInUpPage.error.confirmPassword.required),
     })
     .refine((data) => data.password === data.confirmPassword, {
       path: ['confirmPassword'],
-      message: locale.signInUpPage.error.confirmPassword.matching,
+      message: signInUpPage.error.confirmPassword.matching,
     })
 
   return {

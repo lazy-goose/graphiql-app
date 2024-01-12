@@ -24,7 +24,9 @@ export default function PasswordStrength(props: {
   const {
     password: { schema, strength, errors: validatorErrors },
   } = useValidators()
-  const { locale } = useLocale()
+  const {
+    locale: { signInUpPage },
+  } = useLocale()
 
   const passwordErrors = getPasswordErrors(password, schema)
 
@@ -51,8 +53,7 @@ export default function PasswordStrength(props: {
   return (
     <Box px={1}>
       <FormHelperText>
-        {locale.signInUpPage.typography.passwordStrength.description}{' '}
-        {shouldContain()}
+        {signInUpPage.typography.passwordStrength.description} {shouldContain()}
         <PasswordStrengthBar
           disabled={disabled}
           current={currentStrength}

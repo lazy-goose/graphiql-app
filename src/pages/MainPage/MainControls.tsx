@@ -6,7 +6,9 @@ import { Stack } from '@mui/material'
 
 export default function MainControls() {
   const toggleAside = useBoundStore((s) => s.toggleAside)
-  const { locale } = useLocale()
+  const {
+    locale: { mainPage },
+  } = useLocale()
 
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
 
@@ -31,7 +33,7 @@ export default function MainControls() {
         loadingPosition="start"
         startIcon={<Description />}
       >
-        {locale.mainPage.button.openDocs}
+        {mainPage.button.openDocs}
       </LoadingButton>
     </Stack>
   )

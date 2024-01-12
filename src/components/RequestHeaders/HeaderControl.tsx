@@ -28,7 +28,9 @@ export default function HeaderControl(props: {
     handleDelete,
   } = props
 
-  const { locale } = useLocale()
+  const {
+    locale: { mainPage },
+  } = useLocale()
 
   return (
     <Box
@@ -67,7 +69,7 @@ export default function HeaderControl(props: {
         fullWidth
         options={PredefinedHeaders}
         renderInput={(params) => (
-          <TextField {...params} label={locale.mainPage.inputLabel.headerKey} />
+          <TextField {...params} label={mainPage.inputLabel.headerKey} />
         )}
         value={headerKey}
         onChange={(_, value) => handleKeyChange(value || '')}
@@ -76,7 +78,7 @@ export default function HeaderControl(props: {
         sx={{ gridArea: 'value' }}
         size="small"
         fullWidth
-        label={locale.mainPage.inputLabel.headerValue}
+        label={mainPage.inputLabel.headerValue}
         value={headerVal}
         onChange={(event) => handleValChange(event.currentTarget.value)}
       />

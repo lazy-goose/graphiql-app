@@ -10,7 +10,9 @@ export default function RequestHeaders() {
   const deleteHeader = useBoundStore((state) => state.deleteHeader)
   const changeHeader = useBoundStore((state) => state.changeHeader)
 
-  const { locale } = useLocale()
+  const {
+    locale: { mainPage },
+  } = useLocale()
 
   return (
     <Stack
@@ -42,7 +44,7 @@ export default function RequestHeaders() {
           variant="outlined"
           onClick={() => createHeader(crypto.randomUUID())}
         >
-          {locale.mainPage.button.addHeader}
+          {mainPage.button.addHeader}
         </Button>
       </Box>
     </Stack>

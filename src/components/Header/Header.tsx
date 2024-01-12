@@ -78,7 +78,9 @@ const AsBurgerMenu = (props: {
 
 export default function Header(props: { leftSlot?: React.ReactNode }) {
   const { leftSlot } = props
-  const { locale } = useLocale()
+  const {
+    locale: { header },
+  } = useLocale()
 
   const theme = useTheme()
   const user = useBoundStore((state) => state.user)
@@ -97,7 +99,7 @@ export default function Header(props: { leftSlot?: React.ReactNode }) {
       <LanguageMenu />
       {user ? (
         <OutlineButton onClick={handleSignOutButton} startIcon={<Logout />}>
-          {locale.header.button.signOut}
+          {header.button.signOut}
         </OutlineButton>
       ) : (
         <>
@@ -107,7 +109,7 @@ export default function Header(props: { leftSlot?: React.ReactNode }) {
             variant="contained"
             disabled={location.pathname === RouterPath.SignIn}
           >
-            {locale.header.button.signIn}
+            {header.button.signIn}
           </Button>
           <Button
             component={Link}
@@ -115,7 +117,7 @@ export default function Header(props: { leftSlot?: React.ReactNode }) {
             variant="contained"
             disabled={location.pathname === RouterPath.SignUp}
           >
-            {locale.header.button.signUp}
+            {header.button.signUp}
           </Button>
         </>
       )}

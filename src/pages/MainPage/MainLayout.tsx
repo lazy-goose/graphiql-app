@@ -52,7 +52,9 @@ const MainMobileLayout = ({
 }: MainLayoutSlots) => {
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   const toggleAside = useBoundStore((s) => s.toggleAside)
-  const { locale } = useLocale()
+  const {
+    locale: { mainPage },
+  } = useLocale()
   return (
     <Box height={1}>
       <Drawer
@@ -79,12 +81,12 @@ const MainMobileLayout = ({
               tabs={[
                 {
                   value: 'Request',
-                  label: locale.mainPage.tab.request,
+                  label: mainPage.tab.request,
                   jsx: request,
                 },
                 {
                   value: 'Response',
-                  label: locale.mainPage.tab.response,
+                  label: mainPage.tab.response,
                   jsx: response,
                 },
               ]}
@@ -98,12 +100,12 @@ const MainMobileLayout = ({
               tabs={[
                 {
                   value: 'Variables',
-                  label: locale.mainPage.tab.variables,
+                  label: mainPage.tab.variables,
                   jsx: variables,
                 },
                 {
                   value: 'Headers',
-                  label: locale.mainPage.tab.headers,
+                  label: mainPage.tab.headers,
                   jsx: headers,
                 },
               ]}
@@ -122,8 +124,10 @@ const MainDesktopLayout = ({
   response,
   variables,
 }: MainLayoutSlots) => {
+  const {
+    locale: { mainPage },
+  } = useLocale()
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
-  const { locale } = useLocale()
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
   const schemaError = useBoundStore((state) => state.schemaError)
   return (
@@ -151,7 +155,7 @@ const MainDesktopLayout = ({
                 tabs={[
                   {
                     value: 'Request',
-                    label: locale.mainPage.tab.request,
+                    label: mainPage.tab.request,
                     jsx: request,
                   },
                 ]}
@@ -163,12 +167,12 @@ const MainDesktopLayout = ({
                 tabs={[
                   {
                     value: 'Variables',
-                    label: locale.mainPage.tab.variables,
+                    label: mainPage.tab.variables,
                     jsx: variables,
                   },
                   {
                     value: 'Headers',
-                    label: locale.mainPage.tab.headers,
+                    label: mainPage.tab.headers,
                     jsx: headers,
                   },
                 ]}
@@ -184,7 +188,7 @@ const MainDesktopLayout = ({
             tabs={[
               {
                 value: 'Response',
-                label: locale.mainPage.tab.response,
+                label: mainPage.tab.response,
                 jsx: response,
               },
             ]}

@@ -19,7 +19,9 @@ export default function SignUpForm() {
     signUp: { schema },
   } = useValidators()
 
-  const { locale } = useLocale()
+  const {
+    locale: { signInUpPage },
+  } = useLocale()
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -60,13 +62,13 @@ export default function SignUpForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Typography mb={2} component="h2" variant="h4">
-        {locale.signInUpPage.typography.heading.signUp}
+        {signInUpPage.typography.heading.signUp}
       </Typography>
       <TextField
         type="email"
         id="new-email"
         autoComplete="off"
-        label={locale.signInUpPage.inputLabel.email}
+        label={signInUpPage.inputLabel.email}
         disabled={isSubmitting}
         error={Boolean(errors.email)}
         helperText={errors.email?.message || ' '}
@@ -94,7 +96,7 @@ export default function SignUpForm() {
         size="large"
         variant="contained"
       >
-        {locale.signInUpPage.button.submit}
+        {signInUpPage.button.submit}
       </LoadingButton>
       <Typography
         mt={1}
@@ -103,7 +105,7 @@ export default function SignUpForm() {
           color: isSubmitting ? theme.palette.text.disabled : 'inherit',
         })}
       >
-        {locale.signInUpPage.typography.question.signUp}{' '}
+        {signInUpPage.typography.question.signUp}{' '}
         <Link
           component={RouterLink}
           to={RouterPath.SignIn}
@@ -114,7 +116,7 @@ export default function SignUpForm() {
               : theme.palette.primary.main,
           })}
         >
-          {locale.signInUpPage.link.signIn}
+          {signInUpPage.link.signIn}
         </Link>
       </Typography>
     </Stack>

@@ -51,7 +51,7 @@ const welcomePageTheme = createTheme(mainTheme, {
 
 export default function WelcomePage() {
   const {
-    locale: { welcomePage: l },
+    locale: { welcomePage },
   } = useLocale()
   return (
     <Stack minHeight="inherit">
@@ -62,10 +62,10 @@ export default function WelcomePage() {
             <Box {...section}>
               {/* prettier-ignore */}
               <Typography variant="h2" maxWidth="md" mx="auto">
-                {l.typography.heading.functional.part1}
+                {welcomePage.typography.heading.functional.part1}
                 {' '}
                 <Box component="span" color="secondary.main">
-                  {l.typography.heading.functional.part2}
+                  {welcomePage.typography.heading.functional.part2}
                 </Box>
               </Typography>
               <Box
@@ -90,29 +90,31 @@ export default function WelcomePage() {
           <Container maxWidth="md">
             <Box {...section}>
               <Typography variant="h2">
-                {l.typography.heading.sponsor}
+                {welcomePage.typography.heading.sponsor}
               </Typography>
               {/* prettier-ignore */}
               <Typography variant="body1">
                 <Box component="span" fontWeight="bold">RS School</Box>
                 {' '}
-                {l.typography.text.sponsor.part1}
+                {welcomePage.typography.text.sponsor.part1}
                 {' '}
                 <Link variant="inherit" href="https://rs.school/react">The Rolling Scopes</Link>
                 {' '}
-                {l.typography.text.sponsor.part2}
+                {welcomePage.typography.text.sponsor.part2}
               </Typography>
               <Typography variant="body2">
-                {l.typography.text.sponsor.part3}
+                {welcomePage.typography.text.sponsor.part3}
               </Typography>
               <Typography variant="body2">
-                {l.typography.text.sponsor.part4}
+                {welcomePage.typography.text.sponsor.part4}
               </Typography>
             </Box>
           </Container>
           <Container maxWidth="lg">
             <Box {...section}>
-              <Typography variant="h2">{l.typography.heading.team}</Typography>
+              <Typography variant="h2">
+                {welcomePage.typography.heading.team}
+              </Typography>
               <Grid container gap={2} justifyContent="center">
                 {teammates.map(({ id, avatar, github, telegram }) => (
                   <Grid
@@ -127,8 +129,8 @@ export default function WelcomePage() {
                     })}
                   >
                     <TeammateCard
-                      personName={l.typography.text.team[id].name}
-                      taskList={l.typography.text.team[id].tasks}
+                      personName={welcomePage.typography.text.team[id].name}
+                      taskList={welcomePage.typography.text.team[id].tasks}
                       avatarSrc={avatar}
                       socials={{
                         github,
@@ -148,10 +150,10 @@ export default function WelcomePage() {
           <Container maxWidth="md">
             <Box {...section}>
               <Typography variant="h2">
-                {l.typography.heading.wishes}
+                {welcomePage.typography.heading.wishes}
               </Typography>
               <Typography variant="body1" textAlign="center">
-                {l.typography.text.wishes}
+                {welcomePage.typography.text.wishes}
               </Typography>
               <Box
                 display="block"
