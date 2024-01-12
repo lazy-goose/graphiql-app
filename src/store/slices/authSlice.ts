@@ -1,6 +1,6 @@
 import type { AuthSlice, SliceCreator } from '../store'
 
-export const createAuthSlice: SliceCreator<AuthSlice> = (set) => ({
+export const createAuthSlice: SliceCreator<AuthSlice> = (set, get) => ({
   user: null,
   isUserLoading: true,
   setUser: (user) =>
@@ -8,4 +8,5 @@ export const createAuthSlice: SliceCreator<AuthSlice> = (set) => ({
       state.user = user
       state.isUserLoading = false
     }),
+  isAuthenticated: () => Boolean(get().user),
 })

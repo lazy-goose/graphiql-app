@@ -49,6 +49,7 @@ export type AuthSlice = {
   user: User | null
   isUserLoading: boolean
   setUser: (user: User | null) => void
+  isAuthenticated: () => boolean
 }
 
 export type Store = AuthSlice &

@@ -8,10 +8,9 @@ export default function AuthProtected(props: {
   children?: React.ReactNode
 }) {
   const { redirectPath = RouterPath.Welcome, whenUser = true, children } = props
-  const user = useBoundStore((state) => state.user)
-  const isUser = Boolean(user)
+  const isAuthenticated = useBoundStore((state) => state.isAuthenticated())
 
-  if (whenUser ? !isUser : isUser) {
+  if (whenUser ? !isAuthenticated : isAuthenticated) {
     return <Navigate to={redirectPath} replace />
   }
 
