@@ -19,6 +19,13 @@ export type ResponseSlice = {
   stringifiedResponse: string
   responseError: Error | null
   isResponseFetching: boolean
+  responseMetrics: {
+    statusText: string
+    successful: boolean
+    status: number
+    timeMs: number
+    sizeKb: number
+  }
   fetchQueryResponse: () => Promise<void>
 }
 export type RequestSettingsSlice = {
