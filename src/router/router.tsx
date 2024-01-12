@@ -13,18 +13,21 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
+import AuthProtected from './AuthProtected'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFoundPage />} path="">
-      <Route
-        path={RouterPath.Main}
-        element={
-          <ErrorBoundaryWrapper errorHeaderSlot={<Header />}>
-            <MainPage />
-          </ErrorBoundaryWrapper>
-        }
-      />
+      <Route element={<AuthProtected redirectPath={RouterPath.Welcome} />}>
+        <Route
+          path={RouterPath.Main}
+          element={
+            <ErrorBoundaryWrapper errorHeaderSlot={<Header />}>
+              <MainPage />
+            </ErrorBoundaryWrapper>
+          }
+        />
+      </Route>
       <Route
         path={RouterPath.Welcome}
         element={
@@ -34,21 +37,27 @@ export const router = createBrowserRouter(
         }
       />
       <Route
-        path={RouterPath.SignIn}
         element={
-          <ErrorBoundaryWrapper errorHeaderSlot={<SignPagesHeader />}>
-            <SignInPage />
-          </ErrorBoundaryWrapper>
+          <AuthProtected whenUser={false} redirectPath={RouterPath.Main} />
         }
-      />
-      <Route
-        path={RouterPath.SignUp}
-        element={
-          <ErrorBoundaryWrapper errorHeaderSlot={<SignPagesHeader />}>
-            <SignUpPage />
-          </ErrorBoundaryWrapper>
-        }
-      />
+      >
+        <Route
+          path={RouterPath.SignIn}
+          element={
+            <ErrorBoundaryWrapper errorHeaderSlot={<SignPagesHeader />}>
+              <SignInPage />
+            </ErrorBoundaryWrapper>
+          }
+        />
+        <Route
+          path={RouterPath.SignUp}
+          element={
+            <ErrorBoundaryWrapper errorHeaderSlot={<SignPagesHeader />}>
+              <SignUpPage />
+            </ErrorBoundaryWrapper>
+          }
+        />
+      </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Route>,
   ),
