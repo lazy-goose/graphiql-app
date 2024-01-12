@@ -1,4 +1,4 @@
-import { PredefinedHeaders } from '@/constants/constants'
+import { PredefinedHeaders } from '@/constants'
 import { useLocale } from '@/hooks/useLocale'
 import { Delete } from '@mui/icons-material'
 import {

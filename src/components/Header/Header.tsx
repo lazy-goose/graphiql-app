@@ -1,4 +1,4 @@
-import { RouterPath } from '@/constants/constants'
+import { RouterPath } from '@/constants'
 import { auth } from '@/firebase'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'

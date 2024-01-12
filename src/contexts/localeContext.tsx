@@ -1,4 +1,4 @@
-import { Locales, Region } from '@/constants/constants'
+import { Locales, Region } from '@/constants'
 import { type LocaleWithMeta } from '@/types/locale'
 import { createContext, useState } from 'react'
 

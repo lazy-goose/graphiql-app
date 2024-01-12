@@ -1,4 +1,4 @@
-import { RouterPath } from '@/constants/constants'
+import { RouterPath } from '@/constants'
 import { Box, Link, type LinkProps } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
 

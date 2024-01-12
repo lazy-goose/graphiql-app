@@ -1,4 +1,4 @@
-import { Locales, type Region } from '@/constants/constants'
+import { Locales, type Region } from '@/constants'
 import { useLocale } from '@/hooks/useLocale'
 import { Language } from '@mui/icons-material'
 import { Box, IconButton, Menu, MenuItem } from '@mui/material'

@@ -1,6 +1,6 @@
 import { ErrorBoundaryWrapper } from '@/components/@Error/ErrorBoundaryWrapper'
 import { Header } from '@/components/Header'
-import { RouterPath } from '@/constants/constants'
+import { RouterPath } from '@/constants'
 import { SignInPage } from '@/pages/@SignPages/SignInPage'
 import SignPagesHeader from '@/pages/@SignPages/SignPagesHeader'
 import { SignUpPage } from '@/pages/@SignPages/SignUpPage'

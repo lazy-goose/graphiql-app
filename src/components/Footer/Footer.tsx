@@ -1,4 +1,4 @@
-import { teammates } from '@/constants/constants'
+import { teammates } from '@/constants'
 import { Avatar, Badge, Link, Paper, Stack, styled } from '@mui/material'
 import { RSSLogo } from './RSSLogo'
 
