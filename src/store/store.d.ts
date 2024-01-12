@@ -13,11 +13,13 @@ export type SchemaSlice = {
   schema: GraphQLSchema | null
   schemaError: Error | null
   isSchemaFetching: boolean
-  fetchSchema: (baseUrl?: string) => void
+  fetchSchema: (baseUrl?: string) => Promise<void>
 }
 export type ResponseSlice = {
-  response: string
-  changeResponse: (newResponse: string) => void
+  stringifiedResponse: string
+  responseError: Error | null
+  isResponseFetching: boolean
+  fetchQueryResponse: () => Promise<void>
 }
 export type RequestSettingsSlice = {
   headers: Header[]

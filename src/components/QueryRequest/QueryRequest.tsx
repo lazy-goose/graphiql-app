@@ -1,9 +1,7 @@
-import { getApiResponse } from '@/API'
 import { useBaseTheme } from '@/hooks/@CodeMirror/useBaseTheme'
 import { useGraphQlStyle } from '@/hooks/@CodeMirror/useGraphQlStyle'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
-import { getHeadersObject } from '@/utils/getHeadersObject'
 import { queryPrettify } from '@/utils/queryPrettify'
 import { diagnosticCount } from '@codemirror/lint'
 import { FormatIndentIncrease, PlayArrowRounded } from '@mui/icons-material'
@@ -17,10 +15,7 @@ export default function QueryRequest() {
   const schema = undefined
   const queryInput = useBoundStore((state) => state.stringifiedQuery)
   const setQueryInput = useBoundStore((state) => state.setStringifiedQuery)
-  const queryVariables = useBoundStore((state) => state.stringifiedVariables)
-  const queryHeaders = useBoundStore((state) => state.headers)
-  const baseUrl = useBoundStore((state) => state.baseUrl)
-  const changeResponse = useBoundStore((state) => state.changeResponse)
+  const fetchResponse = useBoundStore((state) => state.fetchQueryResponse)
   const { enqueueSnackbar } = useSnackbar()
   const {
     locale: { mainPage },
@@ -43,20 +38,9 @@ export default function QueryRequest() {
       }
     }
   }
+
   const handleRunButtonClick = () => {
-    getApiResponse(
-      baseUrl,
-      queryInput,
-      getHeadersObject(queryHeaders),
-      queryVariables,
-    )
-      .then((result) => changeResponse(result))
-      .catch((error: Error) => {
-        enqueueSnackbar({
-          variant: 'customAlert',
-          message: error?.message,
-        })
-      })
+    fetchResponse()
   }
 
   return (

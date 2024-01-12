@@ -8,7 +8,7 @@ import CodeMirror from '@uiw/react-codemirror'
 export default function QueryResponse() {
   const baseTheme = useBaseTheme()
   const jsonStyleExtension = useJsonStyle()
-  const queryResponse = useBoundStore((state) => state.response)
+  const queryResponse = useBoundStore((state) => state.stringifiedResponse)
 
   return (
     <Box

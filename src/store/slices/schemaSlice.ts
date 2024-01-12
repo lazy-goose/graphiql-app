@@ -1,6 +1,9 @@
-import { getApiIntrospectionSchema } from '@/API'
 import { getHeadersObject } from '@/utils/getHeadersObject'
-import { type GraphQLSchema } from 'graphql'
+import {
+  buildClientSchema,
+  getIntrospectionQuery,
+  type GraphQLSchema,
+} from 'graphql'
 import { type Draft } from 'immer'
 import type { SchemaSlice, SliceCreator } from '../store'
 
@@ -9,13 +12,26 @@ export const createSchemaSlice: SliceCreator<SchemaSlice> = (set, get) => ({
   schemaError: null,
   isSchemaFetching: false,
   fetchSchema: async (baseUrl = get().baseUrl) => {
-    set((state) => {
-      state.isSchemaFetching = true
-      state.baseUrl = baseUrl
-    })
+    const { headers } = get()
+
     try {
-      const headers = getHeadersObject(get().headers)
-      const schema = await getApiIntrospectionSchema(baseUrl, headers)
+      set((state) => {
+        state.isSchemaFetching = true
+        state.baseUrl = baseUrl
+      })
+
+      const response = await fetch(baseUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getHeadersObject(headers),
+        },
+        body: JSON.stringify({ query: getIntrospectionQuery() }),
+      })
+
+      const result = await response.json()
+      const schema = buildClientSchema(result.data)
+
       set((state) => {
         state.schemaError = null
         state.schema = schema as unknown as Draft<GraphQLSchema>
