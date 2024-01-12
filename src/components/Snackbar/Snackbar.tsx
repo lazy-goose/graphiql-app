@@ -6,12 +6,6 @@ export type CustomSnackbarProps = {
   AlertProps?: Omit<AlertProps, 'id' | 'message'>
 }
 
-declare module 'notistack' {
-  interface VariantOverrides {
-    customAlert: CustomSnackbarProps
-  }
-}
-
 const Snackbar = React.forwardRef<
   HTMLDivElement,
   CustomContentProps & CustomSnackbarProps

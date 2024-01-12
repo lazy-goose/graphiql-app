@@ -1,3 +1,5 @@
+import { type CustomSnackbarProps } from '@/components/Snackbar/Snackbar'
+
 export * from './locale'
 
 export type UserSignUpData = {
@@ -9,4 +11,10 @@ export type UserSignUpData = {
 export type UserSignInData = {
   email: string
   password: string
+}
+
+declare module 'notistack' {
+  interface VariantOverrides {
+    customAlert: CustomSnackbarProps
+  }
 }
