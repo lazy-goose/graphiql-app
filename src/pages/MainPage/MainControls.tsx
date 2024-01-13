@@ -5,10 +5,11 @@ import { LoadingButton } from '@mui/lab'
 import { Stack } from '@mui/material'
 
 export default function MainControls() {
-  const toggleAside = useBoundStore((s) => s.toggleAside)
   const {
     locale: { mainPage },
   } = useLocale()
+  const toggleAside = useBoundStore((s) => s.toggleAside)
+  const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
 
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
 
@@ -29,7 +30,7 @@ export default function MainControls() {
           borderRadius: 0,
           paddingInline: 1.5,
         }}
-        loading={isSchemaFetching}
+        loading={!isAsideOpen && isSchemaFetching}
         loadingPosition="start"
         startIcon={<Description />}
       >
