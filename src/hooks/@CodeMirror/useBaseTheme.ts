@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material'
 import { EditorView } from '@uiw/react-codemirror'
 
 import '@fontsource/source-code-pro'
@@ -8,6 +9,7 @@ export const useBaseTheme = (
   } = {},
 ) => {
   const { autoHideLintGutter = false } = params
+  const theme = useTheme()
 
   const colors = {
     gutter: '#a0a0a0',
@@ -47,6 +49,14 @@ export const useBaseTheme = (
       width: '0.8em',
       height: '0.8em',
       margin: '0.1em',
+    },
+    '.cm-tooltip': {
+      fontSize: '0.9rem',
+      backgroundColor: theme.palette.background.paper,
+    },
+    '.cm-tooltip-hover': {
+      padding: theme.spacing(1),
+      color: theme.palette.error.main,
     },
     ...(autoHideLintGutter && {
       '.cm-gutter-lint:not(:has(.cm-lint-marker))': {
