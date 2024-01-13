@@ -1,3 +1,4 @@
+import { queryPrettify } from '@/utils/queryPrettify'
 import type { RequestSettingsSlice, SliceCreator } from '../store'
 
 export const createRequestSettingsSlice: SliceCreator<RequestSettingsSlice> = (
@@ -42,19 +43,20 @@ export const createRequestSettingsSlice: SliceCreator<RequestSettingsSlice> = (
     set((state) => {
       state.baseUrl = baseUrl
     }),
-  stringifiedQuery: `query countries($filter: CountryFilterInput) {
+  stringifiedQuery:
+    queryPrettify(`query countries($filter: CountryFilterInput) {
   countries(filter: $filter) {
-  __typename
-  code
-  name
-  native
-  phone
-  capital
-  currency
-  emoji
-  emojiU
-}
-}`,
+    __typename
+    code
+    name
+    native
+    phone
+    capital
+    currency
+    emoji
+    emojiU
+  }
+}`),
   setStringifiedQuery: (query) =>
     set((state) => {
       state.stringifiedQuery = query
