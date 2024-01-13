@@ -4,8 +4,8 @@ import { tags } from '@lezer/highlight'
 export const useJsonStyle = () => {
   const colors = {
     unquoted: '#13c913',
-    string: '#ff32c6',
-    property: '#0286fe',
+    string: '#e535ab',
+    property: '#007deb',
     nullish: '#919193',
     default: '#232327',
   }
