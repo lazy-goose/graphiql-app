@@ -12,7 +12,7 @@ import { useSnackbar } from 'notistack'
 import { useRef } from 'react'
 
 export default function QueryRequest() {
-  const schema = undefined
+  const schema = useBoundStore((state) => state.schema)
   const queryInput = useBoundStore((state) => state.stringifiedQuery)
   const isResponseFetching = useBoundStore((state) => state.isResponseFetching)
   const setQueryInput = useBoundStore((state) => state.setStringifiedQuery)
@@ -59,7 +59,11 @@ export default function QueryRequest() {
       <CodeMirror
         value={queryInput}
         onChange={setQueryInput}
-        extensions={[cm6graphql(schema), baseTheme, graphQlStyleExtension]}
+        extensions={[
+          cm6graphql(schema || undefined),
+          baseTheme,
+          graphQlStyleExtension,
+        ]}
         onUpdate={(cm) => {
           lintErrorsRef.current = diagnosticCount(cm.state)
         }}
