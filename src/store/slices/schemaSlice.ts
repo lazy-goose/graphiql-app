@@ -40,6 +40,7 @@ export const createSchemaSlice: SliceCreator<SchemaSlice> = (set, get) => ({
     } catch (e) {
       set((state) => {
         state.schemaError = e as Error
+        state.schema = null
       })
     } finally {
       set((state) => {

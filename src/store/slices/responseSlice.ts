@@ -65,6 +65,7 @@ export const createResponseSlice: SliceCreator<ResponseSlice> = (set, get) => ({
         response.statusText || StatusText.get(response.status) || ''
 
       set((state) => {
+        state.responseError = null
         state.stringifiedResponse = prettifyResponse(responseJson)
         state.responseMetrics = {
           statusText,
@@ -77,6 +78,7 @@ export const createResponseSlice: SliceCreator<ResponseSlice> = (set, get) => ({
     } catch (e) {
       set((state) => {
         state.responseError = e as Error
+        state.stringifiedResponse = ''
         state.responseMetrics = {
           statusText: '',
           successful: false,
