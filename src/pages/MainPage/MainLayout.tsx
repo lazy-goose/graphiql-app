@@ -23,7 +23,7 @@ type MainLayoutSlots = {
 
 const verticalLayoutStackProps = () => {
   return {
-    stackProps: {
+    StackProps: {
       sx: {
         [`& > .${ResizeGroupClassName.FragmentWindow(0)}`]: {
           minHeight:
@@ -40,7 +40,7 @@ const verticalLayoutStackProps = () => {
         },
       },
     },
-  } satisfies Pick<ResizeGroupProps, 'stackProps'>
+  } satisfies Pick<ResizeGroupProps, 'StackProps'>
 }
 
 const MainMobileLayout = ({

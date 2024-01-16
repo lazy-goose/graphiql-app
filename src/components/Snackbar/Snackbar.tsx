@@ -13,12 +13,12 @@ const Snackbar = React.forwardRef<
   const {
     message,
     id,
-    AlertProps: { severity = 'error', ...alertProps } = {},
+    AlertProps: { severity = 'error', ...AlertProps } = {},
   } = props
   const { closeSnackbar } = useSnackbar()
   const onClose = () => closeSnackbar(id)
   return (
-    <Alert ref={ref} severity={severity} onClose={onClose} {...alertProps}>
+    <Alert ref={ref} severity={severity} onClose={onClose} {...AlertProps}>
       {message}
     </Alert>
   )

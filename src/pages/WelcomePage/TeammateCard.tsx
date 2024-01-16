@@ -1,3 +1,4 @@
+import mergeSx from '@/utils/mergeSx'
 import { GitHub, StarRate, Telegram } from '@mui/icons-material'
 import {
   Avatar,
@@ -15,20 +16,17 @@ import {
 } from '@mui/material'
 
 const StyledLink = (props: LinkProps = {}) => {
-  const { sx, ...pass } = props
+  const { sx, ...LinkProps } = props
   return (
     <Link
-      sx={[
-        (theme) => ({
-          lineHeight: 1,
-          color: 'inherit',
-          '&:hover': {
-            color: theme.palette.info.main,
-          },
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      {...pass}
+      sx={mergeSx(sx, (theme) => ({
+        lineHeight: 1,
+        color: 'inherit',
+        '&:hover': {
+          color: theme.palette.info.main,
+        },
+      }))}
+      {...LinkProps}
     />
   )
 }
@@ -45,24 +43,21 @@ export default function TeammateCard(props: {
   CardProps?: CardProps
 }) {
   const { avatarSrc, avatarAlt, personName, taskList, socials } = props
-  const { CardProps: { sx, ...passCardProps } = {} } = props
+  const { CardProps: { sx, ...CardProps } = {} } = props
 
   const gap = 2
 
   return (
     <Card
       variant="outlined"
-      sx={[
-        {
-          boxSizing: 'border-box',
-          py: 1.5,
-          px: 2.5,
-          display: 'flex',
-          flexDirection: 'column',
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      {...passCardProps}
+      sx={mergeSx(sx, {
+        boxSizing: 'border-box',
+        py: 1.5,
+        px: 2.5,
+        display: 'flex',
+        flexDirection: 'column',
+      })}
+      {...CardProps}
     >
       <CardContent sx={{ flex: 1, p: 0 }}>
         <Avatar

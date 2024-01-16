@@ -11,7 +11,7 @@ import React, { useState } from 'react'
 
 const PasswordInput = React.forwardRef<HTMLInputElement, TextFieldProps>(
   function PasswordInput(props, ref) {
-    const { InputProps, inputProps, disabled, ...passTextFieldProps } = props
+    const { InputProps, inputProps, disabled, ...TextFieldProps } = props
     const [showPassword, setShowPassword] = useState(false)
     const {
       locale: { signInUpPage },
@@ -19,6 +19,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const toggleShowPassword = () => setShowPassword(!showPassword)
     return (
       <TextField
+        ref={ref}
         variant="outlined"
         type={showPassword ? 'text' : 'password'}
         label={signInUpPage.inputLabel.password}
@@ -45,8 +46,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, TextFieldProps>(
           ),
           ...InputProps,
         }}
-        ref={ref}
-        {...passTextFieldProps}
+        {...TextFieldProps}
       />
     )
   },

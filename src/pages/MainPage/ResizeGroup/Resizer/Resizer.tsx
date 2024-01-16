@@ -1,3 +1,4 @@
+import mergeSx from '@/utils/mergeSx'
 import {
   Box,
   Divider,
@@ -11,15 +12,14 @@ export default function Resizer(props: {
   orientation: NonNullable<DividerProps['orientation']>
   padding?: number
   thickness?: number
-  boxProps?: BoxProps
+  BoxProps?: BoxProps
 }) {
   const {
     orientation,
     padding = defaults.padding,
     thickness = defaults.thickness,
-    boxProps,
   } = props
-  const { sx, ...passBoxProps } = boxProps || {}
+  const { BoxProps: { sx, ...BoxProps } = {} } = props
 
   const size = padding * 2 + thickness
 
@@ -48,11 +48,7 @@ export default function Resizer(props: {
   } satisfies SxProps
 
   return (
-    <Box
-      flexShrink={0}
-      sx={[boxStyles, ...(Array.isArray(sx) ? sx : [sx])]}
-      {...passBoxProps}
-    >
+    <Box flexShrink={0} sx={mergeSx(sx, boxStyles)} {...BoxProps}>
       <Divider
         orientation={orientation}
         sx={{

@@ -5,9 +5,9 @@ import useResizer, { type ResizeEvent } from './useResizer'
 export default function SmartResizer(props: {
   orientation: 'vertical' | 'horizontal'
   onResize: (e: ResizeEvent) => void
-  boxProps?: BoxProps
+  BoxProps?: BoxProps
 }) {
-  const { orientation, onResize, boxProps } = props
+  const { orientation, onResize, BoxProps } = props
   const cursor = orientation === 'vertical' ? 'ew-resize' : 'ns-resize'
 
   const { registerResizer } = useResizer(
@@ -18,12 +18,12 @@ export default function SmartResizer(props: {
   return (
     <Resizer
       orientation={orientation}
-      boxProps={{
+      BoxProps={{
         position: 'relative',
         zIndex: 1,
         sx: { cursor },
         ...registerResizer(),
-        ...boxProps,
+        ...BoxProps,
       }}
     />
   )

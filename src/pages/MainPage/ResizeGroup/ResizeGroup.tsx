@@ -24,7 +24,7 @@ export type ResizeGroupProps = {
   sizes?: number[]
   initialSizes?: number[]
   onResize?: (fractions: number[]) => void
-  stackProps?: StackProps
+  StackProps?: StackProps
 }
 
 const useChildrenProps = (children: ResizeGroupProps['children']) => {
@@ -75,7 +75,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     sizes = [],
     initialSizes = [],
     onResize = () => {},
-    stackProps,
+    StackProps,
   } = props
 
   const itemsRef = useRef<HTMLElement[]>([])
@@ -198,7 +198,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
   })
 
   return (
-    <Stack height={1} direction={stackDirection} {...stackProps}>
+    <Stack height={1} direction={stackDirection} {...StackProps}>
       {getChildArray().map((ch, index) => (
         <Fragment key={ch.id}>
           <Box
@@ -220,7 +220,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
             <SmartResizer
               orientation={resizerOrientation}
               onResize={(e) => handleResize(e, index)}
-              boxProps={{
+              BoxProps={{
                 ...display(index),
                 ...edgeResizerPadding(index),
                 ...resizerClassName(index),

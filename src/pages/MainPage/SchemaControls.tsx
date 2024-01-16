@@ -15,7 +15,7 @@ export default function SchemaControls(
     variant?: 'desktop' | 'mobile'
   },
 ) {
-  const { variant = 'desktop', ...passStackProps } = props
+  const { variant = 'desktop', ...StackProps } = props
   const defaultUrl = useBoundStore((state) => state.defaultUrl)
   const baseUrl = useBoundStore((state) => state.baseUrl)
   const fetchSchema = useBoundStore((state) => state.fetchSchema)
@@ -49,7 +49,7 @@ export default function SchemaControls(
         mx={1.5}
         gap={1}
         alignItems="center"
-        {...passStackProps}
+        {...StackProps}
       >
         <TextField
           label="Endpoint"

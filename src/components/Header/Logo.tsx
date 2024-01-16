@@ -18,12 +18,12 @@ const GraphSvg = (props: React.SVGProps<SVGSVGElement>) => {
   )
 }
 
-export default function Logo(props: { linkProps?: LinkProps }) {
-  const { linkProps } = props
+export default function Logo(props: { LinkProps?: LinkProps }) {
+  const { LinkProps } = props
   const size = '47px'
   const logoSize = '90%'
   return (
-    <Link component={RouterLink} to={RouterPath.Welcome} {...linkProps}>
+    <Link component={RouterLink} to={RouterPath.Welcome} {...LinkProps}>
       <Box
         sx={(theme) => ({
           width: size,

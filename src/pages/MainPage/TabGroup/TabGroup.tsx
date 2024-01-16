@@ -1,3 +1,4 @@
+import mergeSx from '@/utils/mergeSx'
 import {
   TabContext,
   TabList,
@@ -24,19 +25,14 @@ export default function TabGroup(props: {
     value: string
     jsx: React.ReactNode
     label?: string
-    tabPanelProps?: TabPanelProps
-    tabProps?: TabProps
+    TabPanelProps?: TabPanelProps
+    TabProps?: TabProps
   }[]
-  stackProps?: StackProps
-  tabListProps?: Omit<TabListProps, 'onChange'>
+  StackProps?: StackProps
+  TabListProps?: Omit<TabListProps, 'onChange'>
 }) {
-  const {
-    tabs,
-    currentValue,
-    onChange,
-    stackProps: { sx: stackSx, ...restStackProps } = {},
-    tabListProps,
-  } = props
+  const { tabs, currentValue, onChange, TabListProps } = props
+  const { StackProps: { sx: stackSx, ...StackProps } = {} } = props
   const [uncontrolledValue, setUncontrolledValue] = useState(currentValue)
 
   const isControlled = onChange !== undefined
@@ -68,38 +64,38 @@ export default function TabGroup(props: {
       flex={1}
       height={1}
       direction="column"
-      sx={[styles, ...(Array.isArray(stackSx) ? stackSx : [stackSx])]}
-      {...restStackProps}
+      sx={mergeSx(stackSx, styles)}
+      {...StackProps}
     >
       <TabContext value={isControlled ? currentValue : uncontrolledValue}>
         <Box position="relative" overflow="hidden">
           <TabList
             variant="scrollable"
-            {...tabListProps}
+            {...TabListProps}
             onChange={(e, v) =>
               isControlled ? onChange(e, v) : setUncontrolledValue(v)
             }
           >
-            {tabs.map(({ value, label = value, tabProps }) => (
+            {tabs.map(({ value, label = value, TabProps }) => (
               <Tab
                 key={value}
                 value={value}
                 label={label}
                 disableTouchRipple={true}
-                {...tabProps}
+                {...TabProps}
               />
             ))}
           </TabList>
           <Resizer
             orientation="horizontal"
             padding={0}
-            boxProps={{
+            BoxProps={{
               marginTop: -ResizerDefaults.thickness + 'px',
             }}
           />
         </Box>
-        {tabs.map(({ value, jsx, tabPanelProps }) => (
-          <TabPanel key={value} value={value} {...tabPanelProps}>
+        {tabs.map(({ value, jsx, TabPanelProps }) => (
+          <TabPanel key={value} value={value} {...TabPanelProps}>
             {jsx}
           </TabPanel>
         ))}
