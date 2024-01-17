@@ -11,8 +11,9 @@ export const createSchemaSlice: SliceCreator<SchemaSlice> = (set, get) => ({
   schema: null,
   schemaError: null,
   isSchemaFetching: false,
-  fetchSchema: async (baseUrl = get().baseUrl) => {
-    const { headers } = get()
+  fetchSchema: async (forceBaseUrl) => {
+    const { headers, getBaseUrl } = get()
+    const baseUrl = forceBaseUrl || getBaseUrl()
 
     try {
       set((state) => {

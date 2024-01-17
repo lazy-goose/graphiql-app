@@ -3,6 +3,7 @@ import type { RequestSettingsSlice, SliceCreator } from '../store'
 
 export const createRequestSettingsSlice: SliceCreator<RequestSettingsSlice> = (
   set,
+  get,
 ) => ({
   headers: [
     { id: 'Initial header', checked: false, headerKey: '', headerVal: '' },
@@ -39,6 +40,7 @@ export const createRequestSettingsSlice: SliceCreator<RequestSettingsSlice> = (
     }),
   defaultUrl: 'https://countries.trevorblades.com/graphql',
   baseUrl: 'https://countries.trevorblades.com/graphql',
+  getBaseUrl: () => get().baseUrl || get().defaultUrl,
   setBaseUrl: (baseUrl) =>
     set((state) => {
       state.baseUrl = baseUrl

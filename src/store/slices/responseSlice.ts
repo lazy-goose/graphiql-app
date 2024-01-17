@@ -31,19 +31,14 @@ export const createResponseSlice: SliceCreator<ResponseSlice> = (set, get) => ({
     timeMs: 0,
   },
   fetchQueryResponse: async () => {
-    const {
-      baseUrl,
-      defaultUrl,
-      stringifiedQuery,
-      headers,
-      stringifiedVariables,
-    } = get()
+    const { getBaseUrl, stringifiedQuery, headers, stringifiedVariables } =
+      get()
 
     let response: Response
     let requestStartAt: number
 
     try {
-      const url = baseUrl || defaultUrl
+      const url = getBaseUrl()
       const query = stringifiedQuery
 
       const variables = JSON.parse(stringifiedVariables)

@@ -37,6 +37,7 @@ export type RequestSettingsSlice = {
   setStringifiedVariables: (stringifiedVariables) => void
   defaultUrl: string
   baseUrl: string
+  getBaseUrl: () => string
   setBaseUrl: (baseUrl: string) => void
   stringifiedQuery: string
   setStringifiedQuery: (query: string) => void
