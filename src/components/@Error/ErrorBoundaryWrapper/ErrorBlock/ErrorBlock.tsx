@@ -1,10 +1,15 @@
 import { Refresh, WarningRounded } from '@mui/icons-material'
 import { Button, Container, Stack, Typography } from '@mui/material'
+import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function ErrorBlock() {
   const navigate = useNavigate()
   const handleRefreshButtonClick = () => navigate(0)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    buttonRef.current?.focus()
+  }, [])
   return (
     <Container
       component="main"
@@ -29,6 +34,7 @@ export default function ErrorBlock() {
           }}
         />
         <Button
+          ref={buttonRef}
           startIcon={<Refresh />}
           variant="contained"
           onClick={handleRefreshButtonClick}
