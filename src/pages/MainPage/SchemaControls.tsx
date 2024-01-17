@@ -19,43 +19,46 @@ export default function SchemaControls(
 
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
 
-  const handleRefetchButtonClick = () => {
-    fetchSchema(urlInput)
-  }
-
   return (
-    <Stack
-      direction="row"
-      mx={1.5}
-      gap={1}
-      alignItems="center"
-      {...passStackProps}
+    <form
+      onSubmit={(event) => {
+        event.preventDefault()
+        fetchSchema(urlInput)
+      }}
     >
-      <TextField
-        label="Endpoint"
-        variant="standard"
-        size="small"
-        value={urlInput}
-        onChange={(e) => setUrlInput(e.currentTarget.value)}
-        sx={{
-          ...(variant === 'desktop' && {
-            maxWidth: 'min(36ch, 100%)',
-          }),
-          flex: 1,
-        }}
-      />
-      <Button
-        variant="outlined"
-        startIcon={<Refresh viewBox="2 2 21 21" />}
-        onClick={handleRefetchButtonClick}
-        disabled={isSchemaFetching}
-        sx={{
-          flexShrink: 0,
-          alignSelf: variant === 'mobile' ? 'end' : null,
-        }}
+      <Stack
+        direction="row"
+        mx={1.5}
+        gap={1}
+        alignItems="center"
+        {...passStackProps}
       >
-        {header.button.refetch}
-      </Button>
-    </Stack>
+        <TextField
+          label="Endpoint"
+          variant="standard"
+          size="small"
+          value={urlInput}
+          onChange={(e) => setUrlInput(e.currentTarget.value)}
+          sx={{
+            ...(variant === 'desktop' && {
+              maxWidth: 'min(36ch, 100%)',
+            }),
+            flex: 1,
+          }}
+        />
+        <Button
+          type="submit"
+          disabled={isSchemaFetching}
+          variant="outlined"
+          startIcon={<Refresh viewBox="2 2 21 21" />}
+          sx={{
+            flexShrink: 0,
+            alignSelf: variant === 'mobile' ? 'end' : null,
+          }}
+        >
+          {header.button.refetch}
+        </Button>
+      </Stack>
+    </form>
   )
 }
