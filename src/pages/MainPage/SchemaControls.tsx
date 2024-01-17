@@ -1,7 +1,13 @@
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import { Refresh } from '@mui/icons-material'
-import { Button, Stack, TextField, type StackProps } from '@mui/material'
+import {
+  Button,
+  Stack,
+  TextField,
+  type StackProps,
+  type Theme,
+} from '@mui/material'
 import { useState } from 'react'
 
 export default function SchemaControls(
@@ -10,6 +16,7 @@ export default function SchemaControls(
   },
 ) {
   const { variant = 'desktop', ...passStackProps } = props
+  const defaultUrl = useBoundStore((state) => state.defaultUrl)
   const baseUrl = useBoundStore((state) => state.baseUrl)
   const fetchSchema = useBoundStore((state) => state.fetchSchema)
   const [urlInput, setUrlInput] = useState(baseUrl)
@@ -17,7 +24,30 @@ export default function SchemaControls(
     locale: { header },
   } = useLocale()
 
+  const schemaError = useBoundStore((state) => state.schemaError)
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
+
+  const indicatorColor = (theme: Theme) => {
+    if (isSchemaFetching) {
+      return theme.palette.text.secondary
+    }
+    if (schemaError) {
+      return theme.palette.error.main
+    }
+    return theme.palette.success.main
+  }
+
+  const loadingAnimation = (name = 'loading') => {
+    const animationFrames = Object.fromEntries(
+      ['○', '◔', '◑', '◕', '●'].map((sym, index, { length }) => [
+        (index / (length - 1)) * 100 + '%',
+        { content: `"${sym}"` },
+      ]),
+    )
+    return {
+      [`@keyframes ${name}`]: animationFrames,
+    }
+  }
 
   return (
     <form
@@ -44,6 +74,23 @@ export default function SchemaControls(
               maxWidth: 'min(36ch, 100%)',
             }),
             flex: 1,
+          }}
+          placeholder={defaultUrl}
+          InputLabelProps={{
+            shrink: true,
+            sx: (theme) => ({
+              '&.MuiFormLabel-root': {
+                color: indicatorColor(theme),
+                '&::before': {
+                  content: '"●"',
+                  marginRight: 1,
+                  animation: isSchemaFetching
+                    ? 'loading infinite 1s'
+                    : undefined,
+                },
+                ...loadingAnimation('loading'),
+              },
+            }),
           }}
         />
         <Button
