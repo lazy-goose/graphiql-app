@@ -11,7 +11,6 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { RequestHeaders } from '@/components/RequestHeaders'
 import { SignInPage, SignUpPage } from '@/pages/@SignPages'
-import { ErrorPage } from '@/pages/ErrorPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { WelcomePage } from '@/pages/WelcomePage'
@@ -34,7 +33,6 @@ const ValidateSnapshots = [
   ['Snackbar', <Snackbar />],
   ['SignInPage', <SignInPage />],
   ['SignUpPage', <SignUpPage />],
-  ['ErrorPage', <ErrorPage />],
   ['MainPage', <MainPage />],
   ['WelcomePage', <WelcomePage />],
   ['NotFoundPage', <NotFoundPage />],
