@@ -1,10 +1,14 @@
 import { Footer } from '@/components/Footer'
 import { RouterPath } from '@/constants'
+import { useLocale } from '@/hooks/useLocale'
 import WelcomePageHeader from '@/pages/WelcomePage/WelcomePageHeader'
 import { Box, Button, Container, Stack, Typography } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
 
 export default function NotFoundPage() {
+  const {
+    locale: { notFound },
+  } = useLocale()
   return (
     <Stack minHeight="inherit" justifyContent="center">
       <WelcomePageHeader />
@@ -20,10 +24,10 @@ export default function NotFoundPage() {
       >
         <Stack gap="3em" alignItems="center">
           <Typography variant="h2" fontSize="2.75rem">
-            Don&apos;t know where you&nbsp;are?
+            {notFound.typography.heading}
           </Typography>
           <Typography variant="h5" fontSize="1rem">
-            We really have no idea either...
+            {notFound.typography.body}
           </Typography>
           <Button
             component={RouterLink}
@@ -31,7 +35,7 @@ export default function NotFoundPage() {
             variant="contained"
             sx={{ width: 'max-content' }}
           >
-            Welcome Page
+            {notFound.button.welcomePage}
           </Button>
           <Box
             sx={(theme) => ({

@@ -164,6 +164,15 @@ const locale = {
       reload: 'Reload page',
     },
   },
+  notFound: {
+    typography: {
+      heading: `Don't know where you\u00A0are?`,
+      body: 'We really have no idea either...',
+    },
+    button: {
+      welcomePage: 'Welcome Page',
+    },
+  },
 }
 
 export default locale

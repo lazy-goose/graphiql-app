@@ -165,6 +165,15 @@ const locale = {
       reload: 'Перезагрузить',
     },
   },
+  notFound: {
+    typography: {
+      heading: 'Без понятия где вы оказались?',
+      body: 'Да мы как-то тоже...',
+    },
+    button: {
+      welcomePage: 'Страница приветствия',
+    },
+  },
 }
 
 export default locale satisfies Locale
