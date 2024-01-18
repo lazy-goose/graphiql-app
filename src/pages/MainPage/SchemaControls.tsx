@@ -37,18 +37,6 @@ export default function SchemaControls(
     return theme.palette.success.main
   }
 
-  const loadingAnimation = (name = 'loading') => {
-    const animationFrames = Object.fromEntries(
-      ['○', '◔', '◑', '◕', '●'].map((sym, index, { length }) => [
-        (index / (length - 1)) * 100 + '%',
-        { content: `"${sym}"` },
-      ]),
-    )
-    return {
-      [`@keyframes ${name}`]: animationFrames,
-    }
-  }
-
   return (
     <form
       onSubmit={(event) => {
@@ -79,16 +67,15 @@ export default function SchemaControls(
           InputLabelProps={{
             shrink: true,
             sx: (theme) => ({
-              '&.MuiFormLabel-root': {
+              '&': {
                 color: indicatorColor(theme),
-                '&::before': {
-                  content: '"●"',
-                  marginRight: 1,
-                  animation: isSchemaFetching
-                    ? 'loading infinite 1s'
-                    : undefined,
-                },
-                ...loadingAnimation('loading'),
+              },
+            }),
+          }}
+          InputProps={{
+            sx: (theme) => ({
+              '&::before': {
+                borderBottomColor: indicatorColor(theme),
               },
             }),
           }}
