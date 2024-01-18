@@ -76,12 +76,12 @@ export default function QueryRequest() {
       <Stack
         direction="row"
         gap={1}
-        sx={{
+        sx={(theme) => ({
           position: 'absolute',
           top: 15,
-          right: 0,
           zIndex: 1,
-        }}
+          right: theme.spacing(1),
+        })}
       >
         <Button
           startIcon={<FormatIndentIncrease />}

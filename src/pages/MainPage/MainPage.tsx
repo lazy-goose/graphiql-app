@@ -42,7 +42,7 @@ export default function MainPage() {
   return (
     <Stack>
       <Header leftSlot={!mobile && <SchemaControls />} />
-      {mobile && <SchemaControls variant="mobile" mt={1.5} mb={0.5} />}
+      {mobile && <SchemaControls variant="mobile" mt={1.5} mb={0.5} mx={1} />}
       <MainControls />
       <MainLayout
         documentation={<Documentation />}
