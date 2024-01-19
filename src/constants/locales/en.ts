@@ -143,7 +143,10 @@ const locale = {
   welcomePage: {
     typography: {
       heading: {
-        functional: { part1: 'Fully functional', part2: 'GraphQL explorer' },
+        functional: {
+          part1: 'Fully functional',
+          part2: 'GraphQL explorer',
+        },
         sponsor: 'Sponsor',
         team: 'Our team',
         wishes: 'Wishes a Happy New Year!',
@@ -175,11 +178,14 @@ const locale = {
           },
           teammate3: {
             name: 'Maksim Shamal',
-            tasks: ['Project setup', 'Design', 'Main page'],
+            tasks: ['Project setup', 'Design', 'App logic', 'App layouts'],
           },
         },
         wishes: 'We sincerely congratulate you on the upcoming New Year.',
       },
+    },
+    tooltip: {
+      refactoredBy: 'Refactored by LazyGoose',
     },
   },
   errorBoundary: {

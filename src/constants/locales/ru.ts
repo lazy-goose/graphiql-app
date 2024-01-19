@@ -145,7 +145,10 @@ const locale = {
   welcomePage: {
     typography: {
       heading: {
-        functional: { part1: 'Полный функционал', part2: 'GraphQL приложения' },
+        functional: {
+          part1: 'Полный функционал',
+          part2: 'GraphQL приложения',
+        },
         sponsor: 'Спонсоры',
         team: 'Наша команда',
         wishes: 'С Новым годом!',
@@ -176,11 +179,19 @@ const locale = {
           },
           teammate3: {
             name: 'Максим Шамаль',
-            tasks: ['Настройки проекта', 'Дизайн', 'Главная страница'],
+            tasks: [
+              'Настройки проекта',
+              'Дизайн',
+              'Логика приложения',
+              'Отображение страниц',
+            ],
           },
         },
         wishes: 'От всей души поздравляем Вас с Новым годом.',
       },
+    },
+    tooltip: {
+      refactoredBy: 'Переработано гусём',
     },
   },
   errorBoundary: {

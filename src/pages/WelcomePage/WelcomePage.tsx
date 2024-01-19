@@ -50,9 +50,8 @@ const welcomePageTheme = createTheme(mainTheme, {
 })
 
 export default function WelcomePage() {
-  const {
-    locale: { welcomePage },
-  } = useLocale()
+  const { locale } = useLocale()
+  const { welcomePage } = locale
   return (
     <Stack minHeight="inherit">
       <WelcomePageHeader />
@@ -116,34 +115,36 @@ export default function WelcomePage() {
                 {welcomePage.typography.heading.team}
               </Typography>
               <Grid container gap={2} justifyContent="center">
-                {teammates.map(({ id, avatar, github, telegram }) => (
-                  <Grid
-                    key={id}
-                    item
-                    xs
-                    sx={(theme) => ({
-                      [theme.breakpoints.up('xs')]: {
-                        minWidth: '300px',
-                        maxWidth: '400px',
-                      },
-                    })}
-                  >
-                    <TeammateCard
-                      personName={welcomePage.typography.text.team[id].name}
-                      taskList={welcomePage.typography.text.team[id].tasks}
-                      avatarSrc={avatar}
-                      socials={{
-                        github,
-                        telegram,
-                      }}
-                      CardProps={{
-                        sx: {
-                          height: 1,
+                {teammates(locale).map(
+                  ({ id, name, avatar, github, telegram, tasks }) => (
+                    <Grid
+                      key={id}
+                      item
+                      xs
+                      sx={(theme) => ({
+                        [theme.breakpoints.up('xs')]: {
+                          minWidth: '300px',
+                          maxWidth: '400px',
                         },
-                      }}
-                    />
-                  </Grid>
-                ))}
+                      })}
+                    >
+                      <TeammateCard
+                        personName={name}
+                        taskList={tasks}
+                        avatarSrc={avatar}
+                        socials={{
+                          github,
+                          telegram,
+                        }}
+                        CardProps={{
+                          sx: {
+                            height: 1,
+                          },
+                        }}
+                      />
+                    </Grid>
+                  ),
+                )}
               </Grid>
             </Box>
           </Container>
