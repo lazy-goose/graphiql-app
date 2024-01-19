@@ -117,6 +117,27 @@ const locale = {
 #     }
 #
 `,
+    documentation: {
+      typography: {
+        heading: {
+          main: 'Документация',
+          error: 'Ошибка',
+          root: 'Корневые типы',
+          description: 'Описание',
+          deprecation: 'Устаревшее',
+          arguments: 'Аргументы',
+          fields: 'Поля',
+          scalar: {
+            part: 'описание типа',
+          },
+          enum: 'Перечисляемые типы (Enum)',
+          interfaces: 'Интерфейсы',
+        },
+        body: {
+          notSupported: 'Неподдерживаемый тип',
+        },
+      },
+    },
   },
   welcomePage: {
     typography: {

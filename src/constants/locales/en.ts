@@ -115,6 +115,27 @@ const locale = {
 #     }
 #
 `,
+    documentation: {
+      typography: {
+        heading: {
+          main: 'Documentation',
+          error: 'Error',
+          root: 'Root Types',
+          description: 'Description',
+          deprecation: 'Deprecation reason',
+          arguments: 'Arguments',
+          fields: 'Fields',
+          scalar: {
+            part: 'type Metadata',
+          },
+          enum: 'Enum Values',
+          interfaces: 'Interfaces',
+        },
+        body: {
+          notSupported: 'Unsupported Type',
+        },
+      },
+    },
   },
   welcomePage: {
     typography: {

@@ -1,5 +1,6 @@
 import { isScalarType, type GraphQLArgument, type GraphQLField } from 'graphql'
 import { isFieldType, isFieldsContained, unwrapOfType } from '../utils'
+import useDocumentationLocale from '../utils/useDocumentationLocale'
 import { DocLayout, DocName, DocSection } from './@parts/DocLayout'
 import { DocLink } from './@parts/DocLink'
 
@@ -13,6 +14,7 @@ export default function DocProp(props: {
 }) {
   const { type: propType } = props
   const constructorType = unwrapOfType(propType.type)
+  const doc = useDocumentationLocale()
 
   if (isScalarType(constructorType)) {
     const scalarType = constructorType
@@ -23,7 +25,10 @@ export default function DocProp(props: {
           {': '}
           {scalarType.toString()}
         </DocName>
-        <DocSection markdown heading={`${scalarType.name} type Metadata`}>
+        <DocSection
+          markdown
+          heading={`${scalarType.name} ${doc.typography.heading.scalar.part}`}
+        >
           {scalarType.description}
         </DocSection>
       </DocLayout>
@@ -37,18 +42,18 @@ export default function DocProp(props: {
           {propType.name}: {constructorType.toString()}
         </LineThrough>
       </DocName>
-      <DocSection markdown heading="Description">
+      <DocSection markdown heading={doc.typography.heading.description}>
         {propType.description}
       </DocSection>
-      <DocSection markdown heading="Deprecation reason">
+      <DocSection markdown heading={doc.typography.heading.deprecation}>
         {propType.deprecationReason}
       </DocSection>
-      <DocSection heading="Arguments">
+      <DocSection heading={doc.typography.heading.arguments}>
         {(isFieldType(propType) ? propType.args : []).map((arg) => (
           <DocLink key={arg.name} type={arg} />
         ))}
       </DocSection>
-      <DocSection heading="Fields">
+      <DocSection heading={doc.typography.heading.fields}>
         {(isFieldsContained(constructorType)
           ? Object.values(constructorType.getFields())
           : []

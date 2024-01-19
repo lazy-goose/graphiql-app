@@ -16,6 +16,7 @@ import DocProp from './subpages/DocProp'
 import DocRoot from './subpages/DocRoot'
 import DocType from './subpages/DocType'
 import { isArgumentType, isFieldType } from './utils'
+import useDocumentationLocale from './utils/useDocumentationLocale'
 
 const DocNavLink = (props: { isActive: boolean } & ButtonProps) => {
   const { isActive, sx, ...ButtonProps } = props
@@ -58,6 +59,7 @@ export default function Documentation() {
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
   const toggleAside = useBoundStore((state) => state.toggleAside)
   const docNavStack = useBoundStore((state) => state.docNavStack)
+  const doc = useDocumentationLocale()
 
   const { isLast, navigateDocStack } = useDocNavigate(docNavStack.length)
 
@@ -75,7 +77,7 @@ export default function Documentation() {
           fontSize={24}
           fontWeight="regular"
         >
-          Documentation
+          {doc.typography.heading.main}
         </Typography>
         <IconButton onClick={() => toggleAside(false)}>
           <West />
@@ -117,7 +119,7 @@ export default function Documentation() {
         } else if (isNamedType(def)) {
           return <DocType type={def} />
         } else {
-          return <DocError message="Unsupported Type" />
+          return <DocError message={doc.typography.body.notSupported} />
         }
       })(docNavStack.at(-1) as DocNavStackItem)}
     </Stack>
