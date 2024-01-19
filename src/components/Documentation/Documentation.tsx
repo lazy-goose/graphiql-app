@@ -16,7 +16,7 @@ import DocProp from './subpages/DocProp'
 import DocRoot from './subpages/DocRoot'
 import DocType from './subpages/DocType'
 import { isArgumentType, isFieldType } from './utils'
-import useDocumentationLocale from './utils/useDocumentationLocale'
+import useDocumentationLocale from './utils/hooks/useDocumentationLocale'
 
 const DocNavLink = (props: { isActive: boolean } & ButtonProps) => {
   const { isActive, sx, ...ButtonProps } = props

@@ -1,4 +1,4 @@
-import useDocumentationLocale from '../utils/useDocumentationLocale'
+import useDocumentationLocale from '../utils/hooks/useDocumentationLocale'
 import { DocLayout, DocSection } from './@parts/DocLayout'
 
 export default function DocError(props: { message: string | undefined }) {

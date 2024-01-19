@@ -1,8 +1,9 @@
 import { isScalarType, type GraphQLArgument, type GraphQLField } from 'graphql'
 import { isFieldType, isFieldsContained, unwrapOfType } from '../utils'
-import useDocumentationLocale from '../utils/useDocumentationLocale'
+import useDocumentationLocale from '../utils/hooks/useDocumentationLocale'
 import { DocLayout, DocName, DocSection } from './@parts/DocLayout'
 import { DocLink } from './@parts/DocLink'
+import DocPropScalar from './DocPropScalar'
 
 const LineThrough = (props: React.PropsWithChildren<{ del: boolean }>) => {
   const { del, children } = props
@@ -17,22 +18,7 @@ export default function DocProp(props: {
   const doc = useDocumentationLocale()
 
   if (isScalarType(constructorType)) {
-    const scalarType = constructorType
-    return (
-      <DocLayout>
-        <DocName>
-          {propType.name}
-          {': '}
-          {scalarType.toString()}
-        </DocName>
-        <DocSection
-          markdown
-          heading={`${scalarType.name} ${doc.typography.heading.scalar.part}`}
-        >
-          {scalarType.description}
-        </DocSection>
-      </DocLayout>
-    )
+    return <DocPropScalar type={constructorType} fieldName={propType.name} />
   }
 
   return (

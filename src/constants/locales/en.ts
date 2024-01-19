@@ -134,6 +134,9 @@ const locale = {
         body: {
           notSupported: 'Unsupported Type',
         },
+        chip: {
+          autotranslate: 'Autotranslate',
+        },
       },
     },
   },

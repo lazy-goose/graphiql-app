@@ -1,10 +1,12 @@
 import { Divider, Typography } from '@mui/material'
 
-export default function DocName(props: React.PropsWithChildren) {
-  const { children } = props
+export default function DocName(
+  props: React.PropsWithChildren<{ noDivider?: boolean }>,
+) {
+  const { children, noDivider = false } = props
   return (
     <>
-      <Divider />
+      {noDivider || <Divider />}
       <Typography
         variant="h2"
         color="tertiary.main"

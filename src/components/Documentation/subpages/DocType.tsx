@@ -1,6 +1,6 @@
 import { type GraphQLNamedType } from 'graphql'
 import { isFieldsContained } from '../utils'
-import useDocumentationLocale from '../utils/useDocumentationLocale'
+import useDocumentationLocale from '../utils/hooks/useDocumentationLocale'
 import { DocLayout, DocName, DocSection } from './@parts/DocLayout'
 import { DocLink } from './@parts/DocLink'
 

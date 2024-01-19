@@ -1,5 +1,5 @@
 import { useBoundStore } from '@/store'
-import useDocumentationLocale from '../utils/useDocumentationLocale'
+import useDocumentationLocale from '../utils/hooks/useDocumentationLocale'
 import { DocLayout, DocSection } from './@parts/DocLayout'
 import { ComboLink } from './@parts/DocLink'
 

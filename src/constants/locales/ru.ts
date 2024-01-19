@@ -128,13 +128,16 @@ const locale = {
           arguments: 'Аргументы',
           fields: 'Поля',
           scalar: {
-            part: 'описание типа',
+            part: '- описание типа',
           },
           enum: 'Перечисляемые типы (Enum)',
           interfaces: 'Интерфейсы',
         },
         body: {
           notSupported: 'Неподдерживаемый тип',
+        },
+        chip: {
+          autotranslate: 'Автоперевод',
         },
       },
     },

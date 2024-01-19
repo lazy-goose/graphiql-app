@@ -7,6 +7,7 @@ export default function DocSection(
     notEmpty?: boolean
     markdown?: boolean
     BoxProps?: BoxProps
+    noDivider?: boolean
   }>,
 ) {
   const {
@@ -14,6 +15,7 @@ export default function DocSection(
     notEmpty = true,
     markdown = false,
     BoxProps,
+    noDivider = false,
     children,
   } = props
   if (notEmpty) {
@@ -25,7 +27,7 @@ export default function DocSection(
   }
   return (
     <>
-      <Divider />
+      {noDivider || <Divider />}
       <Box component="section" {...BoxProps}>
         <Typography
           className="Heading"
