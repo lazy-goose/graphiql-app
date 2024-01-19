@@ -1,7 +1,7 @@
 import { isFieldType } from '@/components/Documentation/utils'
 import { useBoundStore } from '@/store'
 import { type GraphQLArgument, type GraphQLField } from 'graphql'
-import { unwrapOfType } from '../../../utils/unwrapOfType'
+import { unwrapOfType } from '../../../utils'
 import ComboLink from './ComboLink'
 
 export default function DocLink(props: {

@@ -1,7 +1,7 @@
 import { Loader } from '@/components/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
-import { Box, Button, Drawer, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Drawer, useMediaQuery, useTheme } from '@mui/material'
 import { Suspense, useLayoutEffect, useRef } from 'react'
 import {
   ResizeGroup,
@@ -51,7 +51,6 @@ const MainMobileLayout = ({
   variables,
 }: MainLayoutSlots) => {
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
-  const toggleAside = useBoundStore((s) => s.toggleAside)
   const {
     locale: { mainPage },
   } = useLocale()
@@ -59,14 +58,12 @@ const MainMobileLayout = ({
     <Box height={1}>
       <Drawer
         open={isAsideOpen}
-        onClose={() => toggleAside(false)}
         PaperProps={{
           sx: {
             width: 'clamp(320px, 100%, 500px)',
           },
         }}
       >
-        <Button onClick={() => toggleAside(false)}>Close</Button>
         {documentation}
       </Drawer>
       <ResizeGroup
