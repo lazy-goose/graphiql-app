@@ -6,3 +6,7 @@ body {
   min-height: 100svh;
   min-width: 303px;
 }
+
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
