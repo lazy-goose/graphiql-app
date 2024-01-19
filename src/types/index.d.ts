@@ -18,3 +18,16 @@ declare module 'notistack' {
     customAlert: CustomSnackbarProps
   }
 }
+
+declare module '@mui/material/styles/createPalette' {
+  interface Palette {
+    tertiary: {
+      main: string
+    }
+  }
+  interface PaletteOptions {
+    tertiary?: {
+      main: string
+    }
+  }
+}
