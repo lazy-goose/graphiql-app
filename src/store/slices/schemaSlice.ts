@@ -12,7 +12,7 @@ export const createSchemaSlice: SliceCreator<SchemaSlice> = (set, get) => ({
   schemaError: null,
   isSchemaFetching: false,
   fetchSchema: async (forceBaseUrl) => {
-    const { headers, getBaseUrl } = get()
+    const { headers, getBaseUrl, resetDocNavStack } = get()
     const baseUrl = forceBaseUrl || getBaseUrl()
 
     try {
@@ -37,6 +37,7 @@ export const createSchemaSlice: SliceCreator<SchemaSlice> = (set, get) => ({
         state.schemaError = null
         state.schema = schema as unknown as Draft<GraphQLSchema>
       })
+      resetDocNavStack()
     } catch (e) {
       set((state) => {
         state.schemaError = e as Error

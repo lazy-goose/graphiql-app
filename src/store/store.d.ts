@@ -1,14 +1,35 @@
-import { type User } from 'firebase/auth'
-import { type GraphQLSchema } from 'graphql'
-import { type StateCreator } from 'zustand'
+import type { User } from 'firebase/auth'
+import type {
+  GraphQLArgument,
+  GraphQLField,
+  GraphQLSchema,
+  GraphQLType,
+} from 'graphql'
+import type { StateCreator } from 'zustand'
 
-type Header = {
+export type Header = {
   id: React.Key
   checked: boolean
   headerKey: string
   headerVal: string
 }
 
+export type DocNavDef =
+  | GraphQLField<unknown, unknown, unknown>
+  | GraphQLArgument
+  | GraphQLType
+
+export type DocNavStackItem = {
+  name: string
+  def?: DocNavDef
+}
+
+export type DocumentationSlice = {
+  docNavStack: DocNavStackItem[]
+  resetDocNavStack: () => void
+  pushDocNavStack: (item: DocNavStackItem) => void
+  popDocNavStack: () => void
+}
 export type SchemaSlice = {
   schema: GraphQLSchema | null
   schemaError: Error | null
@@ -56,8 +77,9 @@ export type AuthSlice = {
 export type Store = AuthSlice &
   MainLayoutSlice &
   RequestSettingsSlice &
+  ResponseSlice &
   SchemaSlice &
-  ResponseSlice
+  DocumentationSlice
 
 export type Mutators = [['zustand/devtools', never], ['zustand/immer', never]]
 export type SliceCreator<T, R = Store> = StateCreator<R, Mutators, [], T>
