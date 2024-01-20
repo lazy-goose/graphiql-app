@@ -27,6 +27,10 @@ const StorageSave = ({
   isSettingsWindowOpen,
 })
 
+export const storeName = (userName?: string | null | undefined) => {
+  return `mainStorage.${userName || 'anonymous'}`
+}
+
 export const useBoundStore = create<Store>()(
   devtools(
     persist(
@@ -39,8 +43,9 @@ export const useBoundStore = create<Store>()(
         ...createResponseSlice(...args),
       })),
       {
-        name: 'mainStorage',
+        name: storeName(),
         partialize: StorageSave,
+        skipHydration: true,
       },
     ),
     { enabled: enableDevtools },

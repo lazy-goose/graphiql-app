@@ -9,7 +9,7 @@ import { LocaleProvider } from './contexts/localeContext'
 import { auth } from './firebase'
 import { mainTheme } from './globals/themes/main'
 import { router } from './router/router'
-import { useBoundStore } from './store'
+import { storeName, useBoundStore } from './store'
 
 const AppLoader = () => {
   return (
@@ -27,7 +27,13 @@ export function App() {
   const isLoading = useBoundStore((state) => state.isUserLoading)
 
   useEffect(() => {
-    return auth.onAuthStateChanged((user) => setUser(user))
+    return auth.onAuthStateChanged((user) => {
+      useBoundStore.persist.setOptions({
+        name: storeName(user?.email),
+      })
+      useBoundStore.persist.rehydrate()
+      setUser(user)
+    })
   }, [setUser])
 
   return (

@@ -1,17 +1,15 @@
 import { Loader } from '@/components/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
+import createStorageObject, { safeParse } from '@/utils/createStorageObject'
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
 import { Box, Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material'
-import { Suspense, useLayoutEffect, useRef } from 'react'
+import { Suspense, useLayoutEffect, useMemo, useRef } from 'react'
+import { z } from 'zod'
 import { ResizeGroup, ResizerDefaults } from './ResizeGroup'
 import ResizeFragment from './ResizeGroup/ResizeFragment'
 import TabGroup from './TabGroup/TabGroup'
-import {
-  cacheSizeUtils,
-  useRowSizesCollapse,
-  verticalLayoutStackProps,
-} from './utils'
+import { useRowSizesCollapse, verticalLayoutStackProps } from './utils'
 
 type MainLayoutSlots = {
   documentation: React.ReactNode
@@ -45,8 +43,26 @@ const CollapseGroup = (
   )
 }
 
-const [setCol, colSizesInit] = cacheSizeUtils('Layout.Col', [0.2, 0.4, 0.4])
-const [setRow, rowSizesInit] = cacheSizeUtils('Layout.Row', [0.7, 0.3])
+const useCacheSizes = () => {
+  const email = useBoundStore((s) => s.user?.email || 'anonymous')
+  return useMemo(() => {
+    const { getCacheItem, setCacheItem } = createStorageObject(
+      `mainLayout.${email}`,
+    )
+    const makeSetter = (key: string) => (sizes: number[]) => {
+      return setCacheItem(key, JSON.stringify(sizes))
+    }
+    const getValue = (key: string, fallback: number[]) => {
+      return safeParse(getCacheItem(key), z.array(z.number()), fallback)
+    }
+    return {
+      col: getValue('Col', [0.2, 0.4, 0.4]),
+      row: getValue('Row', [0.7, 0.3]),
+      setCol: makeSetter('Col'),
+      setRow: makeSetter('Row'),
+    }
+  }, [email])
+}
 
 const MainMobileLayout = (props: MainLayoutSlots) => {
   const { documentation, request, response, variables, headers } = props
@@ -55,6 +71,7 @@ const MainMobileLayout = (props: MainLayoutSlots) => {
     locale: { mainPage },
   } = useLocale()
   const { ref: rowControllerRef, toggleRowCollapse } = useRowSizesCollapse()
+  const { row, setRow } = useCacheSizes()
   return (
     <Box height={1}>
       <Drawer
@@ -69,7 +86,7 @@ const MainMobileLayout = (props: MainLayoutSlots) => {
       </Drawer>
       <ResizeGroup
         direction="col"
-        initialSizes={rowSizesInit}
+        initialSizes={row}
         onResize={setRow}
         controllerRef={rowControllerRef}
         {...verticalLayoutStackProps()}
@@ -124,8 +141,9 @@ const MainDesktopLayout = (props: MainLayoutSlots) => {
   } = useLocale()
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   const { ref: rowControllerRef, toggleRowCollapse } = useRowSizesCollapse()
+  const { col, row, setCol, setRow } = useCacheSizes()
   return (
-    <ResizeGroup direction="row" initialSizes={colSizesInit} onResize={setCol}>
+    <ResizeGroup direction="row" initialSizes={col} onResize={setCol}>
       <ResizeFragment id="Col1" min={0.2} max={0.4} collapse={!isAsideOpen}>
         <Box height={1} overflow="auto">
           {documentation}
@@ -135,7 +153,7 @@ const MainDesktopLayout = (props: MainLayoutSlots) => {
         <Box height={1}>
           <ResizeGroup
             direction="col"
-            initialSizes={rowSizesInit}
+            initialSizes={row}
             onResize={setRow}
             controllerRef={rowControllerRef}
             {...verticalLayoutStackProps()}
