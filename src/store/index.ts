@@ -9,20 +9,38 @@ import { createResponseSlice } from './slices/responseSlice'
 import { createSchemaSlice } from './slices/schemaSlice'
 import { type Store } from './store.d'
 
+import { persist } from 'zustand/middleware'
+
 export * from './store.d'
 
 const enableDevtools = import.meta.env.MODE !== 'test' && import.meta.env.DEV
 
+const StorageSave = ({
+  baseUrl,
+  headers,
+  isAsideOpen,
+}: Store): Partial<Store> => ({
+  baseUrl,
+  headers,
+  isAsideOpen,
+})
+
 export const useBoundStore = create<Store>()(
   devtools(
-    immer((...args) => ({
-      ...createAuthSlice(...args),
-      ...createDocumentationSlice(...args),
-      ...createMainLayoutSlice(...args),
-      ...createRequestSettingsSlice(...args),
-      ...createSchemaSlice(...args),
-      ...createResponseSlice(...args),
-    })),
+    persist(
+      immer((...args) => ({
+        ...createAuthSlice(...args),
+        ...createDocumentationSlice(...args),
+        ...createMainLayoutSlice(...args),
+        ...createRequestSettingsSlice(...args),
+        ...createSchemaSlice(...args),
+        ...createResponseSlice(...args),
+      })),
+      {
+        name: 'mainStorage',
+        partialize: StorageSave,
+      },
+    ),
     { enabled: enableDevtools },
   ),
 )
