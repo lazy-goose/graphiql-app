@@ -57,7 +57,7 @@ const useDocNavigate = (length: number) => {
 export default function Documentation() {
   const schemaError = useBoundStore((state) => state.schemaError)
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
-  const toggleAside = useBoundStore((state) => state.toggleAside)
+  const toggleAsideOpen = useBoundStore((state) => state.toggleAsideOpen)
   const docNavStack = useBoundStore((state) => state.docNavStack)
   const doc = useDocumentationLocale()
 
@@ -79,7 +79,7 @@ export default function Documentation() {
         >
           {doc.typography.heading.main}
         </Typography>
-        <IconButton onClick={() => toggleAside(false)}>
+        <IconButton onClick={() => toggleAsideOpen(false)}>
           <West />
         </IconButton>
       </Stack>

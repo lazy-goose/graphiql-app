@@ -8,7 +8,7 @@ export default function MainControls() {
   const {
     locale: { mainPage },
   } = useLocale()
-  const toggleAside = useBoundStore((s) => s.toggleAside)
+  const toggleAsideOpen = useBoundStore((s) => s.toggleAsideOpen)
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
 
   const isSchemaFetching = useBoundStore((state) => state.isSchemaFetching)
@@ -25,7 +25,7 @@ export default function MainControls() {
         size="small"
         variant="contained"
         disableRipple
-        onClick={() => toggleAside()}
+        onClick={() => toggleAsideOpen()}
         sx={{
           borderRadius: 0,
           paddingInline: 1.5,

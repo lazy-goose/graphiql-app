@@ -2,8 +2,9 @@ import { Loader } from '@/components/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
 import createStorageObject, { safeParse } from '@/utils/createStorageObject'
-import { Box, Drawer, useMediaQuery, useTheme } from '@mui/material'
-import { Suspense, useLayoutEffect, useRef } from 'react'
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
+import { Box, Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material'
+import { Suspense, useEffect, useLayoutEffect, useRef } from 'react'
 import { z } from 'zod'
 import {
   ResizeGroup,
@@ -11,7 +12,11 @@ import {
   ResizerDefaults,
 } from './ResizeGroup'
 import ResizeFragment from './ResizeGroup/ResizeFragment'
-import { type ResizeGroupProps } from './ResizeGroup/ResizeGroup'
+import {
+  type ResizeCallback,
+  type ResizeGroupController,
+  type ResizeGroupProps,
+} from './ResizeGroup/ResizeGroup'
 import { TabGroupDefaults } from './TabGroup'
 import TabGroup from './TabGroup/TabGroup'
 
@@ -21,14 +26,6 @@ type MainLayoutSlots = {
   response: React.ReactNode
   variables: React.ReactNode
   headers: React.ReactNode
-}
-
-const cacheSizeUtils = (key: string, fallback: number[]) => {
-  const { getCacheItem, setCacheItem } = createStorageObject('mainLayout')
-  const setter = (sizes: number[]) => setCacheItem(key, JSON.stringify(sizes))
-  const stringified = getCacheItem(key)
-  const cached = safeParse(stringified, z.array(z.number()), fallback)
-  return [setter, cached] as const
 }
 
 const verticalLayoutStackProps = () => {
@@ -53,21 +50,93 @@ const verticalLayoutStackProps = () => {
   } satisfies Pick<ResizeGroupProps, 'StackProps'>
 }
 
-const [setMobCol, mobColInit] = cacheSizeUtils('Layout.M.Col', [0.7, 0.3])
-const [setDskRow, dskRowInit] = cacheSizeUtils('Layout.D.Row', [0.2, 0.4, 0.4])
-const [setDskCol, dskColInit] = cacheSizeUtils('Layout.D.Col', [0.7, 0.3])
+const useRowSizesCollapse = () => {
+  const toggleIsOpened = useBoundStore((s) => s.toggleSettingsWindowOpen)
+  const isOpened = useBoundStore((s) => s.isSettingsWindowOpen)
 
-const MainMobileLayout = ({
-  documentation,
-  headers,
-  request,
-  response,
-  variables,
-}: MainLayoutSlots) => {
+  const rowGroupControllerRef = useRef<ResizeGroupController>(null)
+  const savedSizesRef = useRef<number[] | null>(null)
+
+  const toggleRowCollapse = (collapse = isOpened) => {
+    const controller = rowGroupControllerRef.current
+    if (!controller) {
+      return
+    }
+    const fractions = controller.getFrSizes()
+    if (collapse) {
+      controller.setFrSizes([1, 0])
+      savedSizesRef.current = fractions
+      toggleIsOpened(false)
+    } else {
+      controller.setFrSizes(savedSizesRef.current || [0.7, 0.3])
+      toggleIsOpened(true)
+    }
+  }
+
+  useEffect(() => {
+    const controller = rowGroupControllerRef.current
+    if (!controller) {
+      return
+    }
+    const onResize: ResizeCallback = (_, next) => {
+      toggleIsOpened(next[1] >= 0.04)
+      savedSizesRef.current = null
+    }
+    onResize([], controller.getFrSizes())
+    controller.subscribeResize(onResize, 1)
+    return () => {
+      controller.unsubscribeResize(onResize)
+    }
+  }, [toggleIsOpened])
+
+  return {
+    ref: rowGroupControllerRef,
+    toggleRowCollapse,
+  }
+}
+
+const CollapseGroup = (
+  props: React.PropsWithChildren<{ onChange: (bool: boolean) => void }>,
+) => {
+  const { onChange, children } = props
+  const isOpen = useBoundStore((state) => state.isSettingsWindowOpen)
+  return (
+    <Box height={1} position="relative">
+      <IconButton
+        size="small"
+        sx={{
+          position: 'absolute',
+          right: 5,
+          top: 2,
+          zIndex: 1,
+        }}
+        onClick={() => onChange(!isOpen)}
+      >
+        {isOpen ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
+      </IconButton>
+      {children}
+    </Box>
+  )
+}
+
+const cacheSizeUtils = (key: string, fallback: number[]) => {
+  const { getCacheItem, setCacheItem } = createStorageObject('mainLayout')
+  const setter = (sizes: number[]) => setCacheItem(key, JSON.stringify(sizes))
+  const stringified = getCacheItem(key)
+  const cached = safeParse(stringified, z.array(z.number()), fallback)
+  return [setter, cached] as const
+}
+
+const [setCol, colSizesInit] = cacheSizeUtils('Layout.Col', [0.2, 0.4, 0.4])
+const [setRow, rowSizesInit] = cacheSizeUtils('Layout.Row', [0.7, 0.3])
+
+const MainMobileLayout = (props: MainLayoutSlots) => {
+  const { documentation, request, response, variables, headers } = props
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   const {
     locale: { mainPage },
   } = useLocale()
+  const { ref: rowControllerRef, toggleRowCollapse } = useRowSizesCollapse()
   return (
     <Box height={1}>
       <Drawer
@@ -82,8 +151,9 @@ const MainMobileLayout = ({
       </Drawer>
       <ResizeGroup
         direction="col"
-        initialSizes={mobColInit}
-        onResize={setMobCol}
+        initialSizes={rowSizesInit}
+        onResize={setRow}
+        controllerRef={rowControllerRef}
         {...verticalLayoutStackProps()}
       >
         <ResizeFragment id="Row1">
@@ -106,7 +176,7 @@ const MainMobileLayout = ({
           </Box>
         </ResizeFragment>
         <ResizeFragment id="Row2">
-          <Box height={1}>
+          <CollapseGroup onChange={() => toggleRowCollapse()}>
             <TabGroup
               currentValue="Variables"
               tabs={[
@@ -122,26 +192,22 @@ const MainMobileLayout = ({
                 },
               ]}
             />
-          </Box>
+          </CollapseGroup>
         </ResizeFragment>
       </ResizeGroup>
     </Box>
   )
 }
 
-const MainDesktopLayout = ({
-  documentation,
-  headers,
-  request,
-  response,
-  variables,
-}: MainLayoutSlots) => {
+const MainDesktopLayout = (props: MainLayoutSlots) => {
+  const { documentation, request, response, variables, headers } = props
   const {
     locale: { mainPage },
   } = useLocale()
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
+  const { ref: rowControllerRef, toggleRowCollapse } = useRowSizesCollapse()
   return (
-    <ResizeGroup direction="row" initialSizes={dskRowInit} onResize={setDskRow}>
+    <ResizeGroup direction="row" initialSizes={colSizesInit} onResize={setCol}>
       <ResizeFragment id="Col1" min={0.2} max={0.4} collapse={!isAsideOpen}>
         <Box height={1} overflow="auto">
           {documentation}
@@ -151,8 +217,9 @@ const MainDesktopLayout = ({
         <Box height={1}>
           <ResizeGroup
             direction="col"
-            initialSizes={dskColInit}
-            onResize={setDskCol}
+            initialSizes={rowSizesInit}
+            onResize={setRow}
+            controllerRef={rowControllerRef}
             {...verticalLayoutStackProps()}
           >
             <ResizeFragment id="Col2Row1">
@@ -168,21 +235,23 @@ const MainDesktopLayout = ({
               />
             </ResizeFragment>
             <ResizeFragment id="Col2Row2">
-              <TabGroup
-                currentValue="Headers"
-                tabs={[
-                  {
-                    value: 'Variables',
-                    label: mainPage.tab.variables,
-                    jsx: variables,
-                  },
-                  {
-                    value: 'Headers',
-                    label: mainPage.tab.headers,
-                    jsx: headers,
-                  },
-                ]}
-              />
+              <CollapseGroup onChange={() => toggleRowCollapse()}>
+                <TabGroup
+                  currentValue="Variables"
+                  tabs={[
+                    {
+                      value: 'Variables',
+                      label: mainPage.tab.variables,
+                      jsx: variables,
+                    },
+                    {
+                      value: 'Headers',
+                      label: mainPage.tab.headers,
+                      jsx: headers,
+                    },
+                  ]}
+                />
+              </CollapseGroup>
             </ResizeFragment>
           </ResizeGroup>
         </Box>

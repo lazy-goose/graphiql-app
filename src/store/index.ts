@@ -19,10 +19,12 @@ const StorageSave = ({
   baseUrl,
   headers,
   isAsideOpen,
+  isSettingsWindowOpen,
 }: Store): Partial<Store> => ({
   baseUrl,
   headers,
   isAsideOpen,
+  isSettingsWindowOpen,
 })
 
 export const useBoundStore = create<Store>()(

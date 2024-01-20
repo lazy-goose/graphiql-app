@@ -65,7 +65,9 @@ export type RequestSettingsSlice = {
 }
 export type MainLayoutSlice = {
   isAsideOpen: boolean
-  toggleAside: (force?: boolean) => void
+  toggleAsideOpen: (force?: boolean) => void
+  isSettingsWindowOpen: boolean
+  toggleSettingsWindowOpen: (force?: boolean) => void
 }
 export type AuthSlice = {
   user: User | null

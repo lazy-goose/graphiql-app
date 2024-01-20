@@ -8,21 +8,24 @@ import MainControls from './MainControls'
 import MainLayout from './MainLayout'
 import SchemaControls from './SchemaControls'
 
-const QueryRequest = React.lazy(() => {
-  return import('@/components/QueryRequest/QueryRequest')
-})
-const QueryResponse = React.lazy(() => {
-  return import('@/components/QueryResponse/QueryResponse')
-})
-const RequestHeaders = React.lazy(() => {
-  return import('@/components/RequestHeaders/RequestHeaders')
-})
-const RequestVariables = React.lazy(() => {
-  return import('@/components/RequestVariables/RequestVariables')
-})
-const Documentation = React.lazy(() => {
-  return import('@/components/Documentation/Documentation')
-})
+const MainPageSlot = (i: ReturnType<Parameters<typeof React.lazy>[0]>) =>
+  React.memo(React.lazy(() => i))
+
+const QueryRequest = MainPageSlot(
+  import('@/components/QueryRequest/QueryRequest'),
+)
+const QueryResponse = MainPageSlot(
+  import('@/components/QueryResponse/QueryResponse'),
+)
+const RequestHeaders = MainPageSlot(
+  import('@/components/RequestHeaders/RequestHeaders'),
+)
+const RequestVariables = MainPageSlot(
+  import('@/components/RequestVariables/RequestVariables'),
+)
+const Documentation = MainPageSlot(
+  import('@/components/Documentation/Documentation'),
+)
 
 export default function MainPage() {
   const theme = useTheme()
