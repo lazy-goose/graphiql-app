@@ -13,14 +13,14 @@ export type ResizeFragmentProps = {
   max?: number
   collapse?: boolean
   resizerAfter?: boolean
-  onSizeChange?: (prev: number, next: number, ref: HTMLElement) => void
+  onSizeChange?: (next: number, prev: number, ref: HTMLElement) => void
   windowBoxProps?: BoxProps
   resizerBoxProps?: BoxProps
 }
 export type ResizeGroupChild = React.ReactElement<ResizeFragmentProps>
 export type ResizeCallback = (
-  prevFractions: number[],
   nextFractions: number[],
+  prevFractions: number[],
 ) => void
 export type ResizeGroupController = {
   setFrSizes: (sizes: number[]) => void
@@ -147,7 +147,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
         const prev = getChild(index).computedSize
         const next = toChange[index]
         if (prev !== next) {
-          getChild(index).onSizeChange(prev, next, el)
+          getChild(index).onSizeChange(next, prev, el)
         }
         if (!sizes.length) {
           setFrSize(el, next)
@@ -182,7 +182,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
 
       if (nextSizes) {
         resize(nextSizes)
-        resizeCallbacks.forEach((clb) => clb(fractions, nextSizes))
+        resizeCallbacks.forEach((clb) => clb(nextSizes, fractions))
       }
     }
   }

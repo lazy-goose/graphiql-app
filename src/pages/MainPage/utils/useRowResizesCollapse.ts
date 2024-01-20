@@ -33,7 +33,7 @@ export function useRowSizesCollapse() {
     if (!controller) {
       return
     }
-    const onResize: ResizeCallback = (_, next) => {
+    const onResize: ResizeCallback = (next) => {
       toggleIsOpened(next[1] >= 0.04)
       savedSizesRef.current = null
     }
