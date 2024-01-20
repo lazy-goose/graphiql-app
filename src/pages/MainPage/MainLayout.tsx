@@ -1,24 +1,17 @@
 import { Loader } from '@/components/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
-import createStorageObject, { safeParse } from '@/utils/createStorageObject'
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
 import { Box, Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material'
-import { Suspense, useEffect, useLayoutEffect, useRef } from 'react'
-import { z } from 'zod'
-import {
-  ResizeGroup,
-  ResizeGroupClassName,
-  ResizerDefaults,
-} from './ResizeGroup'
+import { Suspense, useLayoutEffect, useRef } from 'react'
+import { ResizeGroup, ResizerDefaults } from './ResizeGroup'
 import ResizeFragment from './ResizeGroup/ResizeFragment'
-import {
-  type ResizeCallback,
-  type ResizeGroupController,
-  type ResizeGroupProps,
-} from './ResizeGroup/ResizeGroup'
-import { TabGroupDefaults } from './TabGroup'
 import TabGroup from './TabGroup/TabGroup'
+import {
+  cacheSizeUtils,
+  useRowSizesCollapse,
+  verticalLayoutStackProps,
+} from './utils'
 
 type MainLayoutSlots = {
   documentation: React.ReactNode
@@ -26,73 +19,6 @@ type MainLayoutSlots = {
   response: React.ReactNode
   variables: React.ReactNode
   headers: React.ReactNode
-}
-
-const verticalLayoutStackProps = () => {
-  return {
-    StackProps: {
-      sx: {
-        [`& > .${ResizeGroupClassName.FragmentWindow(0)}`]: {
-          minHeight:
-            TabGroupDefaults.Tab.height - ResizerDefaults.padding + 'px',
-        },
-        [`& > .${ResizeGroupClassName.FragmentWindow(1)}`]: {
-          minHeight:
-            TabGroupDefaults.Tab.height +
-            TabGroupDefaults.Tab.borderSize +
-            'px',
-        },
-        [`& > .${ResizeGroupClassName.FragmentResizer()}`]: {
-          marginBottom: -ResizerDefaults.padding + 'px',
-        },
-      },
-    },
-  } satisfies Pick<ResizeGroupProps, 'StackProps'>
-}
-
-const useRowSizesCollapse = () => {
-  const toggleIsOpened = useBoundStore((s) => s.toggleSettingsWindowOpen)
-  const isOpened = useBoundStore((s) => s.isSettingsWindowOpen)
-
-  const rowGroupControllerRef = useRef<ResizeGroupController>(null)
-  const savedSizesRef = useRef<number[] | null>(null)
-
-  const toggleRowCollapse = (collapse = isOpened) => {
-    const controller = rowGroupControllerRef.current
-    if (!controller) {
-      return
-    }
-    const fractions = controller.getFrSizes()
-    if (collapse) {
-      controller.setFrSizes([1, 0])
-      savedSizesRef.current = fractions
-      toggleIsOpened(false)
-    } else {
-      controller.setFrSizes(savedSizesRef.current || [0.7, 0.3])
-      toggleIsOpened(true)
-    }
-  }
-
-  useEffect(() => {
-    const controller = rowGroupControllerRef.current
-    if (!controller) {
-      return
-    }
-    const onResize: ResizeCallback = (_, next) => {
-      toggleIsOpened(next[1] >= 0.04)
-      savedSizesRef.current = null
-    }
-    onResize([], controller.getFrSizes())
-    controller.subscribeResize(onResize, 1)
-    return () => {
-      controller.unsubscribeResize(onResize)
-    }
-  }, [toggleIsOpened])
-
-  return {
-    ref: rowGroupControllerRef,
-    toggleRowCollapse,
-  }
 }
 
 const CollapseGroup = (
@@ -117,14 +43,6 @@ const CollapseGroup = (
       {children}
     </Box>
   )
-}
-
-const cacheSizeUtils = (key: string, fallback: number[]) => {
-  const { getCacheItem, setCacheItem } = createStorageObject('mainLayout')
-  const setter = (sizes: number[]) => setCacheItem(key, JSON.stringify(sizes))
-  const stringified = getCacheItem(key)
-  const cached = safeParse(stringified, z.array(z.number()), fallback)
-  return [setter, cached] as const
 }
 
 const [setCol, colSizesInit] = cacheSizeUtils('Layout.Col', [0.2, 0.4, 0.4])
