@@ -18,13 +18,24 @@ export type ResizeFragmentProps = {
   resizerBoxProps?: BoxProps
 }
 export type ResizeGroupChild = React.ReactElement<ResizeFragmentProps>
+export type ResizeCallback = (
+  prevFractions: number[],
+  nextFractions: number[],
+) => void
+export type ResizeGroupController = {
+  setFrSizes: (sizes: number[]) => void
+  getFrSizes: () => number[]
+  subscribeResize: (callback: ResizeCallback, index?: number) => void
+  unsubscribeResize: (callback: ResizeCallback) => void
+}
 export type ResizeGroupProps = {
   children: React.ReactElement<ResizeFragmentProps>[]
   direction?: 'row' | 'col'
   sizes?: number[]
   initialSizes?: number[]
-  onResize?: (fractions: number[]) => void
+  onResize?: ResizeCallback
   StackProps?: StackProps
+  controllerRef?: React.MutableRefObject<ResizeGroupController | null>
 }
 
 const useChildrenProps = (children: ResizeGroupProps['children']) => {
@@ -76,10 +87,16 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     initialSizes = [],
     onResize = () => {},
     StackProps,
+    controllerRef,
   } = props
 
   const itemsRef = useRef<HTMLElement[]>([])
   const internalSizesRef = useRef<number[]>([])
+  const resizeCallbacksRef = useRef<ResizeCallback[]>([])
+
+  const resizeCallbacks = resizeCallbacksRef.current
+
+  resizeCallbacks[0] = onResize
 
   /* API Abstraction */
 
@@ -98,13 +115,13 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     }
   }
 
-  const fractions = toComputeSizes()
-  const collapsed = childrenProps.map((ch) => ch.collapse)
+  const _fractions = toComputeSizes()
+  const _collapsed = childrenProps.map((ch) => ch.collapse)
 
   const derivedSizes = recalculateCollapse({
-    fractions,
-    collapsed,
-  }).map((derived, index) => (collapsed[index] ? fractions[index] : derived))
+    fractions: _fractions,
+    collapsed: _collapsed,
+  }).map((derived, index) => (_collapsed[index] ? _fractions[index] : derived))
 
   const childrenSettings = childrenProps.map((cp, index) => ({
     ...cp,
@@ -136,7 +153,6 @@ export default function ResizeGroup(props: ResizeGroupProps) {
           setFrSize(el, next)
         }
       })
-    onResize(toChange)
     internalSizesRef.current = toChange
   }
 
@@ -164,7 +180,33 @@ export default function ResizeGroup(props: ResizeGroupProps) {
         minmax: getChildArray().map((ch) => ch.minmax),
       })
 
-      if (nextSizes) resize(nextSizes)
+      if (nextSizes) {
+        resize(nextSizes)
+        resizeCallbacks.forEach((clb) => clb(fractions, nextSizes))
+      }
+    }
+  }
+
+  /* Controller */
+
+  if (controllerRef) {
+    controllerRef.current = {
+      setFrSizes: resize,
+      getFrSizes: () =>
+        toFrArray(
+          getChildArray()
+            .map((ch) => ch.ref)
+            .map((s) => getPxSize(s, direction)),
+        ).fractions,
+      subscribeResize: (callback, index = resizeCallbacks.length) => {
+        resizeCallbacks[index] = callback
+      },
+      unsubscribeResize: (callback) => {
+        const index = resizeCallbacks.indexOf(callback)
+        if (index !== -1) {
+          resizeCallbacks.splice(index, 1)
+        }
+      },
     }
   }
 
