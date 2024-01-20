@@ -98,10 +98,13 @@ export default function ResizeGroup(props: ResizeGroupProps) {
     }
   }
 
+  const fractions = toComputeSizes()
+  const collapsed = childrenProps.map((ch) => ch.collapse)
+
   const derivedSizes = recalculateCollapse({
-    fractions: toComputeSizes(),
-    collapsed: childrenProps.map((ch) => ch.collapse),
-  })
+    fractions,
+    collapsed,
+  }).map((derived, index) => (collapsed[index] ? fractions[index] : derived))
 
   const childrenSettings = childrenProps.map((cp, index) => ({
     ...cp,

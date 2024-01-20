@@ -67,6 +67,6 @@ export function recalculateCollapse(params: {
     0,
   )
   return fractions.map((fr, index) =>
-    !isCollapsed(index) ? fr / uncollapsedSpace : fr,
+    !isCollapsed(index) ? fr / uncollapsedSpace : 0,
   )
 }
