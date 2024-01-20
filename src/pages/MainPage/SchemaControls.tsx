@@ -8,7 +8,6 @@ import {
   type StackProps,
   type Theme,
 } from '@mui/material'
-import { useState } from 'react'
 
 export default function SchemaControls(
   props: StackProps & {
@@ -18,8 +17,8 @@ export default function SchemaControls(
   const { variant = 'desktop', ...StackProps } = props
   const defaultUrl = useBoundStore((state) => state.defaultUrl)
   const baseUrl = useBoundStore((state) => state.baseUrl)
+  const setBaseUrl = useBoundStore((state) => state.setBaseUrl)
   const fetchSchema = useBoundStore((state) => state.fetchSchema)
-  const [urlInput, setUrlInput] = useState(baseUrl)
   const {
     locale: { header },
   } = useLocale()
@@ -41,7 +40,7 @@ export default function SchemaControls(
     <form
       onSubmit={(event) => {
         event.preventDefault()
-        fetchSchema(urlInput)
+        fetchSchema()
       }}
     >
       <Stack
@@ -55,8 +54,8 @@ export default function SchemaControls(
           label="Endpoint"
           variant="standard"
           size="small"
-          value={urlInput}
-          onChange={(e) => setUrlInput(e.currentTarget.value)}
+          value={baseUrl}
+          onChange={(e) => setBaseUrl(e.currentTarget.value)}
           sx={{
             ...(variant === 'desktop' && {
               maxWidth: 'min(36ch, 100%)',
