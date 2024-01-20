@@ -1,6 +1,6 @@
+import createStorageObject from '@/utils/createStorageObject'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Translate from 'translate'
-import { z } from 'zod'
 
 type AutoTranslateOptions = {
   from?: string
@@ -29,28 +29,7 @@ const getHashCode = (string: string) => {
   return hash
 }
 
-const STORAGE_NAME = 'autoTranslate'
-
-const getCache = (): object => {
-  const stored = localStorage.getItem(STORAGE_NAME)
-  try {
-    const unknown = JSON.parse(stored || '{}')
-    if (z.object({}).safeParse(unknown).success) {
-      return unknown
-    }
-    return {}
-  } catch {
-    return {}
-  }
-}
-const setCacheItem = (key: string, text: string) => {
-  const cache = getCache()
-  localStorage.setItem(STORAGE_NAME, JSON.stringify({ ...cache, [key]: text }))
-}
-const getCacheItem = (key: string) => {
-  const cache = getCache()
-  return Object.hasOwn(cache, key) ? (cache as never)[key] : null
-}
+const { getCacheItem, setCacheItem } = createStorageObject('autoTranslate')
 
 export function useAutoTranslate(
   options: AutoTranslateOptions,

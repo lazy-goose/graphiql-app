@@ -1,8 +1,10 @@
 import { Loader } from '@/components/Loader'
 import { useLocale } from '@/hooks/useLocale'
 import { useBoundStore } from '@/store'
+import createStorageObject, { safeParse } from '@/utils/createStorageObject'
 import { Box, Drawer, useMediaQuery, useTheme } from '@mui/material'
 import { Suspense, useLayoutEffect, useRef } from 'react'
+import { z } from 'zod'
 import {
   ResizeGroup,
   ResizeGroupClassName,
@@ -19,6 +21,14 @@ type MainLayoutSlots = {
   response: React.ReactNode
   variables: React.ReactNode
   headers: React.ReactNode
+}
+
+const cacheSizeUtils = (key: string, fallback: number[]) => {
+  const { getCacheItem, setCacheItem } = createStorageObject('mainLayout')
+  const setter = (sizes: number[]) => setCacheItem(key, JSON.stringify(sizes))
+  const stringified = getCacheItem(key)
+  const cached = safeParse(stringified, z.array(z.number()), fallback)
+  return [setter, cached] as const
 }
 
 const verticalLayoutStackProps = () => {
@@ -42,6 +52,10 @@ const verticalLayoutStackProps = () => {
     },
   } satisfies Pick<ResizeGroupProps, 'StackProps'>
 }
+
+const [setMobCol, mobColInit] = cacheSizeUtils('Layout.M.Col', [0.7, 0.3])
+const [setDskRow, dskRowInit] = cacheSizeUtils('Layout.D.Row', [0.2, 0.4, 0.4])
+const [setDskCol, dskColInit] = cacheSizeUtils('Layout.D.Col', [0.7, 0.3])
 
 const MainMobileLayout = ({
   documentation,
@@ -68,7 +82,8 @@ const MainMobileLayout = ({
       </Drawer>
       <ResizeGroup
         direction="col"
-        initialSizes={[0.7, 0.3]}
+        initialSizes={mobColInit}
+        onResize={setMobCol}
         {...verticalLayoutStackProps()}
       >
         <ResizeFragment id="Row1">
@@ -126,7 +141,7 @@ const MainDesktopLayout = ({
   } = useLocale()
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
   return (
-    <ResizeGroup direction="row" initialSizes={[0.2, 0.4, 0.4]}>
+    <ResizeGroup direction="row" initialSizes={dskRowInit} onResize={setDskRow}>
       <ResizeFragment id="Col1" min={0.2} max={0.4} collapse={!isAsideOpen}>
         <Box height={1} overflow="auto">
           {documentation}
@@ -136,7 +151,8 @@ const MainDesktopLayout = ({
         <Box height={1}>
           <ResizeGroup
             direction="col"
-            initialSizes={[0.7, 0.3]}
+            initialSizes={dskColInit}
+            onResize={setDskCol}
             {...verticalLayoutStackProps()}
           >
             <ResizeFragment id="Col2Row1">
