@@ -51,7 +51,10 @@ export const createResponseSlice: SliceCreator<ResponseSlice> = (set, get) => ({
 
       response = await fetch(url, {
         method: 'POST',
-        headers: getHeadersObject(headers),
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          ...getHeadersObject(headers),
+        }),
         body: JSON.stringify({
           query,
           variables,
@@ -60,6 +63,11 @@ export const createResponseSlice: SliceCreator<ResponseSlice> = (set, get) => ({
 
       const responseByteSize = await roughResponseByteSize(response.clone())
       const responseJson = await response.json()
+
+      const firstError = responseJson?.errors?.at(0)
+      if (firstError) {
+        throw new Error(firstError?.message)
+      }
 
       const statusText =
         response.statusText || StatusText.get(response.status) || ''

@@ -23,15 +23,21 @@ export const createSchemaSlice: SliceCreator<SchemaSlice> = (set, get) => ({
 
       const response = await fetch(baseUrl, {
         method: 'POST',
-        headers: {
+        headers: new Headers({
           'Content-Type': 'application/json',
           ...getHeadersObject(headers),
-        },
+        }),
         body: JSON.stringify({ query: getIntrospectionQuery() }),
       })
 
-      const result = await response.json()
-      const schema = buildClientSchema(result.data)
+      const responseJson = await response.json()
+
+      const firstError = responseJson?.errors?.at(0)
+      if (firstError) {
+        throw new Error(firstError?.message)
+      }
+
+      const schema = buildClientSchema(responseJson.data)
 
       set((state) => {
         state.schemaError = null
