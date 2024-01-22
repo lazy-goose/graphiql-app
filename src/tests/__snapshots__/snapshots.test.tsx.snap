@@ -1,10 +1,295 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Correct App snapshot 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="true"
+      class="MuiBackdrop-root css-1u0nbs7-MuiBackdrop-root"
+      style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="MuiBox-root css-1sfjlxw"
+      >
+        <span
+          class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+          role="progressbar"
+          style="width: 40px; height: 40px;"
+        >
+          <svg
+            class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="20.2"
+              stroke-width="3.6"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Correct DocError snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiStack-root css-1ucnu3w-MuiStack-root"
+    >
+      <hr
+        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+      />
+      <section
+        class="MuiBox-root css-0"
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3 Heading css-1cnslby-MuiTypography-root"
+        >
+          Error
+        </h3>
+        <div
+          class="MuiTypography-root MuiTypography-body1 Body MuiBox-root css-1fpdzvx-MuiTypography-root"
+        >
+          <p>
+            Error msg
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Correct DocProp snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiStack-root css-thp4zk-MuiStack-root"
+    >
+      <div
+        class="MuiStack-root css-1q7dhcf-MuiStack-root"
+      >
+        <h2
+          class="MuiTypography-root MuiTypography-h2 css-1fgmp8i-MuiTypography-root"
+        >
+          prop1: 
+          String
+        </h2>
+        <div
+          aria-disabled="true"
+          class="MuiButtonBase-root Mui-disabled MuiChip-root MuiChip-outlined Mui-disabled MuiChip-sizeSmall MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-eo478a-MuiButtonBase-root-MuiChip-root"
+          role="button"
+          tabindex="-1"
+        >
+          <span
+            class="MuiChip-label MuiChip-labelSmall css-rrn746-MuiChip-label"
+          >
+            Autotranslate
+          </span>
+        </div>
+      </div>
+      <hr
+        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+      />
+      <section
+        class="MuiBox-root css-0"
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3 Heading css-1cnslby-MuiTypography-root"
+        >
+          String type Metadata
+        </h3>
+        <div
+          class="MuiTypography-root MuiTypography-body1 Body MuiBox-root css-1fpdzvx-MuiTypography-root"
+        >
+          <p>
+            The 
+            <code>
+              String
+            </code>
+             scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Correct DocRoot snapshot 1`] = `
+<body>
+  <div />
+</body>
+`;
+
+exports[`Correct DocType snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiStack-root css-1ucnu3w-MuiStack-root"
+    >
+      <hr
+        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+      />
+      <h2
+        class="MuiTypography-root MuiTypography-h2 css-1fgmp8i-MuiTypography-root"
+      >
+        ObjectType
+      </h2>
+      <hr
+        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+      />
+      <section
+        class="MuiBox-root css-0"
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3 Heading css-1cnslby-MuiTypography-root"
+        >
+          Fields
+        </h3>
+        <div
+          class="MuiTypography-root MuiTypography-body1 Body MuiBox-root css-1fpdzvx-MuiTypography-root"
+        >
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiBox-root css-thcam4-MuiTypography-root"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1rlk4n7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                <span
+                  class="Name MuiBox-root css-0"
+                >
+                  prop1
+                </span>
+                <span
+                  class="MuiBox-root css-0"
+                >
+                  : 
+                </span>
+                <span
+                  class="Type MuiBox-root css-0"
+                >
+                  String
+                </span>
+              </div>
+            </button>
+            <div
+              aria-label="tooltip"
+              class="MuiBox-root css-17goech"
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                <span
+                  class="Name MuiBox-root css-0"
+                >
+                  prop1
+                </span>
+                <span
+                  class="MuiBox-root css-0"
+                >
+                  (
+                </span>
+                <ul
+                  class="MuiList-root MuiList-padding css-1n8bzsz-MuiList-root"
+                />
+                <span
+                  class="MuiBox-root css-0"
+                >
+                  ): 
+                </span>
+                <span
+                  class="Type MuiBox-root css-0"
+                >
+                  String
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiBox-root css-thcam4-MuiTypography-root"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1rlk4n7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                <span
+                  class="Name MuiBox-root css-0"
+                >
+                  prop2
+                </span>
+                <span
+                  class="MuiBox-root css-0"
+                >
+                  : 
+                </span>
+                <span
+                  class="Type MuiBox-root css-0"
+                >
+                  String
+                </span>
+              </div>
+            </button>
+            <div
+              aria-label="tooltip"
+              class="MuiBox-root css-17goech"
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                <span
+                  class="Name MuiBox-root css-0"
+                >
+                  prop2
+                </span>
+                <span
+                  class="MuiBox-root css-0"
+                >
+                  (
+                </span>
+                <ul
+                  class="MuiList-root MuiList-padding css-1n8bzsz-MuiList-root"
+                />
+                <span
+                  class="MuiBox-root css-0"
+                >
+                  ): 
+                </span>
+                <span
+                  class="Type MuiBox-root css-0"
+                >
+                  String
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+`;
+
 exports[`Correct Documentation snapshot 1`] = `
 <body>
   <div>
     <div
-      class="MuiStack-root css-1im7ke8-MuiStack-root"
+      class="MuiStack-root css-nwjl30-MuiStack-root"
     >
       <div
         class="MuiStack-root css-1d9cypr-MuiStack-root"
@@ -85,7 +370,7 @@ exports[`Correct ErrorBlock snapshot 1`] = `
           />
         </svg>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-focusVisible MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >
@@ -107,7 +392,16 @@ exports[`Correct ErrorBlock snapshot 1`] = `
           Reload page
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
+          >
+            <span
+              class="css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible MuiTouchRipple-ripplePulsate"
+              style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
+            >
+              <span
+                class="MuiTouchRipple-child MuiTouchRipple-childPulsate"
+              />
+            </span>
+          </span>
         </button>
       </div>
     </main>
@@ -410,56 +704,59 @@ exports[`Correct MainPage snapshot 1`] = `
           <div
             class="MuiBox-root css-78tas9"
           >
-            <div
-              class="MuiStack-root css-v541nk-MuiStack-root"
-            >
+            <form>
               <div
-                class="MuiFormControl-root MuiTextField-root css-oxygzk-MuiFormControl-root-MuiTextField-root"
+                class="MuiStack-root css-v541nk-MuiStack-root"
               >
-                <label
-                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="true"
-                  for=":ri:"
-                  id=":ri:-label"
-                >
-                  Endpoint
-                </label>
                 <div
-                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-1eed5fa-MuiInputBase-root-MuiInput-root"
+                  class="MuiFormControl-root MuiTextField-root css-oxygzk-MuiFormControl-root-MuiTextField-root"
                 >
-                  <input
-                    aria-invalid="false"
-                    class="MuiInputBase-input MuiInput-input MuiInputBase-inputSizeSmall css-nz481w-MuiInputBase-input-MuiInput-input"
-                    id=":ri:"
-                    type="text"
-                    value="https://countries.trevorblades.com/graphql"
-                  />
-                </div>
-              </div>
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-legac6-MuiButtonBase-root-MuiButton-root"
-                disabled=""
-                tabindex="-1"
-                type="button"
-              >
-                <span
-                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                    data-testid="RefreshIcon"
-                    focusable="false"
-                    viewBox="2 2 21 21"
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-standard css-1nqcw6m-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="true"
+                    for=":ri:"
+                    id=":ri:-label"
                   >
-                    <path
-                      d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                    Endpoint
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-1f1ppra-MuiInputBase-root-MuiInput-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input MuiInput-input MuiInputBase-inputSizeSmall css-nz481w-MuiInputBase-input-MuiInput-input"
+                      id=":ri:"
+                      placeholder="https://countries.trevorblades.com/graphql"
+                      type="text"
+                      value="https://countries.trevorblades.com/graphql"
                     />
-                  </svg>
-                </span>
-                Refetch
-              </button>
-            </div>
+                  </div>
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-legac6-MuiButtonBase-root-MuiButton-root"
+                  disabled=""
+                  tabindex="-1"
+                  type="submit"
+                >
+                  <span
+                    class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="RefreshIcon"
+                      focusable="false"
+                      viewBox="2 2 21 21"
+                    >
+                      <path
+                        d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                      />
+                    </svg>
+                  </span>
+                  Refetch
+                </button>
+              </div>
+            </form>
           </div>
           <div
             class="MuiBox-root css-106ktvk"
@@ -568,7 +865,7 @@ exports[`Correct MainPage snapshot 1`] = `
         </button>
       </nav>
       <div
-        class="MuiBox-root css-1ksi9al"
+        class="MuiBox-root css-77k26o"
       >
         <div
           class="MuiStack-root css-88sa19-MuiStack-root"
@@ -720,105 +1017,129 @@ exports[`Correct MainPage snapshot 1`] = `
                   style="flex: 0.3 1 0%;"
                 >
                   <div
-                    class="MuiStack-root css-1pajkrs-MuiStack-root"
+                    class="MuiBox-root css-1o3fej"
                   >
+                    <button
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1j5qvkw-MuiButtonBase-root-MuiIconButton-root"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        data-testid="KeyboardArrowUpIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+                        />
+                      </svg>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
                     <div
-                      class="MuiBox-root css-ohwg9z"
+                      class="MuiStack-root css-1pajkrs-MuiStack-root"
                     >
                       <div
-                        class="MuiTabs-root css-1ujnqem-MuiTabs-root"
+                        class="MuiBox-root css-ohwg9z"
                       >
                         <div
-                          class="MuiTabs-scrollableX MuiTabs-hideScrollbar css-oqr85h"
-                          style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
-                        />
-                        <div
-                          class="MuiTabs-scroller MuiTabs-hideScrollbar MuiTabs-scrollableX css-69z67c-MuiTabs-scroller"
-                          style="margin-bottom: 0px;"
+                          class="MuiTabs-root css-1ujnqem-MuiTabs-root"
                         >
                           <div
-                            class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
-                            role="tablist"
+                            class="MuiTabs-scrollableX MuiTabs-hideScrollbar css-oqr85h"
+                            style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
+                          />
+                          <div
+                            class="MuiTabs-scroller MuiTabs-hideScrollbar MuiTabs-scrollableX css-69z67c-MuiTabs-scroller"
+                            style="margin-bottom: 0px;"
                           >
-                            <button
-                              aria-controls="mui-p-100000-P-Variables"
-                              aria-selected="false"
-                              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                              id="mui-p-100000-T-Variables"
-                              role="tab"
-                              tabindex="-1"
-                              type="button"
+                            <div
+                              class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+                              role="tablist"
                             >
-                              Variables
-                              <span
-                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                              />
-                            </button>
-                            <button
-                              aria-controls="mui-p-100000-P-Headers"
-                              aria-selected="true"
-                              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                              id="mui-p-100000-T-Headers"
-                              role="tab"
-                              tabindex="0"
-                              type="button"
-                            >
-                              Headers
-                              <span
-                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                              />
-                            </button>
+                              <button
+                                aria-controls="mui-p-100000-P-Variables"
+                                aria-selected="true"
+                                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                                id="mui-p-100000-T-Variables"
+                                role="tab"
+                                tabindex="0"
+                                type="button"
+                              >
+                                Variables
+                                <span
+                                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                                />
+                              </button>
+                              <button
+                                aria-controls="mui-p-100000-P-Headers"
+                                aria-selected="false"
+                                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+                                id="mui-p-100000-T-Headers"
+                                role="tab"
+                                tabindex="-1"
+                                type="button"
+                              >
+                                Headers
+                                <span
+                                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                                />
+                              </button>
+                            </div>
+                            <span
+                              class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+                              style="left: 0px; width: 0px;"
+                            />
                           </div>
-                          <span
-                            class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
-                            style="left: 0px; width: 0px;"
+                        </div>
+                        <div
+                          class="MuiBox-root css-zdtnoz"
+                        >
+                          <hr
+                            class="MuiDivider-root MuiDivider-fullWidth css-16pjfqe-MuiDivider-root"
                           />
                         </div>
                       </div>
                       <div
-                        class="MuiBox-root css-zdtnoz"
+                        aria-labelledby="mui-p-100000-T-Variables"
+                        class="MuiTabPanel-root css-13xfq8m-MuiTabPanel-root"
+                        id="mui-p-100000-P-Variables"
+                        role="tabpanel"
                       >
-                        <hr
-                          class="MuiDivider-root MuiDivider-fullWidth css-16pjfqe-MuiDivider-root"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      aria-labelledby="mui-p-100000-T-Variables"
-                      class="MuiTabPanel-root css-13xfq8m-MuiTabPanel-root"
-                      hidden=""
-                      id="mui-p-100000-P-Variables"
-                      role="tabpanel"
-                    />
-                    <div
-                      aria-labelledby="mui-p-100000-T-Headers"
-                      class="MuiTabPanel-root css-13xfq8m-MuiTabPanel-root"
-                      id="mui-p-100000-P-Headers"
-                      role="tabpanel"
-                    >
-                      <div
-                        class="MuiBox-root css-1sfjlxw"
-                      >
-                        <span
-                          class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
-                          role="progressbar"
-                          style="width: 40px; height: 40px;"
+                        <div
+                          class="MuiBox-root css-1sfjlxw"
                         >
-                          <svg
-                            class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
-                            viewBox="22 22 44 44"
+                          <span
+                            class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+                            role="progressbar"
+                            style="width: 40px; height: 40px;"
                           >
-                            <circle
-                              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
-                              cx="44"
-                              cy="44"
-                              fill="none"
-                              r="20.2"
-                              stroke-width="3.6"
-                            />
-                          </svg>
-                        </span>
+                            <svg
+                              class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+                              viewBox="22 22 44 44"
+                            >
+                              <circle
+                                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+                                cx="44"
+                                cy="44"
+                                fill="none"
+                                r="20.2"
+                                stroke-width="3.6"
+                              />
+                            </svg>
+                          </span>
+                        </div>
                       </div>
+                      <div
+                        aria-labelledby="mui-p-100000-T-Headers"
+                        class="MuiTabPanel-root css-13xfq8m-MuiTabPanel-root"
+                        hidden=""
+                        id="mui-p-100000-P-Headers"
+                        role="tabpanel"
+                      />
                     </div>
                   </div>
                 </div>
@@ -3218,13 +3539,15 @@ exports[`Correct WelcomePage snapshot 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                          aria-label="Refactored by LazyGoose"
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
                         >
-                          <span
+                          <del
                             class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
                           >
                             Authentication
-                          </span>
+                          </del>
                         </div>
                       </li>
                       <li
@@ -3246,13 +3569,15 @@ exports[`Correct WelcomePage snapshot 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                          aria-label="Refactored by LazyGoose"
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
                         >
-                          <span
+                          <del
                             class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
                           >
                             Welcome page
-                          </span>
+                          </del>
                         </div>
                       </li>
                     </ul>
@@ -3340,13 +3665,14 @@ exports[`Correct WelcomePage snapshot 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
                         >
-                          <span
+                          <p
                             class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
                           >
                             Organizational matters
-                          </span>
+                          </p>
                         </div>
                       </li>
                       <li
@@ -3368,13 +3694,15 @@ exports[`Correct WelcomePage snapshot 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                          aria-label="Refactored by LazyGoose"
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
                         >
-                          <span
+                          <del
                             class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
                           >
                             API calls
-                          </span>
+                          </del>
                         </div>
                       </li>
                     </ul>
@@ -3462,13 +3790,14 @@ exports[`Correct WelcomePage snapshot 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
                         >
-                          <span
+                          <p
                             class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
                           >
                             Project setup
-                          </span>
+                          </p>
                         </div>
                       </li>
                       <li
@@ -3490,13 +3819,14 @@ exports[`Correct WelcomePage snapshot 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
                         >
-                          <span
+                          <p
                             class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
                           >
                             Design
-                          </span>
+                          </p>
                         </div>
                       </li>
                       <li
@@ -3518,13 +3848,43 @@ exports[`Correct WelcomePage snapshot 1`] = `
                           </svg>
                         </div>
                         <div
-                          class="MuiListItemText-root css-1r46kq0-MuiListItemText-root"
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
                         >
-                          <span
+                          <p
                             class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
                           >
-                            Main page
-                          </span>
+                            App logic
+                          </p>
+                        </div>
+                      </li>
+                      <li
+                        class="MuiListItem-root MuiListItem-gutters css-1nxmd3h-MuiListItem-root"
+                      >
+                        <div
+                          class="MuiListItemIcon-root css-1hqgva7-MuiListItemIcon-root"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-onhrjl-MuiSvgIcon-root"
+                            data-testid="StarRateIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M14.43 10 12 2l-2.43 8H2l6.18 4.41L5.83 22 12 17.31 18.18 22l-2.35-7.59L22 10z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="MuiListItemText-root css-wl9jvy-MuiListItemText-root"
+                          data-mui-internal-clone-element="true"
+                        >
+                          <p
+                            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-gj79hn-MuiTypography-root"
+                          >
+                            App layouts
+                          </p>
                         </div>
                       </li>
                     </ul>
