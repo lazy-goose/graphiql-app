@@ -1,6 +1,6 @@
 import { Loader } from '@/components/Loader'
 import { useLocale } from '@/hooks/useLocale'
-import { Chip, Stack } from '@mui/material'
+import { Chip, Divider, Stack } from '@mui/material'
 import { type GraphQLScalarType } from 'graphql'
 import { useAutoTranslate } from '../utils/hooks/useAutoTranslate'
 import { DocLayout, DocName, DocSection } from './@parts/DocLayout'
@@ -47,7 +47,10 @@ export default function DocPropScalar(props: {
         />
       </Stack>
       {isFetching ? (
-        <Loader flex={1} />
+        <>
+          <Divider />
+          <Loader mt={10} />
+        </>
       ) : (
         <DocSection
           markdown
