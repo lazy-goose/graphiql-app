@@ -9,5 +9,5 @@ export default function useErrorEffect(error: Error | null | undefined) {
         message: error.message,
       })
     }
-  }, [error?.message])
+  }, [error])
 }
