@@ -1,3 +1,4 @@
+import mergeSx from '@/utils/mergeSx'
 import { Alert, type AlertProps } from '@mui/material'
 import { useSnackbar, type CustomContentProps } from 'notistack'
 import React from 'react'
@@ -13,12 +14,22 @@ const Snackbar = React.forwardRef<
   const {
     message,
     id,
-    AlertProps: { severity = 'error', ...AlertProps } = {},
+    AlertProps: { severity = 'error', sx, ...AlertProps } = {},
   } = props
   const { closeSnackbar } = useSnackbar()
   const onClose = () => closeSnackbar(id)
   return (
-    <Alert ref={ref} severity={severity} onClose={onClose} {...AlertProps}>
+    <Alert
+      ref={ref}
+      severity={severity}
+      onClose={onClose}
+      sx={mergeSx(sx, {
+        '.MuiAlert-message': {
+          maxWidth: '50ch',
+        },
+      })}
+      {...AlertProps}
+    >
       {message}
     </Alert>
   )
