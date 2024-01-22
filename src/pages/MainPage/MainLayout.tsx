@@ -241,6 +241,8 @@ export default function MainLayout(slots: MainLayoutSlots) {
       ref={mainBoxRef}
       sx={(theme) => ({
         borderWidth: ResizerDefaults.thickness + 'px',
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
         borderColor: theme.palette.divider,
         borderStyle: 'solid',
         '& ::-webkit-scrollbar': {
