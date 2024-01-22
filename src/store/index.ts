@@ -20,11 +20,13 @@ const StorageSave = ({
   headers,
   isAsideOpen,
   isSettingsWindowOpen,
+  settingsWindowTabGroup,
 }: Store): Partial<Store> => ({
   baseUrl,
   headers,
   isAsideOpen,
   isSettingsWindowOpen,
+  settingsWindowTabGroup,
 })
 
 export const storeName = (userName?: string | null | undefined) => {

@@ -23,7 +23,7 @@ const CollapseGroup = (
   props: React.PropsWithChildren<{ onChange: (bool: boolean) => void }>,
 ) => {
   const { onChange, children } = props
-  const isOpen = useBoundStore((state) => state.isSettingsWindowOpen)
+  const isOpen = useBoundStore((s) => s.isSettingsWindowOpen)
   return (
     <Box height={1} position="relative">
       <IconButton
@@ -67,6 +67,8 @@ const useCacheSizes = () => {
 const MainMobileLayout = (props: MainLayoutSlots) => {
   const { documentation, request, response, variables, headers } = props
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
+  const settingsTab = useBoundStore((s) => s.settingsWindowTabGroup)
+  const setSettingsTab = useBoundStore((s) => s.setSettingsWindowTabGroup)
   const {
     locale: { mainPage },
   } = useLocale()
@@ -113,7 +115,10 @@ const MainMobileLayout = (props: MainLayoutSlots) => {
         <ResizeFragment id="Row2">
           <CollapseGroup onChange={() => toggleRowCollapse()}>
             <TabGroup
-              currentValue="Variables"
+              currentValue={settingsTab}
+              onChange={(_, value) => {
+                setSettingsTab(value)
+              }}
               tabs={[
                 {
                   value: 'Variables',
@@ -140,6 +145,8 @@ const MainDesktopLayout = (props: MainLayoutSlots) => {
     locale: { mainPage },
   } = useLocale()
   const isAsideOpen = useBoundStore((s) => s.isAsideOpen)
+  const settingsTab = useBoundStore((s) => s.settingsWindowTabGroup)
+  const setSettingsTab = useBoundStore((s) => s.setSettingsWindowTabGroup)
   const { ref: rowControllerRef, toggleRowCollapse } = useRowSizesCollapse()
   const { col, row, setCol, setRow } = useCacheSizes()
   return (
@@ -173,7 +180,10 @@ const MainDesktopLayout = (props: MainLayoutSlots) => {
             <ResizeFragment id="Col2Row2">
               <CollapseGroup onChange={() => toggleRowCollapse()}>
                 <TabGroup
-                  currentValue="Variables"
+                  currentValue={settingsTab}
+                  onChange={(_, value) => {
+                    setSettingsTab(value)
+                  }}
                   tabs={[
                     {
                       value: 'Variables',

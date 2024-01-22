@@ -14,4 +14,9 @@ export const createMainLayoutSlice: SliceCreator<MainLayoutSlice> = (
     set((state) => {
       state.isSettingsWindowOpen = bool
     }),
+  settingsWindowTabGroup: 'Variables',
+  setSettingsWindowTabGroup: (tabName) =>
+    set((state) => {
+      state.settingsWindowTabGroup = tabName
+    }),
 })

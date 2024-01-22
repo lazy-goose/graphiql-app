@@ -18,11 +18,11 @@ import { useState } from 'react'
 import { Resizer, ResizerDefaults } from '../ResizeGroup'
 import defaults from './defaults'
 
-export default function TabGroup(props: {
-  currentValue: string
-  onChange?: TabListProps['onChange']
+export default function TabGroup<T extends string>(props: {
+  currentValue: T
+  onChange?: (e: React.SyntheticEvent<Element, Event>, v: T) => void
   tabs: {
-    value: string
+    value: T
     jsx: React.ReactNode
     label?: string
     TabPanelProps?: TabPanelProps

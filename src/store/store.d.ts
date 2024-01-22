@@ -68,6 +68,8 @@ export type MainLayoutSlice = {
   toggleAsideOpen: (force?: boolean) => void
   isSettingsWindowOpen: boolean
   toggleSettingsWindowOpen: (force?: boolean) => void
+  settingsWindowTabGroup: 'Variables' | 'Headers'
+  setSettingsWindowTabGroup: (tabName: 'Variables' | 'Headers') => void
 }
 export type AuthSlice = {
   user: User | null
