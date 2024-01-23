@@ -10,9 +10,14 @@ export const createMainLayoutSlice: SliceCreator<MainLayoutSlice> = (
       state.isAsideOpen = bool
     }),
   isSettingsWindowOpen: true,
-  toggleSettingsWindowOpen: (bool = !get().isSettingsWindowOpen) =>
+  settingsWindowPrevSizes: [],
+  toggleSettingsWindowOpen: (
+    bool = !get().isSettingsWindowOpen,
+    prevSizes = null,
+  ) =>
     set((state) => {
       state.isSettingsWindowOpen = bool
+      state.settingsWindowPrevSizes = prevSizes
     }),
   settingsWindowTabGroup: 'Variables',
   setSettingsWindowTabGroup: (tabName) =>

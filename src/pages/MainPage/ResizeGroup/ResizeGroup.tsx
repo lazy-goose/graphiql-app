@@ -137,6 +137,15 @@ export default function ResizeGroup(props: ResizeGroupProps) {
 
   /* Logic */
 
+  const emitResizeCallbacks = (nextSizes: number[]) => {
+    const currSizes = toFrArray(
+      getChildArray()
+        .map((ch) => ch.ref)
+        .map((s) => getPxSize(s, direction)),
+    ).fractions
+    resizeCallbacks.forEach((clb) => clb(nextSizes, currSizes))
+  }
+
   const resize = (nextFractions: number[]) => {
     const toChange = nextFractions.map((newSize, index) =>
       getChild(index).collapse ? getChild(index).computedSize : newSize,
@@ -154,6 +163,7 @@ export default function ResizeGroup(props: ResizeGroupProps) {
         }
       })
     internalSizesRef.current = toChange
+    emitResizeCallbacks(nextFractions)
   }
 
   const handleResize = (e: ResizeEvent, dividerIndex: number) => {
@@ -182,7 +192,6 @@ export default function ResizeGroup(props: ResizeGroupProps) {
 
       if (nextSizes) {
         resize(nextSizes)
-        resizeCallbacks.forEach((clb) => clb(nextSizes, fractions))
       }
     }
   }

@@ -67,7 +67,11 @@ export type MainLayoutSlice = {
   isAsideOpen: boolean
   toggleAsideOpen: (force?: boolean) => void
   isSettingsWindowOpen: boolean
-  toggleSettingsWindowOpen: (force?: boolean) => void
+  settingsWindowPrevSizes: number[] | null
+  toggleSettingsWindowOpen: (
+    force?: boolean,
+    prevSizes?: number[] | null,
+  ) => void
   settingsWindowTabGroup: 'Variables' | 'Headers'
   setSettingsWindowTabGroup: (tabName: 'Variables' | 'Headers') => void
 }

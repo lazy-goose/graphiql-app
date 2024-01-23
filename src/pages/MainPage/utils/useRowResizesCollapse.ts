@@ -7,10 +7,10 @@ import {
 
 export function useRowSizesCollapse() {
   const toggleIsOpened = useBoundStore((s) => s.toggleSettingsWindowOpen)
+  const prevSizes = useBoundStore((s) => s.settingsWindowPrevSizes)
   const isOpened = useBoundStore((s) => s.isSettingsWindowOpen)
 
   const rowGroupControllerRef = useRef<ResizeGroupController>(null)
-  const savedSizesRef = useRef<number[] | null>(null)
 
   const toggleRowCollapse = (collapse = isOpened) => {
     const controller = rowGroupControllerRef.current
@@ -20,10 +20,9 @@ export function useRowSizesCollapse() {
     const fractions = controller.getFrSizes()
     if (collapse) {
       controller.setFrSizes([1, 0])
-      savedSizesRef.current = fractions
-      toggleIsOpened(false)
+      toggleIsOpened(false, fractions)
     } else {
-      controller.setFrSizes(savedSizesRef.current || [0.7, 0.3])
+      controller.setFrSizes(prevSizes || [0.7, 0.3])
       toggleIsOpened(true)
     }
   }
@@ -34,10 +33,8 @@ export function useRowSizesCollapse() {
       return
     }
     const onResize: ResizeCallback = (next) => {
-      toggleIsOpened(next[1] >= 0.04)
-      savedSizesRef.current = null
+      toggleIsOpened(next[1] >= 0.04, null)
     }
-    onResize([], controller.getFrSizes())
     controller.subscribeResize(onResize, 1)
     return () => {
       controller.unsubscribeResize(onResize)

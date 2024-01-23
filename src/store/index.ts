@@ -20,12 +20,14 @@ const StorageSave = ({
   headers,
   isAsideOpen,
   isSettingsWindowOpen,
+  settingsWindowPrevSizes,
   settingsWindowTabGroup,
 }: Store): Partial<Store> => ({
   baseUrl,
   headers,
   isAsideOpen,
   isSettingsWindowOpen,
+  settingsWindowPrevSizes,
   settingsWindowTabGroup,
 })
 
